@@ -1,1 +1,1 @@
-# [alibekbirlikbai.github.io](alibekbirlikbai.github.io)
+# [alibekbirlikbai.github.io/](https://alibekbirlikbai.github.io/)

@@ -513,6 +513,58 @@
                 </a>
 
 
+                <!-- news-api -->              
+                <a href="" target="_blank">
+                  <div class="github-project" repo="news-api">  
+                    <!-- block: верхний блок -->
+                    <div class="main-section">
+                      <!-- inner-block: основной текст Репозитория -->
+                      <div class="repo-info-block">
+                        <p class="github-login_and_repo-name"></p>
+    
+                        <p class="repo-description"></p>
+                      </div>
+    
+                      <!-- inner-block: аватар Профиля GitHub -->
+                      <div class="repo-img-block">
+                        <img class="github-avatar-block" src="" alt="Github avatar">
+                      </div>
+                    </div>
+    
+                    <!-- block: нижний блок -->
+                    <div class="additional-section">
+                      <div class="block">
+                        <div></div>
+
+                        <div class="block-content">
+                          <span class="repo-created_at"></span>
+
+                          <span class="block-description">created</span>
+                        </div>
+                      </div>
+    
+                      <div class="block block-with-icon">
+                        <div>
+                          <i class="fa-solid fa-code-commit"></i>
+                        </div>
+    
+                        <div>
+                          <span class="repo-pushed_at"></span>
+    
+                          <span class="block-description">last commit</span>
+                        </div>
+                      </div>
+    
+                      
+                    </div>
+    
+                    <div class="link-to-repo">
+                      <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                    </div>
+                  </div>
+                </a>
+
+
                 <!-- Ticket-booking-system -->              
                 <a href="" target="_blank">
                   <div class="github-project" repo="Ticket-booking-system">  
@@ -667,58 +719,6 @@
                     </div>
                   </div>
                 </a>
-
-
-                <!-- news-api -->              
-                <a href="" target="_blank">
-                  <div class="github-project" repo="news-api">  
-                    <!-- block: верхний блок -->
-                    <div class="main-section">
-                      <!-- inner-block: основной текст Репозитория -->
-                      <div class="repo-info-block">
-                        <p class="github-login_and_repo-name"></p>
-    
-                        <p class="repo-description"></p>
-                      </div>
-    
-                      <!-- inner-block: аватар Профиля GitHub -->
-                      <div class="repo-img-block">
-                        <img class="github-avatar-block" src="" alt="Github avatar">
-                      </div>
-                    </div>
-    
-                    <!-- block: нижний блок -->
-                    <div class="additional-section">
-                      <div class="block">
-                        <div></div>
-
-                        <div class="block-content">
-                          <span class="repo-created_at"></span>
-
-                          <span class="block-description">created</span>
-                        </div>
-                      </div>
-    
-                      <div class="block block-with-icon">
-                        <div>
-                          <i class="fa-solid fa-code-commit"></i>
-                        </div>
-    
-                        <div>
-                          <span class="repo-pushed_at"></span>
-    
-                          <span class="block-description">last commit</span>
-                        </div>
-                      </div>
-    
-                      
-                    </div>
-    
-                    <div class="link-to-repo">
-                      <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
-                    </div>
-                  </div>
-                </a>
               </div>
               
             </div>   
@@ -758,17 +758,27 @@
 
     <script>
       // ### Документация по GitHub API -> https://docs.github.com/ru/rest?apiVersion=2022-11-28
-
+      
       const username = 'alibekbirlikbai';
-      const accessToken = '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';
       const gitHub_API_URL = `https://api.github.com/repos/${username}`;
+      var accessToken;
 
       var githubInfoElements = document.querySelectorAll('.github-project');
 
-      githubInfoElements.forEach(function(element) {
+      // Получаем accessToken из прокси сервера
+      fetch('https://proxy-server-7fvb.onrender.com/get-file-content')
+        .then(response => response.text())
+        .then(data => {
+          accessToken = data;
+
+          githubInfoElements.forEach(function(element) {
           var repository = element.getAttribute('repo');
           assignGitHub_RepositoryCard(repository, element);
-      });
+          });
+
+        })
+        .catch(error => console.error('Ошибка загрузки файла:', error));
+
 
 
       // https://api.github.com/repos/<REPO> - инфо про Конкретный репозиторий
