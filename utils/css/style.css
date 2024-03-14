@@ -1280,6 +1280,31 @@ iframe {
   }
 }
 
+
+#interests_section li {
+  list-style-type: '#';
+  padding-inline-start: 1ch;
+
+  text-align: justify;
+}
+#interests_section li:not(:last-child) { 
+  /* РАССТОЯНИЕ МЕЖДУ ИНТЕРЕСАМИ */
+  margin-bottom: 15px;  
+}
+
+
+.text-italic {
+  font-style: italic;
+}
+.text-bold {
+  font-weight: bold;
+} 
+.text-underline {
+  text-decoration: underline;
+}
+
+
+
 .js-image {
   background-size: cover;
   background-position: center;
