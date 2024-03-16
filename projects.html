@@ -128,6 +128,9 @@
 
     <!-- Основной .css Файл -->
     <link rel="stylesheet" type="text/css" href="/utils/css/style.css" />
+    <!-- Font Awesome PRO icons -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    
     <!-- Добавил JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
@@ -259,6 +262,18 @@
 
               <div class="additional-contacts">
                 <li
+                class="contact-block__item"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Resume Site"
+                >
+                  <a href="https://alibekbirlikbai.github.io/">
+                    <i class="fa-solid fa-link-simple fa-lg"></i>
+                    <span>alibekbirlikbai.github.io</span>
+                  </a>
+                </li>
+
+                <li
                   class="contact-block__item"
                   data-toggle="tooltip"
                   data-placement="top"
@@ -292,18 +307,52 @@
         
 
         <div class="content">
-          <div class="section mt-0">
-            <h1 class="title title--h1 title__separate">Мои Проекты</h1>
-            <div class="pt-2 pt-sm-3">
-              <p>
-                Здесь можете ознакомиться с моими текущими, и университетскими проектами. К каждому проекту прилагается своя документация (README.md, Release Notes). 
-              </p>
+          <div class="section mt-0" id="my_projects">
+            <h1 class="title title--h1 title__separate">Мои Проекты
 
-              <!-- <p>
-                <i>
-                  *Release Notes - начиная с Pastebin-project
-                </i>
-              </p> -->
+              <!-- <div class="section_highlight_status">
+                *В Активном поиске 
+                <b>
+                  Работы
+                </b> 
+                /
+                <b>
+                  Стажировки
+                </b>
+              </div> -->
+            </h1>
+
+            <div class="section-body">
+              <div class="paragraph_highlight">
+                <div>
+                  <i class="fa-solid fa-tag"></i>
+                </div>  
+
+                <div class="block-body">
+                  <p>
+                    Я написал небольшой скрипт для отображения <b>Github Repository Cards</b>.
+                    Для подключения Github API пришлось использовать прокси-сервер, 
+                    сервер публичный поэтому может быть задержка при получении данных на (10 - 30 секунд) *(Обновите страницу)
+                  </p>
+
+                  <p>
+                    <b>
+                      Cервер запущен на:
+                    </b>
+                    
+                    <a href="https://github.com/alibekbirlikbai/proxy-server">
+                      https://github.com/alibekbirlikbai/proxy-server
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="paragraph">
+                <p>
+                  Здесь можете ознакомиться с моими текущими, и университетскими проектами. 
+                  К каждому проекту прилагается своя документация (<b>README.md</b>, <b>Release Notes</b>). 
+                </p>               
+              </div>
             </div>
           </div>
 

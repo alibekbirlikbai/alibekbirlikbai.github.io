@@ -128,6 +128,9 @@
 
     <!-- Основной .css Файл -->
     <link rel="stylesheet" type="text/css" href="/utils/css/style.css" />
+    <!-- Font Awesome получение PRO icons -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+
     <!-- Добавил JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
@@ -231,6 +234,7 @@
                   </a>
                 </li>
 
+                
                 <li
                   class="contact-block__item"
                   data-toggle="tooltip"
@@ -258,6 +262,18 @@
 
 
               <div class="additional-contacts">
+                <li
+                class="contact-block__item"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Resume Site"
+                >
+                  <a href="https://alibekbirlikbai.github.io/">
+                    <i class="fa-solid fa-link-simple fa-lg"></i>
+                    <span>alibekbirlikbai.github.io</span>
+                  </a>
+                </li>
+              
                 <li
                   class="contact-block__item"
                   data-toggle="tooltip"
@@ -292,28 +308,71 @@
 
         <div class="content">
           <!-- ABOUT ME -->
-          <div class="section mt-0">
-            <h1 class="title title--h1 title__separate">Обо мне</h1>
-            <div class="pt-2 pt-sm-3">
-              <div>
+          <div class="section mt-0" id="about_me">
+            <h1 class="title title--h1 title__separate">Обо мне
+
+              <div class="section_highlight_status">
+                *В Активном поиске 
+                <b>
+                  Работы
+                </b> 
+                /
+                <b>
+                  Стажировки
+                </b>
+              </div>
+            </h1>
+
+            <div class="section-body">
+              <div class="paragraph_highlight">
+                <div>
+                  <i class="fa-solid fa-tag"></i>
+                </div>  
+                <p>
+                  Я понимаю что компания будет вкладывать свое время и ресурсы на мое обучение, 
+                  поэтому во время прохождения испытательного срока / стажировки, готов 
+                  <b>самообучаться</b>,
+                  и 
+                  самостоятельно <b>координировать свои действия</b>.
+                </p>
+
+
+              </div>
+
+              <div class="paragraph">
                 <p>
                   Здравствуйте! Меня зовут <strong>Алибек</strong>, я <i><u>Software Engineer</u></i> (специализация Backend).
                   Основной язык разработки - Java, и связанная с ней архитектура технологий (Spring Framework, Hibernate, OOP, Multithreading, REST APIs).
                 </p>
                 
-                <p>
-                  Не боюсь поставленных передо мной задач. Крайне увлечен тем что я делаю, и направлением Computer Science вцелом.
-                  Ценю дисциплинированность и последовательность, при изучении всего нового, на работе и в жизни. Прагматичен.
-                </p>
                 
                 <p>
-                  При решении задач не ограничиваю себя определенной группой технологий.
+                  Вкраце о себе: 
+                  Крайне увлечен программированием (практический влюблен), и направлением Computer Science вцелом.
+                  Ценю дисциплинированность и последовательность, при изучении всего нового, на работе и в жизни. Прагматичен.
+                  При решении поставленных задач не ограничиваю себя определенной группой технологий.
                 </p>
 
                 <p>
-                  Можете ознакомится с моими - 
-                  <a href="/projects">текущими проектами</a>.
+                  <ul id="important_link_ul">
+                    <li>
+                      <a href="/resume" class="text-italic text-underline">Резюме</a>
+                      (Актуальная на - 
+                      <b>
+                        <span class="current_date"></span>
+                      </b>
+                      )
+                    </li>
+
+
+                    <li>
+                      Можете ознакомится с моими - 
+                      <a href="/projects" class="text-italic text-underline">Текущими Проектами</a>.
+                    </li>
+                  </ul>
                 </p>
+
+                
               </div>
             </div>
           </div>
@@ -975,6 +1034,34 @@
         />
       </clipPath>
     </svg>
+
+
+    <!-- current_date script -->
+    <script>
+      document.querySelector('.current_date').innerText = getCurrentDate();
+
+      function getCurrentDate() {
+        var currentDate = new Date();
+
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1; // Месяцы в JavaScript начинаются с 0
+        var year = currentDate.getFullYear();
+
+        // Добавляем нули к числам, чтобы получить двузначные значения
+        if (day < 10) {
+          day = '0' + day;
+        }
+
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        var formattedDate = day + '/' + month + '/' + year;
+
+        return formattedDate;
+      }
+    </script>
+
 
     <script>
       $(".hamburger").on("click", function () {

@@ -128,6 +128,9 @@
 
     <!-- Основной .css Файл -->
     <link rel="stylesheet" type="text/css" href="/utils/css/style.css" />
+    <!-- Font Awesome PRO icons -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    
     <!-- Добавил JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
@@ -259,6 +262,18 @@
 
               <div class="additional-contacts">
                 <li
+                class="contact-block__item"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Resume Site"
+                >
+                  <a href="https://alibekbirlikbai.github.io/">
+                    <i class="fa-solid fa-link-simple fa-lg"></i>
+                    <span>alibekbirlikbai.github.io</span>
+                  </a>
+                </li>
+                
+                <li
                   class="contact-block__item"
                   data-toggle="tooltip"
                   data-placement="top"
@@ -291,20 +306,47 @@
         </aside>
 
         <div class="content">
-          <div class="section mt-0">
-            <h1 class="title title--h1 title__separate">Мое Резюме</h1>
-            <div class="pt-2 pt-sm-3">
-              <p>
-                Здесь можете ознакомиться с моим резюме.                
-              </p>
+          <div class="section mt-0" id="my_resume">
+            <h1 class="title title--h1 title__separate">Мое Резюме
 
-              <p>
-                (Актуальная на - 
+              <!-- <div class="section_highlight_status">
+                *В Активном поиске 
                 <b>
-                  <span class="current_date"></span>
+                  Работы
+                </b> 
+                /
+                <b>
+                  Стажировки
                 </b>
-                )
-              </p>
+              </div> -->
+            </h1>
+
+            <div class="section-body">
+              <!-- <div class="paragraph_highlight">
+                <div>
+                  <i class="fa-solid fa-tag"></i>
+                </div>  
+
+                <div class="block-body">
+                  <p>
+                    Текст для div.paragraph_highlight
+                  </p>
+                </div>
+              </div> -->
+
+              <div class="paragraph">
+                <p>
+                  Здесь можете ознакомиться с моим резюме.                
+                </p>
+  
+                <p>
+                  (Актуальная на - 
+                  <b>
+                    <span class="current_date"></span>
+                  </b>
+                  )
+                </p>            
+              </div>
             </div>
           </div>
 
@@ -336,7 +378,7 @@
     </svg>
 
 
-
+    <!-- current_date script -->
     <script>
       document.querySelector('.current_date').innerText = getCurrentDate();
 
@@ -360,8 +402,6 @@
 
         return formattedDate;
       }
-
-
     </script>
 
     <script>
