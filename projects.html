@@ -332,7 +332,7 @@
                   <p>
                     Я написал небольшой скрипт для отображения <b>Github Repository Cards</b>.
                     Для подключения Github API пришлось использовать прокси-сервер, 
-                    сервер публичный поэтому может быть задержка при получении данных на (10 - 30 секунд) *(Страница обновиться автоматический)
+                    сервер публичный поэтому может быть задержка при получении данных на (10 - 30 секунд) *(Обновите страницу)
                   </p>
 
                   <p>
@@ -340,7 +340,7 @@
                       Cервер запущен на:
                     </b>
                     
-                    <a href="https://github.com/alibekbirlikbai/proxy-server" target="_blank">
+                    <a href="https://github.com/alibekbirlikbai/proxy-server">
                       https://github.com/alibekbirlikbai/proxy-server
                     </a>
                   </p>
@@ -412,6 +412,89 @@
                 <!-- Pastebin-project -->              
                 <a href="" target="_blank">
                   <div class="github-project" repo="Pastebin-project">  
+                    <!-- block: верхний блок -->
+                    <div class="main-section">
+                      <!-- inner-block: основной текст Репозитория -->
+                      <div class="repo-info-block">
+                        <p class="github-login_and_repo-name"></p>
+
+                        <p class="repo-description"></p>
+                      </div>
+
+                      <!-- inner-block: аватар Профиля GitHub -->
+                      <div class="repo-img-block">
+                        <img class="github-avatar-block" src="" alt="Github avatar">
+                      </div>
+                    </div>
+
+                    <!-- block: нижний блок -->
+                    <div class="additional-section">
+                      <div class="block">
+                        <div></div>
+
+                        <div class="block-content">
+                          <span class="repo-created_at"></span>
+
+                          <span class="block-description">created</span>
+                        </div>
+                      </div>
+
+                      <div class="block block-with-icon">
+                        <div>
+                          <i class="fa-solid fa-code-commit"></i>
+                        </div>
+
+                        <div class="block-content">
+                          <span class="repo-pushed_at"></span>
+
+                          <span class="block-description">last commit</span>
+                        </div>
+                      </div>
+
+                      <div class="block block-with-icon">
+                        <div>
+                          <i class="fa-solid fa-code-branch"></i>
+                        </div>
+
+                        <div class="block-content">
+                          <span class="repo-releases_count"></span>
+
+                          <span class="block-description">releases</span>
+                        </div>
+                      </div>
+ 
+                      <div class="block block-with-icon">
+                        <div>
+                          <i class="fa-solid fa-tag"></i>
+                        </div>
+
+                        <div class="block-content">
+                          <span class="repo-latest_release_title"></span>
+  
+                          <span class="block-description" id="latest_release">latest release</span>
+                        </div>
+                      </div>
+
+                      <div class="block">
+                        <div></div>
+
+                        <div class="block-content">
+                          <span class="repo-branch_commits_count"></span>
+  
+                          <span class="block-description">commits count</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="link-to-repo">
+                      <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- alibekbirlikbai.github.io -->              
+                <a href="" target="_blank">
+                  <div class="github-project" repo="alibekbirlikbai.github.io">  
                     <!-- block: верхний блок -->
                     <div class="main-section">
                       <!-- inner-block: основной текст Репозитория -->
@@ -870,7 +953,11 @@
           element.querySelector('.github-login_and_repo-name').innerHTML = `${data.owner.login}/<strong>${data.name}</strong>`;
           // element.querySelector('.github-login').innerText = data.owner.login;
           // element.querySelector('.repo-name').innerText = data.name;
-          element.querySelector('.repo-description').innerText = shortenText(data.description, 110);     // Сокращяем текст, остальное заменяем на троеточие 
+          if (data.description != null) {
+            element.querySelector('.repo-description').innerText = shortenText(data.description, 110);     // Сокращяем текст, остальное заменяем на троеточие 
+          } else {
+            element.querySelector('.repo-description').innerText = "*(repo without description)";
+          }
            
           element.querySelector('.repo-created_at').innerText = datePrettyFormatted(data.created_at);
           element.querySelector('.repo-pushed_at').innerText = datePrettyFormatted(data.pushed_at);
