@@ -941,6 +941,34 @@
     </script> -->
 
 
+    <!-- Скрипт для поднятия прокси-сервера каждые 30 минут -->
+    <script>
+      function sendRequest() {
+        var xhr = new XMLHttpRequest();
+        
+        // Настраиваем запрос
+        xhr.open("GET", "https://proxy-server-7fvb.onrender.com", true);
+        
+        // Устанавливаем обработчик события завершения запроса
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              console.log("прокси-сервер был поднят: " + new Date());
+            } else {
+              console.log("Ошибка выполнения запроса");
+            }
+          }
+        };
+        
+        // Отправляем запрос
+        xhr.send();
+      }
+      
+      // Вызываем функцию отправки запроса каждые несколько часов (в миллисекундах)
+      setInterval(sendRequest, 1800000); // каждые 0,5 час
+    </script>
+
+
     <script>
       // ### Документация по GitHub API -> https://docs.github.com/ru/rest?apiVersion=2022-11-28
       
