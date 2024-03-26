@@ -1293,7 +1293,8 @@ iframe {
 .content .section:first-child p {
     text-indent: 30px;
 }
-.content .section:first-child p:first-child, .content .section:first-child p:last-child {
+.content .section:first-child p:first-child, 
+.content .section:first-child p:last-child {
     text-indent: 0;
 
     /* comment */
@@ -1441,6 +1442,11 @@ h1 .section_highlight_status {
 
 
 
+#my_resume.section:first-child p {
+  text-indent: 0px;
+}
+
+
 
 
 
@@ -1515,13 +1521,16 @@ h1 .section_highlight_status {
   text-decoration: underline;
 }
 .text-indent {
-  text-indent: 20px;
+  text-indent: 30px;
 
   /* comment */
   /* border: 3px dashed black; */
 }
 .inline-block {
   display: inline-block;
+}
+.inline {
+  display: inline;
 }
 
 
@@ -2251,8 +2260,10 @@ h1 .section_highlight_status {
 
     padding: 1.3em 1.5rem;
 
-    background-color: #e8f1f4;  /*  #f5f8f9  */
-
+    /* (Голубоватый)-> #e8f1f4 */
+    /* (Серый но слишком светлый, почти не видно)-> #f5f8f9 */
+    /* (Серый как в GitHub)-> #afb8c133 */
+    background-color: #afb8c133;  
 
     /* padding: 0;; */
 
@@ -2275,7 +2286,7 @@ h1 .section_highlight_status {
   /* comment */
   /* border: dashed 3px blue; */
 }
-.block-title {
+#tech-stack.block-title {
   padding: 0;
   font-size: large;
   font-weight: 600;
@@ -2283,6 +2294,12 @@ h1 .section_highlight_status {
 
   /* comment */
   /* background-color: coral;  */
+}
+#tech-stack .block-title {
+  font-style: italic;
+  
+  font-size: medium;
+  font-weight: 600;
 }
 .important_skill_title {
   width: fit-content;
@@ -3548,6 +3565,123 @@ h1 .section_highlight_status {
 .project-group a:hover .github-login_and_repo-name {
   text-decoration: underline;
 }
+
+
+
+
+
+
+#projects .paragraph_highlight {
+  background-color: #3fb950;
+
+  margin-bottom: 10px;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  /* comment */
+  /* border: dashed 3px black;   */
+}
+.project_highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+
+  padding-left: 35px;
+
+  margin-top: 2px;
+  margin-bottom: 10px;
+
+  text-align: justify;
+
+  /* comment */
+  /* border: dashed 3px blue;    */
+}
+.project_highlight a {
+  display: inline;
+
+  color: #304cfd;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.72, 0.16, 0.345, 0.875);
+}
+.project_highlight a:hover {
+  text-decoration: underline;
+}
+
+
+.project_highlight .text-block {
+  /* border: solid 3.5px #304cfd; */
+  border-left: solid 7.5px #304cfd;
+  /* background-color: #afb8c133; */
+  /* border-radius:  9px; */
+
+  /* color: #fff; */
+
+  margin-left: 1px;
+  padding: 5px 15px;
+
+  /* comment */
+  /* border: dashed 3px blue;    */
+}
+
+
+/* .project_highlight .text-block p {
+  display: inline-block;
+} */
+.project_highlight .text-block .block-title {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  align-items: center;
+
+  color: #304cfd;
+  /* background-color: #304cfd; */
+
+
+  /* comment */
+  /* border: dashed 3px blue;    */
+}
+.project_highlight .text-block .block-title i {
+  /* height: 10px; */
+}
+.project_highlight .text-block .block-title span {
+  /* height: 20px; */
+
+  font-size: 17px;
+}
+
+
+.project_highlight .flex-row {
+  display: flex;
+  flex-direction: column;
+
+  /* padding: 10px; */
+
+  /* comment */
+  /* border: dashed 3px blue;    */
+}
+
+.project_highlight .text-block .text_block_highlight {
+  background-color: #afb8c133;
+  border-radius: 6px;
+
+  padding: .15em .4em;
+
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+
+
+
+
+
 
 
 
