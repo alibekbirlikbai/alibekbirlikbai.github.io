@@ -2309,12 +2309,12 @@ h1 .section_highlight_status {
   color: #fff;
 
   border-radius: 10px;
-  background-color: blue;
+  background-color: #304cfd;
 }
 
 .block-body {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 15px;
   
