@@ -72,8 +72,30 @@ html {
   }
 }
 
+
 body {
-  background-color: #f0f0f6;
+  /* (Серый цвет фона)-> #f0f0f6 */
+  /* background-color: #f0f0f6;
+  background-image:
+  radial-gradient(ellipse at 10% 90%, #3c2d83 0%, transparent 55%),
+  radial-gradient(ellipse at 90% 90%, #c33c65 0%, transparent 55%),
+  radial-gradient(ellipse at 90% 10%, #4a74dc 0%, transparent 55%),
+  radial-gradient(ellipse at 10% 10%, #35244f 0%, transparent 55%); */
+
+  /* background: radial-gradient(ellipse at bottom, #455d78 0%, #090a0f 100%); */
+  /* (черный-но не совсем)-> #090a0f */
+
+  /* background: rgb(107,103,198);
+  background: linear-gradient(180deg, rgba(107,103,198,1) 0%, rgba(54,49,195,1) 5%, rgba(86,189,239,1) 100%); */
+
+  /* background-color: #f9cb75; */
+  /* background-color: #063cc3;
+  background-color: #1945fc;
+  background-color: #001ef2;
+  background-color: #0043fe; */
+  background-color: #0167f7;
+  /* background-color: #0195f7; */
+
   color: #5f6f81;
   font-family: inter, sans-serif;
   font-weight: 400;
@@ -84,8 +106,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* html {
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+} */
+
 html.is-scroll-disabled body {
-  height: 100vh;
+  /* OLD */
+  /* height: 100vh; */
+
+  
   overflow: hidden;
 }
 
@@ -95,7 +137,8 @@ html.is-scroll-disabled body {
   }
 }
 
-.bg-triangles {
+/* Изображения на фоне - Сверху и Снизу */
+/* .bg-triangles {
   background-image: url(/utils/imgs/triangles-top-2.svg),
     url(/utils/imgs/triangles-bottom-2.svg);
   background-position: right top, left bottom;
@@ -104,18 +147,18 @@ html.is-scroll-disabled body {
   background-attachment: fixed;
 }
 
-@media only screen and (max-width: 992px) {
-  .bg-triangles {
-    background-size: contain;
-  }
-}
-
 .bg-triangles-2 {
   background-image: url(/utils/imgs/triangles-top-2.svg),
     url(/utils/imgs/triangles-bottom-2.svg);
   background-position: left top, right bottom;
   background-repeat: no-repeat;
   background-size: inherit;
+} */
+
+@media only screen and (max-width: 992px) {
+  .bg-triangles {
+    background-size: contain;
+  }
 }
 
 @media only screen and (max-width: 580px) {
@@ -1113,6 +1156,7 @@ iframe {
   justify-content: center;
   height: 100vh;
   padding: 1.87rem;
+  
 }
 
 @media only screen and (max-width: 992px) {
@@ -1147,6 +1191,9 @@ iframe {
   margin-left: auto;
   margin-right: auto;
 
+  /* box-shadow: rgb(38, 57, 77) 0px 20px 30px 5px; */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  
   /* РАЗМЕР ДЛЯ всего Контента (Wrapper) */
   max-width: 1030px;  /*1030px*/
   position: relative;
@@ -1189,7 +1236,7 @@ iframe {
 }
 .content {
   padding-top: 2.5rem;
-  padding-bottom: 2.5em;
+  padding-bottom: 2.7em;
   z-index: 1;
   border-radius: 0 0 3rem 0;
 
