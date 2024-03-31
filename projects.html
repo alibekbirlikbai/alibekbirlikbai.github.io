@@ -247,14 +247,23 @@
                 </li>
 
                 <li
-                  class="contact-block__item"
+                  class="contact-block__item  prefered_contact"
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Phone"
                 >
                   <a href="tel:+77714414509">
                     <i class="fa-solid fa-phone"></i>
-                    <span>+7 771 441 45 09</span>
+                    
+                    <div class="contact__additional_info  ">
+                      <span class="text-bold">
+                        +7 771 441 45 09
+                      </span>
+  
+                      <span class="text-italic">
+                        (Предпочитаемый способ связи)
+                      </span>
+                    </div>
                   </a>
                 </li>
               </div>
@@ -512,87 +521,179 @@
               <div class="group-body">
                 <!-- Pastebin-project -->              
                 <div class="project">
-                  <a href="" target="_blank">
-                    <div class="github-project" repo="Pastebin-project">  
-                      <!-- block: верхний блок -->
-                      <div class="main-section">
-                        <!-- inner-block: основной текст Репозитория -->
-                        <div class="repo-info-block">
-                          <p class="github-login_and_repo-name"></p>
-  
-                          <p class="repo-description"></p>
-                        </div>
-  
-                        <!-- inner-block: аватар Профиля GitHub -->
-                        <div class="repo-img-block">
-                          <img class="github-avatar-block" src="" alt="Github avatar">
-                        </div>
-                      </div>
-  
-                      <!-- block: нижний блок -->
-                      <div class="additional-section">
-                        <div class="block">
-                          <div></div>
-  
-                          <div class="block-content">
-                            <span class="repo-created_at"></span>
-  
-                            <span class="block-description">created</span>
-                          </div>
-                        </div>
-  
-                        <div class="block block-with-icon">
-                          <div>
-                            <i class="fa-solid fa-code-commit"></i>
-                          </div>
-  
-                          <div class="block-content">
-                            <span class="repo-pushed_at"></span>
-  
-                            <span class="block-description">last commit</span>
-                          </div>
-                        </div>
-  
-                        <div class="block block-with-icon">
-                          <div>
-                            <i class="fa-solid fa-code-branch"></i>
-                          </div>
-  
-                          <div class="block-content">
-                            <span class="repo-releases_count"></span>
-  
-                            <span class="block-description">releases</span>
-                          </div>
-                        </div>
-   
-                        <div class="block block-with-icon">
-                          <div>
-                            <i class="fa-solid fa-tag"></i>
-                          </div>
-  
-                          <div class="block-content">
-                            <span class="repo-latest_release_title"></span>
+                  <div class="project_body">
+                    <!-- Backend -->                                
+                    <a href="" target="_blank">
+                      <div class="github-project" repo="Pastebin-backend">  
+                        <!-- block: верхний блок -->
+                        <div class="main-section">
+                          <!-- inner-block: основной текст Репозитория -->
+                          <div class="repo-info-block">
+                            <p class="github-login_and_repo-name"></p>
     
-                            <span class="block-description" id="latest_release">latest release</span>
+                            <p class="repo-description"></p>
                           </div>
-                        </div>
-  
-                        <div class="block">
-                          <div></div>
-  
-                          <div class="block-content">
-                            <span class="repo-branch_commits_count"></span>
     
-                            <span class="block-description">commits count</span>
+                          <!-- inner-block: аватар Профиля GitHub -->
+                          <div class="repo-img-block">
+                            <img class="github-avatar-block" src="" alt="Github avatar">
                           </div>
                         </div>
+    
+                        <!-- block: нижний блок -->
+                        <div class="additional-section">
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-created_at"></span>
+    
+                              <span class="block-description">created</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-commit"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-pushed_at"></span>
+    
+                              <span class="block-description">last commit</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-branch"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-releases_count"></span>
+    
+                              <span class="block-description">releases</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-tag"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-latest_release_title"></span>
+      
+                              <span class="block-description" id="latest_release">latest release</span>
+                            </div>
+                          </div>
+    
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-branch_commits_count"></span>
+      
+                              <span class="block-description">commits count</span>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="link-to-repo">
+                          <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                        </div>
                       </div>
-  
-                      <div class="link-to-repo">
-                        <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                    </a>
+
+                    <!-- Frontend -->                                
+                    <a href="" target="_blank">
+                      <div class="github-project" repo="Pastebin-frontend">  
+                        <!-- block: верхний блок -->
+                        <div class="main-section">
+                          <!-- inner-block: основной текст Репозитория -->
+                          <div class="repo-info-block">
+                            <p class="github-login_and_repo-name"></p>
+    
+                            <p class="repo-description"></p>
+                          </div>
+    
+                          <!-- inner-block: аватар Профиля GitHub -->
+                          <div class="repo-img-block">
+                            <img class="github-avatar-block" src="" alt="Github avatar">
+                          </div>
+                        </div>
+    
+                        <!-- block: нижний блок -->
+                        <div class="additional-section">
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-created_at"></span>
+    
+                              <span class="block-description">created</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-commit"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-pushed_at"></span>
+    
+                              <span class="block-description">last commit</span>
+                            </div>
+                          </div>
+    
+                          <!-- ### РЕЛИЗЫ ### -->
+                          <!-- <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-branch"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-releases_count"></span>
+    
+                              <span class="block-description">releases</span>
+                            </div>
+                          </div> -->
+    
+
+                          <!-- ### АКТУЛЬНЫЙ_РЕЛИЗ ### -->
+                          <!-- <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-tag"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-latest_release_title"></span>
+      
+                              <span class="block-description" id="latest_release">latest release</span>
+                            </div>
+                          </div> -->
+    
+
+                          <!-- ### КОЛИЧЕСТВО_КОММИТОВ ### -->
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-branch_commits_count"></span>
+      
+                              <span class="block-description">commits count</span>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="link-to-repo">
+                          <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
+
 
                   <div class="project_highlight">
                     <div class="text-block  highlight_release">
@@ -604,11 +705,60 @@
                         </span>
                       </p>
 
+                      
                       <div class="block-body">
-                        <div class="version-title">
-                          <b>
+                        <div class="version-title-box">
+                          <div class="title">
                             version-1:
-                          </b>
+                          </div>
+
+    
+                          <div class="body">
+                            <div class="main_stack">
+                              <b>
+                                stack:
+                              </b>
+
+                              <i>
+                                <ul>
+                                  <li>
+                                    Java (8+)
+                                  </li>
+  
+                                  <li>
+                                    Spring Boot
+                                  </li>
+  
+                                  <li>
+                                    Spring MVC
+                                  </li>
+  
+                                  <li>
+                                    PostgreSQL
+                                  </li>
+                                </ul>
+                              </i>
+                            </div>
+  
+  
+                            <div class="additional_stack">
+                              <b>
+                                add. stack:
+                              </b>
+
+                              <i>
+                                <ul>
+                                  <li>
+                                    Google Cloud (GoogleDrive API)
+                                  </li>
+  
+                                  <li>
+                                    Angular / TypeScript
+                                  </li>
+                                </ul>
+                              </i>
+                            </div>
+                          </div>
                         </div>
 
                         <div class="version-releases">
@@ -697,9 +847,6 @@
                                 </li>
                               </ol>
                             </li>
-
-
-
                           </ul>
                         </div>
 
@@ -733,7 +880,7 @@
 
 
                       <p class="text-indent">
-                        Я решу проблему до следующего релиза (<b><i>v1.2.0</i></b>), а пока
+                        Решу проблему до следующего релиза (<b><i>v1.2.0</i></b>), а пока
                         для запуска актульной версии проекта нужно будет вручную 
                         <a href="https://drive.google.com/file/d/14kJCdaYXy0-xCGV_j8Wgt2QS82mUofkf/view?usp=sharing" target="_blank">
                           скачать
@@ -1392,12 +1539,18 @@
                   page++;
                   fetchCommits(); // Рекурсивный вызов с новыми значениями page и commitCount
               } else {
+                  if (commits.length == 0) {
+                    //commitCount = 1;
+                  }
                   // Все коммиты были получены
                   element.querySelector('.repo-branch_commits_count').innerText = commitCount; // Устанавливаем общее количество коммитов
                   console.log('All commits fetched');
               }
           })
-          .catch(error => console.error('Error fetching commits data:', error));
+          .catch(error => {
+              console.error('Error fetching commits data:', error);
+              element.querySelector('.repo-branch_commits_count').innerText = 0; // default
+          });
           }
 
         // Начинаем с первой страницы
