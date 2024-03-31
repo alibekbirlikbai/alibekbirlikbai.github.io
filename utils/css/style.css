@@ -3751,6 +3751,25 @@ h1 .section_highlight_status {
   /* border: dashed 3px black;   */
 }
 
+.project .project-info {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  /* comment */
+  /* border: dashed 3px black;   */
+}
+.project .project-info a {
+  color: #304cfd;
+}
+.project .project-info a {
+  text-decoration: underline;
+}
+
+
+
+
+
 .project_highlight {
   display: flex;
   flex-direction: column;
@@ -3873,7 +3892,12 @@ h1 .section_highlight_status {
 
   /* padding: 20px; */
 }
+.highlight_release .version-releases a {
+  /* text-decoration: underline; */
 
+  /* comment */
+  /* border: dashed 3px blue;     */
+}
 
 
 
