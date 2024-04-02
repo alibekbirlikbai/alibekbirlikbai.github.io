@@ -376,7 +376,7 @@
                 <div class="block-body">
                   <div class="main-info">
                     <p>
-                      Я написал небольшой скрипт для отображения <b>Github Repository Cards</b>.
+                      Написал небольшой скрипт для отображения <b>Github Repository Cards</b>.
                       Для подключения Github API пришлось использовать прокси-сервер, 
                       сервер публичный поэтому может быть задержка при получении данных на (10 - 30 секунд) *(Страница обновиться автоматический)
                     </p>
@@ -635,13 +635,23 @@
                             </div>
                           </div>
     
-                          <div class="block">
+                          <!-- <div class="block">
                             <div></div>
     
                             <div class="block-content">
                               <span class="repo-branch_commits_count"></span>
       
-                              <span class="block-description">commits count</span>
+                              <span class="block-description">commits</span>
+                            </div>
+                          </div> -->
+
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-commits_latest_commit_message"></span>
+      
+                              <span class="block-description">latest commit message</span>
                             </div>
                           </div>
                         </div>
@@ -653,7 +663,97 @@
                     </a>
 
                     <!-- Frontend -->                                
+                    <a href="" target="_blank">
+                      <div class="github-project" repo="Pastebin-frontend">  
+                        <!-- block: верхний блок -->
+                        <div class="main-section">
+                          <!-- inner-block: основной текст Репозитория -->
+                          <div class="repo-info-block">
+                            <p class="github-login_and_repo-name"></p>
+    
+                            <p class="repo-description"></p>
+                          </div>
+    
+                          <!-- inner-block: аватар Профиля GitHub -->
+                          <div class="repo-img-block">
+                            <img class="github-avatar-block" src="" alt="Github avatar">
+                          </div>
+                        </div>
+    
+                        <!-- block: нижний блок -->
+                        <div class="additional-section">
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-created_at"></span>
+    
+                              <span class="block-description">created</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-commit"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-pushed_at"></span>
+    
+                              <span class="block-description">last commit</span>
+                            </div>
+                          </div>
+    
+                          <!-- <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-code-branch"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-releases_count"></span>
+    
+                              <span class="block-description">releases</span>
+                            </div>
+                          </div>
+    
+                          <div class="block block-with-icon">
+                            <div>
+                              <i class="fa-solid fa-tag"></i>
+                            </div>
+    
+                            <div class="block-content">
+                              <span class="repo-latest_release_title"></span>
+      
+                              <span class="block-description" id="latest_release">latest release</span>
+                            </div>
+                          </div> -->
+    
+                          <!-- <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-branch_commits_count"></span>
+      
+                              <span class="block-description">commits</span>
+                            </div>
+                          </div> -->
 
+                          <div class="block">
+                            <div></div>
+    
+                            <div class="block-content">
+                              <span class="repo-commits_latest_commit_message"></span>
+      
+                              <span class="block-description">latest commit message</span>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="link-to-repo">
+                          <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                        </div>
+                      </div>
+                    </a>
                   </div>
 
 
@@ -837,20 +937,27 @@
                         </a>
 
                         <i>(GoogleDrive API)</i>, 
-                        но не смог загрузить - <b><i>service-account-auth.json</i></b> (это токен для доступа к <i>Google Cloud</i>),
-                        из за проблем с соблюдением конфиденциальности данных в <i>GitHub</i>.
+
+                        но возникли проблемы с конфиденциальностью данных в <i>GitHub</i>,
+
+                        из чего не смог загрузить в репозиторий - <b><i>service-account-auth.json</i></b> (токен для доступа к <i>Google Cloud</i>).
                       </p>
 
 
                       <p class="text-indent">
                         Решу проблему до следующего релиза (<b><i>v1.2.0</i></b>), а пока
-                        для запуска актульной версии проекта нужно будет вручную 
+                        для запуска актуальной версии проекта
+
+                        (<i>ветка - <b>develop</b></i>)
+
+                        нужно будет вручную 
                         <a href="https://drive.google.com/file/d/14kJCdaYXy0-xCGV_j8Wgt2QS82mUofkf/view?usp=sharing" target="_blank">
                           скачать
                         </a>
                         <i>json</i> файл, и переместить его в
-                        <span class="text_block_highlight">src / main / resources / service-account-auth.json</span> 
-                        (туда же где <span class="text_block_highlight">application.properties</span>).
+                        <span class="text_block_highlight">src / main / resources</span> 
+
+                        (<i><b>Pastebin-backend</b></i>).
                       </p>
 
                     </div>
@@ -931,7 +1038,7 @@
                           <div class="block-content">
                             <span class="repo-branch_commits_count"></span>
     
-                            <span class="block-description">commits count</span>
+                            <span class="block-description">commits</span>
                           </div>
                         </div>
                       </div>
@@ -1379,7 +1486,7 @@
 
               getCommitCount(repo, element);
 
-              // getLastCommitMessage(repo, element);              
+              getLastCommitMessage(repo, element);              
           })
           .catch(error => console.error('Error fetching data:', error));
       }
@@ -1524,7 +1631,7 @@
 
       // https://api.github.com/repos/<REPO>/branches/<BRANCH> - инфо про конкретную ветку
       function getLastCommitMessage(repo, element) {
-        const branch = 'main';
+        const branch = 'develop';
 
         fetch(gitHub_API_URL + `/${repo}/branches/${branch}`, {
           headers: {
@@ -1534,8 +1641,9 @@
         .then(response => response.json())
         .then(branchInfo => {
 
-          
-        element.querySelector('.repo-commits_latest_commit_message').innerText = branchInfo.commit.commit.message; // Колличество коммитов в ветке main 
+        // shortenText(branchInfo.commit.commit.message, 19);
+        // branchInfo.commit.commit.message;
+        element.querySelector('.repo-commits_latest_commit_message').innerText = shortenText(branchInfo.commit.commit.message, 100);  // Описание Последнего коммита на выбранной ветке 
 
         })
         .catch(error => console.error('Error fetching branch data:', error));

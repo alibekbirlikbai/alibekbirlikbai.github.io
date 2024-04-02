@@ -72,7 +72,6 @@ html {
   }
 }
 
-
 body {
   /* (Серый цвет фона)-> #f0f0f6 */
   /* background-color: #f0f0f6;
@@ -127,7 +126,6 @@ html.is-scroll-disabled body {
   /* OLD */
   /* height: 100vh; */
 
-  
   overflow: hidden;
 }
 
@@ -1156,7 +1154,6 @@ iframe {
   justify-content: center;
   height: 100vh;
   padding: 1.87rem;
-  
 }
 
 @media only screen and (max-width: 992px) {
@@ -1193,9 +1190,9 @@ iframe {
 
   /* box-shadow: rgb(38, 57, 77) 0px 20px 30px 5px; */
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-  
+
   /* РАЗМЕР ДЛЯ всего Контента (Wrapper) */
-  max-width: 1030px;  /*1030px*/
+  max-width: 1030px; /*1030px*/
   position: relative;
   width: 100%;
 }
@@ -1213,11 +1210,6 @@ iframe {
   z-index: -1;
 }
 
-
-
-
-
-
 /* SIDEBAR -> position:sticky */
 /* TEST Code: Если не сработает - 1. удалить этот код;  */
 .wrapper {
@@ -1226,7 +1218,6 @@ iframe {
   /* background-color: aqua; */
   background-color: transparent;
 }
-
 
 .sidebar {
   z-index: 1;
@@ -1245,12 +1236,6 @@ iframe {
   /* comment */
   /* border: 3px dashed red; */
 }
-
-
-
-
-
-
 
 @media only screen and (max-width: 992px) {
   .wrapper {
@@ -1331,23 +1316,22 @@ iframe {
 }
 
 .content p {
-    text-align: justify;
+  text-align: justify;
 }
 /* Параграфы в Секции ОБО МНЕ */
-.content .section p{
-    margin: 1px;
+.content .section p {
+  margin: 1px;
 }
 .content .section:first-child p {
-    text-indent: 30px;
+  text-indent: 30px;
 }
-.content .section:first-child p:first-child, 
+.content .section:first-child p:first-child,
 .content .section:first-child p:last-child {
-    text-indent: 0;
+  text-indent: 0;
 
-    /* comment */
-    /* border: 2px dashed black; */
+  /* comment */
+  /* border: 2px dashed black; */
 }
-
 
 #about_me.section,
 #my_resume.section,
@@ -1375,7 +1359,6 @@ h1 .section_highlight_status {
   border-radius: 7px;
   background-color: #3fb950;
   color: #fff;
-
 
   font-size: 1.2rem;
   font-weight: 400;
@@ -1406,17 +1389,14 @@ h1 .section_highlight_status {
 
   padding: 6px 12px;
 
-
   border-radius: 10px;
   background-color: #304cfd;
   color: #fff;
 
-  
   /* comment */
   /* border: 2px dashed black; */
   /* background-color: aqua; */
 }
-
 
 .paragraph_highlight div:first-of-type {
   display: flex;
@@ -1433,7 +1413,6 @@ h1 .section_highlight_status {
   /* border: 2px dashed white; */
 }
 .paragraph_highlight a {
-
 }
 
 .paragraph_highlight .block-body {
@@ -1460,7 +1439,7 @@ h1 .section_highlight_status {
   margin: 6px 0;
   padding: 6px 12px;
 
-  background-color:#ff7070;
+  background-color: #ff7070;
   border-radius: 10px;
 
   /* font-size: 13.8px; */
@@ -1476,7 +1455,6 @@ h1 .section_highlight_status {
   gap: 5px;
 }
 
-
 .paragraph {
   margin: 0;
 
@@ -1485,20 +1463,12 @@ h1 .section_highlight_status {
   /* background-color: red; */
 }
 
-
-
-
-
 #my_resume.section:first-child p {
   text-indent: 0px;
 }
 
-
-
-
-
 #about_me ul {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 #my_resume.section:first-child p:last-child {
   margin-top: 5px;
@@ -1523,18 +1493,16 @@ h1 .section_highlight_status {
   }
 }
 
-
 #interests_section li {
-  list-style-type: '#';
+  list-style-type: "#";
   padding-inline-start: 1ch;
 
   text-align: justify;
 }
-#interests_section li:not(:last-child) { 
+#interests_section li:not(:last-child) {
   /* РАССТОЯНИЕ МЕЖДУ ИНТЕРЕСАМИ */
-  margin-bottom: 15px;  
+  margin-bottom: 15px;
 }
-
 
 :root {
   --important_link_ul_padding: 0px;
@@ -1552,18 +1520,17 @@ h1 .section_highlight_status {
   /* font-family: "Font Awesome 5 Free";
   content: "\f0c1"; */
 }
-#important_link_ul li:not(:last-child) { 
+#important_link_ul li:not(:last-child) {
   /* РАССТОЯНИЕ МЕЖДУ important_link_ul */
   /* margin-bottom: 150px;   */
 }
-
 
 .text-italic {
   font-style: italic;
 }
 .text-bold {
   font-weight: bold;
-} 
+}
 .text-underline {
   text-decoration: underline;
 }
@@ -1579,7 +1546,6 @@ h1 .section_highlight_status {
 .inline {
   display: inline;
 }
-
 
 .js-image {
   background-size: cover;
@@ -1967,7 +1933,6 @@ h1 .section_highlight_status {
   align-items: center;
   gap: 6px;
 
-
   /* comment */
   /* border: dashed 3px blue;     */
 }
@@ -1981,13 +1946,10 @@ h1 .section_highlight_status {
   /* border: dashed 3px blue;       */
 }
 
-
-
 .contact__info {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  
 
   /* comment */
   /* background-color: aqua; */
@@ -2015,7 +1977,6 @@ h1 .section_highlight_status {
   /* background-color: coral; */
 }
 
-
 .prefered_contact a {
   align-items: start;
 
@@ -2026,14 +1987,12 @@ h1 .section_highlight_status {
 }
 .prefered_contact a i {
   padding-top: 3px;
-  
+
   /* color: #3fb950; */
 }
 .prefered_contact span:first-of-type {
   font-weight: bold;
 }
-
-
 
 .contact-block .font-icon {
   font-size: 18px;
@@ -2055,10 +2014,6 @@ h1 .section_highlight_status {
   /* background-color: #00d9a6; */
 }
 
-
-
-
-
 .basic-contacts {
   margin-bottom: 1rem;
 
@@ -2075,13 +2030,13 @@ h1 .section_highlight_status {
 
   padding: 8px 0;
 
-
   border-radius: 10px;
   border: solid 2px #44566c;
 
   /* background-color: #e9edf0; */
   background-color: #fff;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .additional-contacts {
@@ -2377,29 +2332,28 @@ h1 .section_highlight_status {
   }
 }
 
-
 .section-flex {
-    display: flex;
-    flex-direction: column;
-    gap: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
 }
 
 .all-tech-stacks {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 
-    padding: 1.3em 1.5rem;
+  padding: 1.3em 1.5rem;
 
-    /* (Голубоватый)-> #e8f1f4 */
-    /* (Серый но слишком светлый, почти не видно)-> #f5f8f9 */
-    /* (Серый как в GitHub)-> #afb8c133 */
-    background-color: #afb8c133;  
+  /* (Голубоватый)-> #e8f1f4 */
+  /* (Серый но слишком светлый, почти не видно)-> #f5f8f9 */
+  /* (Серый как в GitHub)-> #afb8c133 */
+  background-color: #afb8c133;
 
-    /* padding: 0;; */
+  /* padding: 0;; */
 
-    /* comment */
-    /* background-color: coral;    */
+  /* comment */
+  /* background-color: coral;    */
 }
 /* .section#language .all-tech-stacks {
     display: block;
@@ -2407,12 +2361,10 @@ h1 .section_highlight_status {
     margin: 0;
 } */
 
-
 .group-block {
   display: flex;
   flex-direction: column;
   gap: 5px;
-
 
   /* comment */
   /* border: dashed 3px blue; */
@@ -2428,7 +2380,7 @@ h1 .section_highlight_status {
 }
 #tech-stack .block-title {
   font-style: italic;
-  
+
   font-size: medium;
   font-weight: 600;
 }
@@ -2448,27 +2400,23 @@ h1 .section_highlight_status {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 15px;
-  
-   /* comment */
-   /* background-color: aqua;   */
+
+  /* comment */
+  /* background-color: aqua;   */
 }
 
-
-
-
-
 .stack-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-    justify-content: flex-start;
-    column-gap: 10px;
-    row-gap: 4px;
+  justify-content: flex-start;
+  column-gap: 10px;
+  row-gap: 4px;
 
-    /* comment */
-    /* border: dashed 3px red; */
-    /* background-color: aqua; */
+  /* comment */
+  /* border: dashed 3px red; */
+  /* background-color: aqua; */
 }
 /* .add_border_to_stack-group {
   padding-left: 8px;
@@ -2478,7 +2426,7 @@ h1 .section_highlight_status {
 .stack {
   background-color: rgba(68, 86, 108, 0.1);
   height: fit-content;
-  margin-bottom: 1.5rem; 
+  margin-bottom: 1.5rem;
   overflow: inherit;
   position: relative;
   text-align: right;
@@ -2487,26 +2435,23 @@ h1 .section_highlight_status {
   /* border: dashed 3px black; */
 }
 .stack {
-    width: fit-content;
-    text-align: start;
+  width: fit-content;
+  text-align: start;
 
-    border-radius: 10px;
+  border-radius: 10px;
 
-    padding: 3px 10px;
-    margin: 0;
-    
+  padding: 3px 10px;
+  margin: 0;
 }
 /* ВКЛ/ВЫКЛ Стили для технологии */
 #main-skills .main-info {
   font-weight: 600;
 }
 #main-skills .additional-info {
-
 }
 #main-skills .reset_style_for_font {
   font-weight: initial; /* Сброс стиля 600 */
 }
-
 
 @media only screen and (max-width: 580px) {
   .stack {
@@ -3595,21 +3540,14 @@ h1 .section_highlight_status {
   overflow: hidden;
 }
 
-
-
-
-
-
 #projects {
   display: flex;
   flex-direction: column;
   gap: 45px;
-  
+
   /* comment */
   /* border: dashed 3px black; */
 }
-
-
 
 .project-group {
   display: flex;
@@ -3632,14 +3570,15 @@ h1 .section_highlight_status {
 .title-text {
   display: flex;
   flex-direction: row;
-  
+
   gap: 10px;
 
   /* comment */
   /* border: dashed 3px black; */
   /* background-color: aqua; */
 }
-.title-header, .title-date {
+.title-header,
+.title-date {
   display: flex;
   align-items: center;
 
@@ -3667,9 +3606,7 @@ h1 .section_highlight_status {
   /* border: dashed 3px black; */
 }
 
-
 .group-title h5 {
-  
   /* comment */
   /* border: dashed 3px black; */
   margin: 0;
@@ -3677,7 +3614,7 @@ h1 .section_highlight_status {
 .group-body {
   display: flex;
   flex-direction: column;
-  gap: 16px;  
+  gap: 16px;
 }
 
 .project-group a {
@@ -3697,7 +3634,7 @@ h1 .section_highlight_status {
   left: -8px;
 
   /* серый */
-  box-shadow: 12px 12px 10px 0px rgba(0,0,0,0.6);
+  box-shadow: 12px 12px 10px 0px rgba(0, 0, 0, 0.6);
   /* border-color: black; */
 
   /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
@@ -3713,12 +3650,6 @@ h1 .section_highlight_status {
 
   background-color: #fff;
 }
-
-
-
-
-
-
 
 #projects .paragraph_highlight {
   background-color: #3fb950;
@@ -3745,7 +3676,8 @@ h1 .section_highlight_status {
   border-radius: 15px;
   border: 2px solid #ccc;
 
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
   /* comment */
   /* border: dashed 3px black;   */
@@ -3766,15 +3698,10 @@ h1 .section_highlight_status {
   text-decoration: underline;
 }
 
-
-
-
-
 .project_highlight {
   display: flex;
   flex-direction: column;
   gap: 15px;
-
 
   padding-left: 35px;
 
@@ -3800,7 +3727,6 @@ h1 .section_highlight_status {
   background-color: aqua;
 } */
 
-
 .project_highlight .text-block {
   /* border: solid 3.5px #304cfd; */
   /* background-color: #afb8c133; */
@@ -3824,7 +3750,6 @@ h1 .section_highlight_status {
   /* comment */
   /* border: dashed 3px blue;    */
 }
-
 
 .highlight_release .block-body {
   display: flex;
@@ -3863,11 +3788,10 @@ h1 .section_highlight_status {
   gap: 10px;
 
   /* comment */
-  /* border: dashed 3px black;   */  
+  /* border: dashed 3px black;   */
 }
-.highlight_release .version-releases ul>li:not(:last-child) {
+.highlight_release .version-releases ul > li:not(:last-child) {
   margin-bottom: 10px;
-  
 }
 
 /* .highlight_release .version-releases ul>li {
@@ -3880,15 +3804,12 @@ h1 .section_highlight_status {
   padding-right: 10px;
 } */
 
-
-
-
 .highlight_release .version-releases {
   /* comment */
   /* border: dashed 3px blue;     */
 }
 .highlight_release .version-releases ul {
-  list-style-type: none;  
+  list-style-type: none;
 
   /* padding: 20px; */
 }
@@ -3898,9 +3819,6 @@ h1 .section_highlight_status {
   /* comment */
   /* border: dashed 3px blue;     */
 }
-
-
-
 
 .highlight_release .version-title-box .body .main_stack,
 .highlight_release .version-title-box .body .additional_stack {
@@ -3916,11 +3834,11 @@ h1 .section_highlight_status {
   color: #fff; */
 }
 .highlight_release .version-title-box .body ul {
-  list-style-type: disc; 
+  list-style-type: disc;
   margin: 0;
 
   /* padding-left: 30px; */
-  
+
   /* comment */
   /* border: dashed 3px blue;  */
 }
@@ -3930,14 +3848,10 @@ h1 .section_highlight_status {
 }
 
 .highlight_release .version-title-box .body ul li:not(:last-child),
-.highlight_release .version-releases ol li:not(:last-child) { 
+.highlight_release .version-releases ol li:not(:last-child) {
   /* РАССТОЯНИЕ МЕЖДУ ТЕХНОЛОГИЯМИ */
-  margin-bottom: 2px;  
+  margin-bottom: 2px;
 }
-
-
-
-
 
 .highlight_release .version-title-box b {
   display: block;
@@ -3955,8 +3869,6 @@ h1 .section_highlight_status {
 .highlight_release .version-releases ol {
 }
 
-
-
 /* .project_highlight .text-block p {
   display: inline-block;
 } */
@@ -3968,7 +3880,6 @@ h1 .section_highlight_status {
   align-items: center;
 
   /* background-color: #304cfd; */
-
 
   /* comment */
   /* border: dashed 3px blue;    */
@@ -3989,7 +3900,6 @@ h1 .section_highlight_status {
   font-size: 17px;
 }
 
-
 .project_highlight .flex-row {
   display: flex;
   flex-direction: column;
@@ -4004,31 +3914,20 @@ h1 .section_highlight_status {
   background-color: #afb8c133;
   border-radius: 6px;
 
-  padding: .15em .4em;
+  padding: 0.15em 0.4em;
 
   font-weight: 600;
   font-style: italic;
 }
-
-
-
-
-
-
-
-
-
-
 
 .github-project {
   position: relative;
 
   display: flex;
   flex-direction: column;
-  
+
   /* РАССТОЯНИЕ МЕЖДУ GITHUB_REPOSITORY_CARD = TEXT <-> ADDITIONAL BLOCKS */
   gap: 20px;
-  
 
   /* width: 400px; */
   padding: 20px;
@@ -4036,16 +3935,13 @@ h1 .section_highlight_status {
   border-radius: 15px;
   border: 2px solid #ccc;
 
-  box-shadow: 4px 3px 10px 0px rgba(0,0,0,0.3);
+  box-shadow: 4px 3px 10px 0px rgba(0, 0, 0, 0.3);
   /* box-shadow: 7px 5px 10px 0px rgba(0,0,0,0.3); */
-    
+
   /* comment */
   /* border: dashed 3px black; */
   /* background-color: #00d9a6; */
 }
-
-
-
 
 .main-section {
   display: flex;
@@ -4055,14 +3951,13 @@ h1 .section_highlight_status {
   width: 100%;
   /* padding: 10px; */
 
-
   /* comment */
   /* border: dashed 1px black; */
   /* background-color: aqua; */
 }
 .repo-info-block {
   width: 80%;
-  
+
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -4100,7 +3995,6 @@ h1 .section_highlight_status {
   /* background-color: lightgreen; */
 }
 
-
 .repo-img-block {
   width: 20%;
   display: flex;
@@ -4122,14 +4016,10 @@ h1 .section_highlight_status {
 
   height: 70px;
   width: 70px;
-  
-  
+
   border-radius: 10px;
   overflow: hidden;
 }
-
-
-
 
 .additional-section {
   position: relative;
@@ -4138,7 +4028,7 @@ h1 .section_highlight_status {
   flex-direction: row;
   /* justify-content: flex-start; */
 
-  gap: 20px;
+  gap: 15px;
 
   width: 95%;
 
@@ -4151,7 +4041,6 @@ h1 .section_highlight_status {
     gap: 15px;
   }
 }
-
 
 .additional-section div span {
   /* comment */
@@ -4166,7 +4055,6 @@ h1 .section_highlight_status {
   font-size: 12.5px;
   line-height: 15px;
 
-  
   /* comment */
   /* border: dashed 1px black; */
   /* background-color: aqua; */
@@ -4185,14 +4073,13 @@ h1 .section_highlight_status {
 }
 
 .block div:first-of-type {
-  
   /* comment */
   /* background-color: aqua; */
 }
 .block div:last-of-type {
   display: flex;
   flex-direction: column;
-  
+
   /*РАСПОЛОЖЕНИЕ МЕЖДУ block-description <-> (...)*/
   justify-content: start;
 
@@ -4204,11 +4091,11 @@ h1 .section_highlight_status {
   display: flex;
   flex-direction: column;
 
+  flex-wrap: nowrap;
+
   /* comment */
   /* background-color: coral; */
 }
-
-
 
 .block-with-icon {
   display: flex;
@@ -4225,12 +4112,10 @@ h1 .section_highlight_status {
 }
 
 .block-with-icon i {
-
   /* comment */
   /* border: dashed 1px red; */
 }
 .block-with-icon div {
-
   /* comment */
   /* border: dashed 1px blue; */
 }
@@ -4246,19 +4131,18 @@ h1 .section_highlight_status {
   /* border: dashed 1px black; */
   /* background-color: lightcoral; */
 }
-#latest_release { 
+#latest_release {
   position: relative;
 
   /* Расстояние ЗЕЛЕНГО МАРКЕРА ПОСЛЕДНИЙ РЕЛИЗА */
   top: 2px;
 
-
-  width: fit-content;
+  /* width: fit-content; */
+  width: 87px;
   border: solid 3px #3fb950;
   border-radius: 5px;
   background-color: #3fb950;
   color: #fff;
-
 
   padding: 0px 3px 1px 3px;
   /* padding: 0; */
@@ -4267,7 +4151,7 @@ h1 .section_highlight_status {
 
 .link-to-repo {
   position: absolute;
-  
+
   bottom: 0;
   right: 0;
 
@@ -4284,12 +4168,6 @@ h1 .section_highlight_status {
 .custom_icon_img::before {
   content: "\e1cd";
 }
-
-
-
-
-
-
 
 /* Добавление - Sticky Position */
 .sticky-parent {
@@ -4320,4 +4198,8 @@ h1 .section_highlight_status {
     border-radius: 20px;
     /* background-color: #00d9a6; */
   }
+}
+
+.repo-commits_latest_commit_message {
+  /* width: 5px; */
 }
