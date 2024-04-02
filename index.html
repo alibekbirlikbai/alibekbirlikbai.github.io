@@ -362,9 +362,10 @@
           </div>
         </aside>
 
+
         <div class="content">
-          <!-- ABOUT ME -->
-          <div class="section mt-0" id="about_me">
+          <!-- # ABOUT ME -->
+          <div class="section" id="about_me">
             <h1 class="title title--h1 title__separate">Обо мне
 
               <div class="section_highlight_status">
@@ -389,10 +390,18 @@
                 <div class="block-body">
                   <div class="main-info">
                     <p>
-                      В данный момент занимаюсь проектом - 
+                      В настоящее время работаю над проектом
+                      
+                      &ndash;
 
-                      <a href="https://alibekbirlikbai.github.io/projects">
-                        <i><b>Pastebin</b> (Разработка и поддержка API-сервиса)</i>
+                      <a href="https://alibekbirlikbai.github.io/projects" class="link_for_project">
+                        <i>
+                          Pastebin
+
+                          <span class="reset_style_for_font">
+                            (API сервис)
+                          </span>  
+                        </i>
                       </a>
                     </p>
 
@@ -419,16 +428,56 @@
                       </a>
                     </p>
                   </div> -->
-
                 </div>
-
-
               </div>
 
               <div class="paragraph">
                 <p>
-                  Здравствуйте! Меня зовут <strong>Алибек</strong>, я <i><u>Software Engineer</u></i> (специализация Backend).
-                  Основной язык разработки - Java, и связанная с ней архитектура технологий (Spring Framework, Hibernate, OOP, Multithreading, REST APIs).
+                  Здравствуйте! Меня зовут <strong>Алибек</strong>, я <strong>Software Engineer</strong>.
+                  Основной язык разработки 
+                  -
+                  Java,
+                  <!-- <i>Java</i>,  -->
+
+                  и связанная с ней архитектура технологий
+                  -
+                  Spring Framework, JPA&hairsp;/&hairsp;Hibernate, PostgreSQL, Angular&hairsp;/&hairsp;Typescript,
+                  <!-- <i>Spring Framework</i>,
+                  <i>JPA/Hibernate</i>,
+                  <i>PostgreSQL</i>
+                  <i>Angular/Typescript</i>, -->
+                  
+                  <!-- <b><i>Spring Framework, JPA/Hibernate, PostgreSQL, Angular/Typescript</i></b>, -->
+                  <!-- <b><i>Spring Framework</i></b>,
+                  <b><i>JPA/Hibernate</i></b>,
+                  <b><i>PostgreSQL</i></b>,
+                  <b><i>Angular/Typescript</i></b>, -->
+
+                  <!-- <u>Spring Framework, JPA/Hibernate, PostgreSQL, Angular/Typescript</u>, -->
+                  <!-- <u>Spring Framework</u>,
+                  <u>JPA/Hibernate</u>,
+                  <u>PostgreSQL</u>
+                  <u>Angular/Typescript</u>, -->
+
+                  
+                  а также концепции
+                  -
+                  OOP&hairsp;/&hairsp;SOLID, IoC&hairsp;/&hairsp;DI, Multithreading, REST APIs&hairsp;/&hairsp;HTTP.
+                  <!-- <i>OOP/SOLID</i>,
+                  <i>IoC/DI</i>,
+                  <i>Multithreading</i>,
+                  <i>REST APIs/HTTP</i>. -->
+
+                  <!-- <b><i>OOP/SOLID</i></b>,
+                  <b><i>IoC/DI</i></b>,
+                  <b><i>Multithreading</i></b>,
+                  <b><i>REST APIs/HTTP</i></b>. -->
+
+                  <!-- <u>OOP/SOLID, IoC/DI, Multithreading, REST APIs/HTTP</u>. -->
+                  <!-- <u>OOP/SOLID</u>,
+                  <u>IoC/DI</u>,
+                  <u>Multithreading</u>,
+                  <u>REST APIs/HTTP</u>. -->
                 </p>
                 
                 
@@ -439,699 +488,908 @@
                   При решении поставленных задач не ограничиваю себя определенной группой технологий.
                 </p>
 
-                <p>
-                  <ul id="important_link_ul">
-                    <li>
-                      <a href="/resume" class="text-italic text-underline">Резюме</a>
-                      (Актуальная на - 
-                      <b>
-                        <span class="current_date"></span>
-                      </b>
-                      )
-                    </li>
-
-
-                    <li>
-                      <!-- Можете ознакомится с моими -  -->
-                      <a href="/projects" class="text-italic text-underline">Мои Проекты</a>
-                    </li>
-                  </ul>
-                </p>
-
                 
+                <ul id="important_link_ul">
+                  <li>
+                    <a href="/resume" class="text-italic text-underline">Резюме</a>
+                    (Актуальная на - <b><span class="current_date"></span></b>)
+                  </li>
+
+
+                  <li>
+                    <!-- Можете ознакомится с моими -  -->
+                    <a href="/projects" class="text-italic text-underline">Мои Проекты</a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
+          <!-- <div class="title-line" id="line-for-homepage"></div> -->
 
-          <!-- EXPERIENCE -->
-          <div class="section">
-            <h2 class="title title--h2">
-              <!-- <img
-                class="title-icon"
-                src="/utils/imgs/icons/experience.svg"
-                alt
-              /> -->
-              Опыт работы
-            </h2>
+          <!-- # IMPORTANT_Content -->
+          <div class="main-content">
+            <!-- EXPERIENCE -->
+            <div class="section">
+              <h2 class="title title--h2">
+                <!-- <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/experience.svg"
+                  alt
+                /> -->
+                Опыт работы
+              </h2>
 
-            <div class="timeline">
-              <!-- <article class="timeline__item">
-                <h5 class="title title--h3 timeline__title">
-                  Software Eng  ineer
-                </h5>
+              <div class="timeline">
+                <!-- <article class="timeline__item">
+                  <h5 class="title title--h3 timeline__title">
+                    Software Eng  ineer
+                  </h5>
 
-                <span class="timeline__period"
-                  >July, 2024 — Present @
-                  <span class="font-weight-bold">SomePlace</span></span
-                >
-              </article> -->
+                  <span class="timeline__period"
+                    >July, 2024 — Present @
+                    <span class="font-weight-bold">SomePlace</span></span
+                  >
+                </article> -->
 
-              <article class="timeline__item">
-                <h5 class="title title--h3 timeline__title">
-                  Software Developer (6 месяцев)
-                </h5>
-                <span class="timeline__period"
-                  >December, 2022 — May, 2023 @
-                  <span class="font-weight-bold"
-                    >Дипломная работа (Командный проект)</span
-                  ></span
-                >
+                <article class="timeline__item">
+                  <h5 class="title title--h3 timeline__title">
+                    Software Developer (6 месяцев)
+                  </h5>
+                  <span class="timeline__period"
+                    >Декабрь, 2022 — Май, 2023 @
+                    <span class="font-weight-bold"
+                      >Дипломная работа (Командный проект)</span
+                    ></span
+                  >
 
-                <p class="timeline__description">
-                  Занимался разработкой дизайна (ux/ui) и frontend части приложения. 
-                  <br>
-                  Тема диплома: Разработка веб-приложения
-                  для совершения пожертвований в Благотворительные организации.
-                  <br>
-                  
-                  <div>
-                    <b>
-                      link:
-                    </b>
-                    <a
-                    href="https://github.com/alibekbirlikbai/University-bachelor-diploma"
-                    target="_blank"
-                    >
-                      https://github.com/alibekbirlikbai/University-bachelor-diploma
-                    </a>
-                  </div>
-                </p>
-              </article>
+                  <p class="timeline__description">
+                    <span>
+                      Занимался разработкой дизайна (ux/ui) и frontend части приложения. 
+                    </span>
+                    
+                    <span>
+                      <span class="text-bold">
+                        Тема диплома:
+                      </span>
+                      Разработка веб-приложения для совершения пожертвований в Благотворительные организации.
+                    </span>
 
-              <article class="timeline__item">
-                <h5 class="title title--h3 timeline__title">
-                  Практикант (Студент)  (1,5 месяца)
-                </h5>
-                <span class="timeline__period"
-                  >2023 - 2023 @
-                  <span class="font-weight-bold"
-                    >IITU Innovation Center (INO)</span
-                  ></span
-                >
-
-                <p class="timeline__description">
-                  Проходил Предипломную практику (от Университета). Занимался научными исследованиями и технической реализацией Дипломного проекта.
-                </p>
-              </article>
-            </div>
-          </div>
-
-
-          <!-- EDUCATION -->
-          <div class="section">
-            <h2 class="title title--h2">
-              <!-- <img
-                class="title-icon"
-                src="/utils/imgs/icons/education.svg"
-                alt="Education"
-              /> -->
-              Образование
-            </h2>
-
-            <div class="timeline">
-              <!-- International IT University -->
-              <article class="timeline__item">
-                <h5 class="title title--h3 timeline__title">
-                  Bachelor of Science, Software Engineering
-                </h5>
-                <span class="timeline__period"
-                  >September, 2019 — June, 2023 @
-                  <span class="font-weight-bold">
-                    <a
-                      href="https://iitu.edu.kz/en/articles/ob-universitete-en/o-muit-en/"
+                    <span>
+                      <span class="text-bold">
+                        link:
+                      </span>
+                      <a
+                      href="https://github.com/alibekbirlikbai/University-bachelor-diploma"
                       target="_blank"
-                    >
-                      International IT University (Almaty)
-                    </a></span
-                  ></span
-                >
-                <p class="timeline__description">
-                  <i>
-                    <a 
-                    href="https://drive.google.com/file/d/1xbTJqP3ErxX1qNNU7_QeerllXpWrVID3/view?usp=sharing" 
-                    target="_blank"
-                    >
+                      >
+                        https://github.com/alibekbirlikbai/University-bachelor-diploma
+                      </a>
+                    </span>
+                  </p>
+                </article>
+
+                <article class="timeline__item">
+                  <h5 class="title title--h3 timeline__title">
+                    Intern (University)  (1,5 месяца)
+                  </h5>
+                  <span class="timeline__period"
+                    >2023 @
+                    <span class="font-weight-bold"
+                      >IITU Innovation Center (INO)</span
+                    ></span
+                  >
+
+                  <p class="timeline__description">
+                    <span>
+                      Проходил Предипломную практику. 
+                      Занимался научными исследованиями и технической реализацией Дипломного проекта.
+                    </span>
+                  </p>
+                </article>
+              </div>
+            </div>
+
+
+            <!-- EDUCATION -->
+            <div class="section">
+              <h2 class="title title--h2">
+                <!-- <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/education.svg"
+                  alt="Education"
+                /> -->
+                Образование
+              </h2>
+
+              <div class="timeline">
+                <!-- International IT University -->
+                <article class="timeline__item">
+                  <h5 class="title title--h3 timeline__title">
+                    Bachelor of Science, Software Engineering
+                  </h5>
+                  <span class="timeline__period"
+                    >September, 2019 — June, 2023 @
+                    <span class="font-weight-bold">
+                      <a
+                        href="https://iitu.edu.kz/en/articles/ob-universitete-en/o-muit-en/"
+                        target="_blank"
+                      >
+                        International IT University (Almaty)
+                      </a></span
+                    ></span
+                  >
+                  <p class="timeline__description">
+                    <span>
                       gpa: 3.43
-                    </a>
-                  </i>
-                </p>
-              </article>
-
-
-              <!-- Военная Кафедра -->
-              <article class="timeline__item">
-                <h5 class="title title--h3 timeline__title">
-                  мл. лейтенант (Запас)
-                </h5>
-                <span class="timeline__period"
-                  >2020 — 2022 @
-                  <span class="font-weight-bold">
-                    <a
-                      href="https://iitu.edu.kz/en/articles/for-students/voennaa-kafedra-en/"
-                      target="_blank"
-                    >
-                      Военная Кафедра IITU
-                    </a></span
-                  ></span
-                >
-                <p class="timeline__description">
-                  <i>
-                    (Имеется военный билет)
-                  </i>
-                </p>
-              </article>
-            </div>
-          </div>
-
-
-          <!-- TECHNOLOGY STACK -->
-          <div class="section" id="tech-stack">
-            <h2 class="title title--h2">
-              <!-- <img
-                class="title-icon"
-                src="/utils/imgs/icons/skills.svg"
-                alt="Skills"
-              /> -->
-              Навыки
-            </h2>
-
-
-            <div class="section-flex">
-              <!-- MAIN SKILLS -->
-              <div class="box-gray all-tech-stacks" id="main-skills">
-                <!-- Tech. stack -->
-                <div class="group-block">
-                  <div class="block-title important_skill_title">
-                    <span>Tech. stack</span>
-                  </div>
-
-                  <div class="block-body">
-                  
-
-                    <!-- Java STACK -->
-                    <div class="stack-group add_border_to_stack-group">
-                      <div class="stack">
-                        <span class="main-info">
-                          Java Core
-                        </span>
-
-                        <span class="additional-info">
-                          (8+/11)
-                        </span>
-                      </div>
-        
-                      <div class="stack">
-                        <span class="main-info">
-                          Spring Core
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Spring Boot
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Spring Data
-                        </span>
-
-                        <span class="additional-info">
-                          (JPA)
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Spring MVC
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Spring Security
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-                    </div>
-        
-
-                    <!-- DataBase STACK -->
-                    <div class="stack-group add_border_to_stack-group">
-                      <div class="stack">
-                        <span class="main-info">
-                          Sql
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-        
-                      <div class="stack">
-                        <span class="main-info">
-                          PostgreSQL
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Hibernate
-                        </span>
-
-                        <span class="additional-info">
-                          (Spring Data JPA)
-                        </span>
-                      </div>
-                    </div>
-
-                    <!-- Git + CI/CD STACK -->
-                    <div class="stack-group add_border_to_stack-group">
-                      <div class="stack">
-                        <span class="main-info">
-                          Git
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-        
-                      <div class="stack">
-                        <span class="main-info">
-                          Gitflow
-                        </span>
-
-                        <span class="additional-info">
-                          *(знаком с Методологией)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- (add. stack) -->
-                <div class="group-block">
-                  <div class="block-title">
-                    <span>(add. stack)</span>
-                  </div>
-
-                  <div class="block-body">
-                    <!-- Web STACK -->
-                    <div class="stack-group">
-                      <div class="stack">
-                        <span class="main-info">
-                          Html
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-        
-                      <div class="stack">
-                        <span class="main-info">
-                          Css
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          Bootstrap
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          JavaScript
-                        </span>
-
-                        <span class="additional-info">
-                          (Немного)
-
-                          (
-                            <a href="https://github.com/alibekbirlikbai/alibekbirlikbai.github.io" target="_blank">
-                              на этом проекте
-                            </a>
-                          )
-                        </span>
-                      </div>
-
-                      <!-- <div class="stack">
-                        <span class="main-info">
-                          
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                        TypeScript
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info">
-                          
-                        </span>
-
-                        <span class="additional-info">
-                        </span>
-                        Angular
-                      </div> -->
-                    </div>
-
-
-                    <!-- Cloud STACK -->
-                    <div class="stack-group">
-                      <div class="stack">
-                        <span class="main-info">
-                          Google Cloud
-                        </span>
-
-                        <span class="additional-info">
-                          (Google Drive API) (
-                            <a href="https://github.com/alibekbirlikbai/Pastebin-project" target="_blank">
-                              на этом проекте
-                            </a>
-                          )
-                        </span>
-                      </div>
-
-                      
-                    </div>                    
-
-
-                    <!-- IDE STACK -->
-                    <div class="stack-group">
-                      <div class="stack">
-                        <span class="main-info reset_style_for_font">
-                          IntelliJ IDEA
-                        </span>
-
-                        <span class="additional-info">
-                          (IDE)
-                        </span>
-                      </div>
-
-                      <div class="stack">
-                        <span class="main-info reset_style_for_font">
-                          VS Code
-                        </span>
-
-                        <span class="additional-info">
-                          (IDE)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-
-              <!-- (Known THEORY) -->              
-              <div class="box-gray all-tech-stacks" id="other-skills">
-                <div class="group-block">
-                  <div class="block-title important_skill_title">
-                    <span>Theory</span>
-                  </div>
-
-                  <div class="block-body">
-                      <!-- Теория -> Java -->
-                      <div class="stack-group add_border_to_stack-group">
-                        <div class="stack">
-                          Принципы <b>OOP</b>
-                        </div>
-
-                        <div class="stack">
-                          Принципы <b>SOLID</b> (OOP)
-                        </div>
-          
-                        <div class="stack">
-                          <b>IoC/DI</b> (Spring)
-                        </div>
-                      </div>
-
-                      <!-- Теория -> Баз Данных -->
-                      <div class="stack-group add_border_to_stack-group">
-                        <div class="stack">
-                          Концепция <b>ORM/JPA</b>
-                        </div>
-
-                        <div class="stack">
-                          <b>Нормализация БД</b>
-                        </div>
-          
-                        <div class="stack">
-                          <b>Транзакции</b>
-                        </div>
-
-                        <div class="stack">
-                          <b>ACID</b> (Транзакции)
-                        </div>
-                    </div>
-
-
-                    <!-- Теория -> Клиент-Сервер взаимодействия -->
-                    <div class="stack-group add_border_to_stack-group">
-                      <div class="stack">
-                        Принцип работы <b>HTTP</b> (Протокол)
-                      </div>
-
-                      <div class="stack">
-                        Принципы <b>REST API</b>
-                      </div>
-                    </div>
-
-                    <!-- Теория -> Архитектуры / Паттерны -->
-                    <div class="stack-group add_border_to_stack-group">
-                      <div class="stack">
-                        <b>MVC</b> архитектура
-                      </div>
-
-                      <div class="stack">
-                        <b>Паттерны Проектирования</b> (Design Patterns)
-                      </div>
-                    </div>                    
-                  </div>
-                </div>
-              </div>  
-            
-
-              <!-- (RELEVANT SKILLS) -->              
-              <div class="box-gray all-tech-stacks" id="other-skills">
-                <div class="group-block">
-                  <div class="block-title important_skill_title">
-                    <span>*(Relevant)</span>
-                  </div>
-
-
-                  <div class="block-body">
-                    <div class="stack-group">
-                      <div class="stack">
-                        Стараюсь применять принципы - <b>DRY</b> / <b>KISS</b> / <b>YAGNI</b> в своих проектах
-                      </div>
-                    </div>
-
-                    <div class="stack-group">
-                      <div class="stack">
-                        Есть представление о работе по - <b>Agile</b> / <b>Scrum</b> / <b>Kanban</b>
-                      </div>
-                    </div>
-
-                    <div class="stack-group">
-                      <div class="stack">
-                        Управляю ходом работы над проектами, текущими задачами в - <b>Trello</b> (task/issue management)
-                      </div>
-                    </div>
-
-                    <div class="stack-group">
-                      <div class="stack">
-                        Есть понимание полного жизненного цикла разработки ПО *(в универе целый семестр проходил этот курс)
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-          </div>
-
-
-          <!-- LANGUAGE -->          
-          <div class="section" id="language">
-            <h2 class="title title--h2">
-              <!-- <img
-                class="title-icon"
-                src="/utils/imgs/icons/skills.svg"
-                alt="Skills"
-              /> -->
-              Языки
-            </h2>
-
-            <div class="section-flex">
-              <div class="box-gray all-tech-stacks">
-
-                <!-- Java STACK -->
-                <div class="stack-group">
-                  <div class="stack">
-                    <strong>
-                      Казахский
-                    </strong>
-                    
-                    <span>
-                      (Носитель)
                     </span>
+
+                    <span>
+                      <!-- <span class="text-bold">
+                        link:
+                      </span> -->
+                      <a 
+                        href="https://drive.google.com/file/d/1xbTJqP3ErxX1qNNU7_QeerllXpWrVID3/view?usp=sharing" 
+                        target="_blank"
+                        >
+                          Транскрипт
+                        </a>
+                    </span>
+                  </p>
+                </article>
+
+
+                <!-- Военная Кафедра -->
+                <article class="timeline__item">
+                  <h5 class="title title--h3 timeline__title">
+                    мл. лейтенант (Запас)
+                  </h5>
+                  <span class="timeline__period"
+                    >2020 — 2022 @
+                    <span class="font-weight-bold">
+                      <a
+                        href="https://iitu.edu.kz/en/articles/for-students/voennaa-kafedra-en/"
+                        target="_blank"
+                      >
+                        Военная Кафедра IITU
+                      </a></span
+                    ></span
+                  >
+                  <p class="timeline__description">
+                    <span>
+                      (Имеется военный билет)
+                    </span>
+                  </p>
+                </article>
+              </div>
+            </div>
+
+
+            <!-- ALL SKILLS -->
+            <div class="section" id="tech-stack">
+              <h2 class="title title--h2">
+                <!-- <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/skills.svg"
+                  alt="Skills"
+                /> -->
+                Навыки
+              </h2>
+
+
+              <div class="section-flex">
+                <!-- MAIN SKILLS -->
+                <div class="box-gray all-tech-stacks" id="main-skills">
+                  <!-- Tech. stack -->
+                  <div class="group-block">
+                    <div class="block-title important_skill_title">
+                      <span>Tech. Skills</span>
+                    </div>
+
+                    <div class="block-body">
+                    
+
+                      <!-- Java STACK -->
+                      <div class="stack-group add_border_to_stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Java Core
+                          </span>
+
+                          <span class="additional-info">
+                            (8+/11)
+                          </span>
+                        </div>
+          
+                        <div class="stack">
+                          <span class="main-info">
+                            Spring Core
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Spring Boot
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Spring Data
+                          </span>
+
+                          <span class="additional-info">
+                            (JPA)
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Spring MVC
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Spring Security
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+          
+
+                      <!-- DataBase STACK -->
+                      <div class="stack-group add_border_to_stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Sql
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+          
+                        <div class="stack">
+                          <span class="main-info">
+                            PostgreSQL
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Hibernate
+                          </span>
+
+                          <span class="additional-info">
+                            (Spring Data JPA)
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- Git + CI/CD STACK -->
+                      <div class="stack-group add_border_to_stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Git
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+          
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info">
+                            Gitflow
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  <!-- (add. stack) -->
+                  <div class="group-block">
+                    <div class="block-title">
+                      <span>(Add. stack)</span>
+                    </div>
+
+                    <div class="block-body">
+                      <!-- Web STACK -->
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Html5
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+          
+                        <div class="stack">
+                          <span class="main-info">
+                            Css3
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info">
+                            Angular/TypeScript
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+                            <a href="https://github.com/alibekbirlikbai/Pastebin-frontend" target="_blank" class="">(проект <span class="text-bold">Pastebin [frontend]</span>)</a>
+                          </span>
+                        </div>
+
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info">
+                            JavaScript
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+                            <a href="https://github.com/alibekbirlikbai/alibekbirlikbai.github.io" target="_blank" class="">(проект <span class="text-bold">cv_site</span>)</a>
+                          </span>
+                        </div>
+
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info">
+                            Tailwind CSS
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+                          </span>
+                        </div>
+
+                        <!-- <div class="stack">
+                          <span class="main-info">
+                            
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                          TypeScript
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                          Angular
+                        </div> -->
+                      </div>
+
+
+                      <!-- API -->
+                      <div class="stack-group">
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info  link_for_api_docs  text-italic">                          
+                            <a href="https://developers.google.com/drive/api/guides/about-sdk" target="_blank">
+                              <span>
+                                Google Drive API
+                              </span>
+
+                              <sup>official docs</sup>
+                            </a>
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+
+                            <a href="https://github.com/alibekbirlikbai/Pastebin-backend" target="_blank" class="">(проект <span class="text-bold">Pastebin [backend]</span>)</a>
+                          </span>
+                        </div>
+
+                        
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info  link_for_api_docs  text-italic">
+                            <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28" target="_blank">
+                              <span>
+                                GitHub API
+                              </span> 
+
+                              <sup>official docs</sup>
+                            </a>
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+
+                            <a href="https://github.com/alibekbirlikbai/alibekbirlikbai.github.io" target="_blank" class="">(проект <span class="text-bold">cv_site</span>)</a>
+                          </span>
+                        </div>
+
+
+                        <div class="stack  unfamiliar_stack">
+                          <span class="main-info  link_for_api_docs  text-italic">
+                            <a href="https://newsapi.org/docs" target="_blank">
+                              <span>
+                                News API
+                              </span>
+                              
+                              <sup>official docs</sup>
+                            </a>
+                          </span>
+
+                          <span class="additional-info">
+                            <!-- *(знаком) -->
+
+                            <a href="https://github.com/alibekbirlikbai/news-api" target="_blank" class="">(проект <span class="text-bold">University</span>)</a>
+                          </span>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+
+                  <!-- (IDE + Tools) -->
+                  <div class="group-block">
+                    <div class="block-title">
+                      <span>(IDE / Tools)</span>
+                    </div>
+
+                    <div class="block-body">              
+                      <!-- IDE STACK -->
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info  reset_style_for_font">
+                            IntelliJ IDEA
+                          </span>
+
+                          <span class="additional-info">
+                            (IDE)
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info  reset_style_for_font">
+                            VS Code
+                          </span>
+
+                          <span class="additional-info">
+                            (IDE)
+                          </span>
+                        </div>
+                      </div>
+
+
+                      <!-- Development Tools -->
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Postman
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Render
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+
+
+                      <!-- IDE STACK -->
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info  reset_style_for_font">
+                            Figma
+                          </span>
+
+                          <span class="additional-info">
+                            (Software)
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info  reset_style_for_font">
+                            Canva
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
     
-                  <div class="stack">
-                    <strong>
-                      Русский
-                    </strong>
-                    
-                    <span>
-                      (Носитель)
-                    </span>
-                  </div>
 
-                  <div class="stack">
-                    <strong>
-                      Английский
-                    </strong>
-                    
-                    <span>
-                      (B1-Intermediate)
-                    </span>
+                <!-- (Known THEORY) -->              
+                <div class="box-gray all-tech-stacks" id="known-theory">
+                  <div class="group-block">
+                    <div class="block-title important_skill_title">
+                      <span>Theory</span>
+                    </div>
+
+                    <div class="block-body">
+                        <!-- Теория -> Java -->
+                        <div class="stack-group add_border_to_stack-group">
+                          <div class="stack">
+                            <span class="main-info">
+                              Принципы <b>OOP</b>
+                            </span>
+
+                            <span class="additional-info">
+                            </span>
+                          </div>
+
+                          <div class="stack">
+                            <span class="main-info">
+                              Принципы <b>SOLID</b>
+                            </span>
+
+                            <span class="additional-info">
+                              (OOP)
+                            </span>
+                          </div>
+
+                          
+            
+                          <div class="stack">
+                            <span class="main-info">
+                              <b>IoC/DI</b>
+                            </span>
+
+                            <span class="additional-info">
+                              (Spring)
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- Теория -> Баз Данных -->
+                        <div class="stack-group add_border_to_stack-group">
+                          <div class="stack">
+                            <span class="main-info">
+                              Концепция <b>ORM/JPA</b>
+                            </span>
+
+                            <span class="additional-info">
+                            </span>
+                          </div>
+
+                          <div class="stack">
+                            <span class="main-info">
+                              <b>Нормализация БД</b>
+                            </span>
+
+                            <span class="additional-info">
+                            </span>
+                          </div>
+            
+                          <div class="stack">
+                            <span class="main-info">
+                              <b>Транзакции</b>
+                            </span>
+
+                            <span class="additional-info">
+                            </span>
+                          </div>
+
+                          <div class="stack">
+                            <span class="main-info">
+                              <b>ACID</b>
+                            </span>
+
+                            <span class="additional-info">
+                              (Транзакции)
+                            </span>
+                          </div>
+                      </div>
+
+
+                      <!-- Теория -> Клиент-Сервер взаимодействия -->
+                      <div class="stack-group add_border_to_stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Принцип работы <b>HTTP</b>
+                          </span>
+
+                          <span class="additional-info">
+                            (Протокол)
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            Принципы <b>REST API</b>
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- Теория -> Архитектуры / Паттерны -->
+                      <div class="stack-group add_border_to_stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            <b>MVC</b> архитектура
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+
+                        <div class="stack">
+                          <span class="main-info">
+                            <b>Паттерны Проектирования</b>
+                          </span>
+
+                          <span class="additional-info">
+                            (Design Patterns)
+                          </span>
+                        </div>
+                      </div>                    
+                    </div>
                   </div>
-                </div>     
+                </div>  
+              
+
+                <!-- (RELEVANT SKILLS) -->              
+                <div class="box-gray all-tech-stacks" id="relevant-skills">
+                  <div class="group-block">
+                    <div class="block-title important_skill_title">
+                      <span>+ Relevant Skills</span>
+                    </div>
+
+
+                    <div class="block-body">
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Стараюсь применять принципы - <b>DRY</b> / <b>KISS</b> / <b>YAGNI</b> в своих проектах
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Есть представление о работе по - <b>Agile</b> / <b>Scrum</b> / <b>Kanban</b>
+                          </span>
+
+                          <span class="additional-info">
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Управляю ходом работы над проектами, текущими задачами в - <b>Trello</b>
+                          </span>
+
+                          <span class="additional-info">
+                            (task/issue management)
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="stack-group">
+                        <div class="stack">
+                          <span class="main-info">
+                            Есть понимание полного жизненного цикла разработки ПО
+                          </span>
+
+                          <span class="additional-info">
+                            *(в универе целый семестр проходил этот курс)
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>   
-          </div>
+            </div>
 
+            
+            <!-- LANGUAGE -->          
+            <div class="section" id="language">
+              <h2 class="title title--h2">
+                <!-- <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/skills.svg"
+                  alt="Skills"
+                /> -->
+                Языки
+              </h2>
 
-          <!-- ACHIEVEMENTS -->
-          <div class="section">
-            <h2 class="title title--h2">
-              <img
-                class="title-icon"
-                src="/utils/imgs/icons/achievements.svg"
-                alt="Achievements"
-              />
-              Достижения
-            </h2>
+              <div class="section-flex">
+                <div class="box-gray all-tech-stacks">
 
-            <div>
-              <ul>
-                <li>
-                  <p>
-                    Наша команда по Дипломному проекту смогла получить документ <i>"Акт о Внедрении"</i>, 
-                    подтверждающий заинтересованность в дальнейшей разработке, поддержке и запуске 
-                    проекта благотворительной организацией <i>"Asar-Ume" (дочерняя организация "Pana")</i>.
-                  </p>    
+                  <div class="stack-group">
+                    <div class="stack">
+                      <span class="main-info">
+                        <strong>
+                          Казахский
+                        </strong>
+                      </span>
 
-                  <p>
-                    <b>link:</b> 
-                    <a href="https://drive.google.com/file/d/1qw7EZVCBB10lHXQy5S6Ebmnj3Bd_zIcK/view?usp=sharing">
-                      ссылка на документ
-                    </a>
-                  </p>
+                      <span class="additional-info">
+                        (Носитель)
+                      </span>
+                    </div>
+      
+                    <div class="stack">
+                      <span class="main-info">
+                        <strong>
+                          Русский
+                        </strong>
+                      </span>
 
-                  <p>
-                    <b>diploma:</b> 
-                    <a href="https://github.com/alibekbirlikbai/University-bachelor-diploma">
-                      ссылка на дипломный проект
-                    </a>
-                  </p>
-                </li>
+                      <span class="additional-info">
+                        (Носитель)
+                      </span>
+                    </div>
 
-                <!-- <li>
-                  <p>
-                    my mega super achievement
-                  </p>
-                </li> -->
-              </ul>
+                    <div class="stack">
+                      <span class="main-info">
+                        <strong>
+                          Английский
+                        </strong>
+                      </span>
+
+                      <span class="additional-info">
+                        (B1-Intermediate)
+                      </span>
+                    </div>
+                  </div>     
+                </div>
+              </div>   
             </div>
           </div>
 
+          <div class="title-line" id="line-for-homepage"></div>
 
-          <!-- INTERESTS -->
-          <div class="section" id="interests_section">
-            <h2 class="title title--h2">
-              <img
-                class="title-icon"
-                src="/utils/imgs/icons/interests.svg"
-                alt="interests"
-              />
-              Интересы
-            </h2>
+          <!-- # ADDITIONAL_Content -->          
+          <div class="additional-content">
+            <!-- ACHIEVEMENTS -->
+            <div class="section">
+              <h2 class="title title--h2">
+                <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/achievements.svg"
+                  alt="Achievements"
+                />
+                Достижения
+              </h2>
 
-            <div>
-              <ul>
-                <li>
-                  В профессиональном плане интересует: <span class="text-italic text-bold text-underline">Веб-Разработка</span> (все направления), работа
-                  с <span class="text-italic text-bold text-underline">Облачными Сервисами</span>, и все что связано с <span class="">прикладным программированием</span>
-                  (взаимодействие с пользователем).
-                </li>
+              <div>
+                <ul>
+                  <li>
+                    <p>
+                      Моя команда по Дипломному проекту получила документ <i>"Акт о Внедрении"</i>, 
+                      подтверждающий заинтересованность в дальнейшей разработке, поддержке и запуске 
+                      проекта благотворительной организацией <i>"Asar-Ume" (документ подписала дочерняя организация "Pana")</i>.
+                    </p>    
 
-                <li>
-                  Личные интересы: <span class="text-italic text-bold text-underline">Computer Science</span> (в частности, Операционные Системы + математика для CS), 
-                  Разработка архитектуры ПО, интернет вещей (IoT).
-                </li>
+                    <p>
+                      <b>link:</b> 
+                      <a href="https://drive.google.com/file/d/1qw7EZVCBB10lHXQy5S6Ebmnj3Bd_zIcK/view?usp=sharing">
+                        ссылка на документ
+                      </a>
+                    </p>
 
-                <li>
-                  Интересы помимо программирования: Motion Design (цифровая анимация), Bodybuilding.
-                </li>
-              </ul>
+                    <p>
+                      <b>Диплом:</b> 
+                      <a href="https://github.com/alibekbirlikbai/University-bachelor-diploma">
+                        https://github.com/alibekbirlikbai/University-bachelor-diploma
+                      </a>
+                    </p>
+                  </li>
+
+                  <!-- <li>
+                    <p>
+                      my mega super achievement
+                    </p>
+                  </li> -->
+                </ul>
+              </div>
             </div>
-          </div>
 
 
-          <!-- LINKS -->
-          <div class="section">
-            <h2 class="title title--h2">
-              <img
-                class="title-icon"
-                src="/utils/imgs/icons/links.svg"
-                alt="Links"
-              />
-              Links
-            </h2>
-            <div>
-              <ul>
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://www.linkedin.com/in/alibek-birlikbai/"
-                    >https://www.linkedin.com/in/alibek-birlikbai/</a
-                  >
-                </li>
-                <li>
-                  <a target="_blank" href="https://github.com/alibekbirlikbai"
-                    >https://github.com/alibekbirlikbai</a
-                  >
-                </li>
-              </ul>
+            <!-- INTERESTS -->
+            <div class="section" id="interests_section">
+              <h2 class="title title--h2">
+                <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/interests.svg"
+                  alt="interests"
+                />
+                Интересы
+              </h2>
+
+              <div>
+                <ul>
+                  <li>
+                    В профессиональном плане интересует: <span class="text-italic text-bold text-underline">Веб-Разработка</span> (все направления), работа
+                    с <span class="text-italic text-bold text-underline">Облачными Сервисами</span>, и все что связано с <span class="">прикладным программированием</span>
+                    (взаимодействие с пользователем).
+                  </li>
+
+                  <li>
+                    Личные интересы: <span class="text-italic text-bold text-underline">Computer Science</span> (в частности, Операционные Системы + математика для CS), 
+                    Разработка архитектуры ПО, интернет вещей (IoT).
+                  </li>
+
+                  <li>
+                    Интересы помимо программирования: Motion Design (цифровая анимация), Bodybuilding.
+                  </li>
+                </ul>
+              </div>
             </div>
+
+
+            <!-- LINKS -->
+            <div class="section">
+              <h2 class="title title--h2">
+                <img
+                  class="title-icon"
+                  src="/utils/imgs/icons/links.svg"
+                  alt="Links"
+                />
+                Ссылки (важное)
+              </h2>
+
+              <div>
+                <ul>
+                  <li>
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/in/alibek-birlikbai/"
+                      >https://www.linkedin.com/in/alibek-birlikbai/</a
+                    >
+                  </li>
+                  <li>
+                    <a target="_blank" href="https://github.com/alibekbirlikbai"
+                      >https://github.com/alibekbirlikbai</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>            
           </div>
         </div>
       </div>
     </main>
+
+
 
     <svg class="svg-defs">
       <clipPath id="avatar-box">
