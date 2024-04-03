@@ -92,8 +92,13 @@ body {
   background-color: #1945fc;
   background-color: #001ef2;
   background-color: #0043fe; */
-  background-color: #0167f7;
   /* background-color: #0195f7; */
+
+
+  /* background-color: #0167f7; */
+
+  background: linear-gradient(89deg, rgb(21, 74, 189) 0.1%, rgb(26, 138, 211) 51.5%, rgb(72, 177, 234) 100.2%);
+  
 
   color: #5f6f81;
   font-family: inter, sans-serif;
@@ -2541,6 +2546,25 @@ h1 .section_highlight_status {
   margin: 0;
 }
 
+.unfamiliar_stack {
+  /* border: dashed 3px black; */
+}
+
+
+.additional_stacks .stack {
+  border: dashed 3px black;
+}
+
+
+.summary_for_stack_group {
+  background-color: transparent;
+}
+#main-skills .summary_for_stack_group .main-info {
+  font-weight: initial;
+
+  font-style: italic;
+}
+
 #tech-stack .additional-info {
   font-style: italic;
 }
@@ -3881,6 +3905,11 @@ h1 .section_highlight_status {
   /* border: dashed 3px black;   */
 }
 
+.additional_project {
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+
 .project .project-info a {
   display: inline;
 
@@ -3889,12 +3918,27 @@ h1 .section_highlight_status {
 }
 
 
+.project .project-info .main_stack,
+.project .project-info .additional_stack {
+ display: flex;
+ flex-direction: row; 
+ gap: 5px;
+
+ padding-left: 30px;
+}
+
+
+
+
+
+
+
 .project_highlight {
   display: flex;
   flex-direction: column;
   gap: 15px;
 
-  padding-left: 20px;
+  /* padding-left: 20px; */
 
   margin: 5px 0;
 
@@ -3958,7 +4002,7 @@ h1 .section_highlight_status {
 
 .highlight_release .version-title-box {
   flex-grow: 1;
-  max-width: 195px;
+  width: 82px;
 
   display: flex;
   flex-direction: column;
@@ -3968,7 +4012,7 @@ h1 .section_highlight_status {
   /* border: dashed 3px red;    */
 }
 .version-title-box .title {
-  width: fit-content;
+  /* width: fit-content; */
 
   padding: 0px 6px;
 
@@ -4125,14 +4169,21 @@ h1 .section_highlight_status {
   /* border: dashed 3px blue;    */
 }
 
-.project_highlight .text-block .text_block_highlight {
-  background-color: #afb8c133;
+.text_block_highlight {
+  /* background-color: #afb8c133; */
+  background-color: #afb8c144;
   border-radius: 6px;
 
-  padding: 0.15em 0.4em;
+  padding: 0.1em 0.3em;
 
   font-weight: 600;
   font-style: italic;
+}
+#about_me .text_block_highlight {
+  /* font-weight: initial; */
+  font-style: normal;
+
+  /* padding: 0.1em 0.3em; */
 }
 
 .github-project {
