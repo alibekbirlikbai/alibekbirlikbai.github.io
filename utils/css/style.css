@@ -1279,6 +1279,9 @@ iframe {
 .content {
   display: flex;
   flex-direction: column;
+}
+#home_page.content,
+#project_page.content {
   gap: 40px;
 }
 
