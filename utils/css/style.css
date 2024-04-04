@@ -4182,11 +4182,17 @@ h1 .section_highlight_status {
   font-weight: 600;
   font-style: italic;
 }
-#about_me .text_block_highlight {
-  /* font-weight: initial; */
+#about_me .text_block_highlight,
+#project_page .main_stack .text_block_highlight,
+#project_page .additional_stack .text_block_highlight {
+  font-weight: initial;
   font-style: normal;
 
-  /* padding: 0.1em 0.3em; */
+  padding: 0.05em 0.3em;
+  color: #596778;
+  /* color: #3f4b5a; */
+  background-color: #9ac9f3;
+  border: 1.5px solid #596778;
 }
 
 .github-project {
