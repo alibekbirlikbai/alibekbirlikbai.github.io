@@ -932,7 +932,7 @@
                             <div></div>
     
                             <div class="block-content">
-                              <span class="repo-commits_latest_commit_message"></span>
+                              <span class="repo-commits_latest_commit_message">feature/front-end</span>
       
                               <span class="block-description">latest commit message</span>
                             </div>
@@ -1025,7 +1025,7 @@
                             <div></div>
     
                             <div class="block-content">
-                              <span class="repo-commits_latest_commit_message"></span>
+                              <span class="repo-commits_latest_commit_message">main</span>
       
                               <span class="block-description">latest commit message</span>
                             </div>
@@ -1152,7 +1152,7 @@
                             <div></div>
     
                             <div class="block-content">
-                              <span class="repo-commits_latest_commit_message"></span>
+                              <span class="repo-commits_latest_commit_message">main</span>
       
                               <span class="block-description">latest commit message</span>
                             </div>
@@ -1736,7 +1736,7 @@
 
       // https://api.github.com/repos/<REPO>/branches/<BRANCH> - инфо про конкретную ветку
       function getLastCommitMessage(repo, element) {
-        const branch = 'develop';
+        const branch = element.querySelector('.repo-commits_latest_commit_message').innerHTML;
 
         fetch(gitHub_API_URL + `/${repo}/branches/${branch}`, {
           headers: {
