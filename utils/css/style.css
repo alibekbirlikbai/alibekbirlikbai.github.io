@@ -1941,8 +1941,11 @@ h1 .section_highlight_status {
 
 .sidebar__user-name {
   font-family: merriweather, serif;
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  /* margin-bottom: 1rem; */
+
+  /* comment */
+  /* border: 2px dashed black; */
 }
 
 @media only screen and (max-width: 580px) {
@@ -2386,9 +2389,9 @@ h1 .section_highlight_status {
   padding-bottom: 0;
 }
 
-.timeline__item:last-child p {
+/* .timeline__item:last-child p {
   margin-bottom: 0.4rem;
-}
+} */
 
 @media only screen and (max-width: 580px) {
   .timeline__item {
@@ -2415,6 +2418,8 @@ h1 .section_highlight_status {
   flex-direction: column;
 
   /* padding-bottom: 100px;; */
+  /* comment */
+  /* border: 1px dashed black; */
 }
 
 
@@ -2423,6 +2428,31 @@ h1 .section_highlight_status {
     margin-top: 0.3rem;
   }
 }
+
+.job_responibility_list {
+  /* comment */
+  /* border: 1px dashed black; */
+}
+.job_responibility_list ul {
+  padding-left: 15px;
+
+  margin: 0;
+  /* comment */
+  /* border: 1px dashed black; */
+}
+.job_responibility_list li {
+  list-style-type: "-";
+  padding-inline-start: 1ch;
+
+  font-size: small;
+  text-align: justify;
+}
+/* расстояние между */
+/* .job_responibility_list li:not(:last-child) {
+  margin-bottom: 15px;
+} */
+
+
 
 .section-flex {
   display: flex;
@@ -2555,7 +2585,7 @@ h1 .section_highlight_status {
 
 
 .additional_stacks .stack {
-  border: dashed 3px black;
+  border: dashed 3px;
 }
 
 
@@ -4189,8 +4219,9 @@ h1 .section_highlight_status {
   font-style: normal;
 
   padding: 0.05em 0.3em;
-  color: #596778;
+  /* color: #596778; */
   /* color: #3f4b5a; */
+  /* color: #f7fbfe; */
   background-color: #9ac9f3;
   border: 1.5px solid #596778;
 }
@@ -4461,6 +4492,8 @@ h1 .section_highlight_status {
 .sidebar {
   position: sticky;
   top: 0px;
+
+  padding-bottom: 75px;
 
   /* comment */
   /* background-color: aqua; */
