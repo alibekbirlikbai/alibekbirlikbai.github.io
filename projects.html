@@ -671,7 +671,7 @@
                       <div class="project_highlight">
                         <div class="text-block  highlight_release">
                           <p class="block-title">
-                            <span onclick="funcToggle('highlight_release')" class="cursor-pointer">
+                            <span onclick="funcToggle('pastebin-project', 'highlight_release')" class="cursor-pointer">
                               <i class="fa-solid fa-code-branch"></i>
     
                               <span>
@@ -849,7 +849,7 @@
     
                         <div class="text-block  highlight_note">
                           <p class="block-title">
-                            <span onclick="funcToggle('highlight_note')" class="cursor-pointer">
+                            <span onclick="funcToggle('pastebin-project', 'highlight_note')" class="cursor-pointer">
                               <i class="fa-regular fa-circle-info fa-lg"></i>
     
                               <span>
@@ -1344,14 +1344,28 @@
                       <div class="project_highlight">   
                         <div class="text-block  highlight_note">
                           <p class="block-title">
-                            <i class="fa-regular fa-circle-info fa-lg"></i>
+                            <span>
+                              <i class="fa-regular fa-circle-info fa-lg"></i>
     
-                            <span class="text-bold">
-                              Note:
+                              <span>
+                                <span class="text-bold">
+                                  Note: 
+                                </span>
+
+                                <!-- <span>
+                                  (Project Configuration)
+                                </span> -->
+                              </span>
                             </span>
+
+                            <!-- <span class="title-icon" onclick="funcToggle()">
+                              <span class="icon">
+                                <i class="fa-solid fa-plus-minus"></i>
+                              </s>
+                            </span> -->
                           </p>
     
-                          <p class="inline">
+                          <p>
                               Репозиторий содержит реализацию 
                               только той части проекта за которую я был ответственен
                               (ux/ui, frontend)

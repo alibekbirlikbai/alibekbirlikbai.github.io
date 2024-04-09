@@ -1,3 +1,3 @@
-function funcToggle(id) {
-    $("." + id + " .open_closed").toggleClass('hidden');
+function funcToggle(parentId, childClass) {
+  $("#" + parentId + " ." + childClass + " .open_closed").toggleClass('hidden');
 };
