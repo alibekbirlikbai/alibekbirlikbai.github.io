@@ -128,6 +128,10 @@
 
     <!-- Основной .css Файл -->
     <link rel="stylesheet" type="text/css" href="/utils/css/style.css" />
+    <!-- JavaScript -->
+    <!-- show-hide-block.js -->
+    <script type="text/javascript" src="/utils/js/show-hide-block.js"></script>
+
     <!-- Font Awesome PRO icons -->
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
     
@@ -469,7 +473,7 @@
 
               <div class="paragraph">
                 <p>
-                  Здесь можете ознакомиться с моими текущими, и университетскими проектами. 
+                  Здесь можете ознакомиться с моими проектами. 
                   К каждому проекту прилагается своя документация (<b>README.md</b>, <b>Release Notes</b>). 
                 </p>               
               </div>
@@ -582,9 +586,13 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          Pastebin 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            Pastebin 
+                          </h5>
+
+                          <img src="/utils/imgs/verified_icon.png" alt="current project">
+                        </div>
 
                         <div class="tag-group">
                           <div class="tag  text-italic" id="api_service">
@@ -640,8 +648,7 @@
                           <span class="text_block_highlight">Spring Boot</span>
                           <span class="text_block_highlight">Spring MVC</span> +
                           <span class="text_block_highlight">PostgreSQL</span> +
-                          <span class="text_block_highlight">React.js</span>
-                          <span class="text_block_highlight">Saas</span>;
+                          <span class="text_block_highlight">React.js</span>;
                         </p>
                       </div>
 
@@ -652,7 +659,8 @@
                         </p>
 
                         <p>
-                          <span class="text_block_highlight">Google Cloud (GoogleDrive API)</span>;
+                          <span class="text_block_highlight">Google Cloud (GoogleDrive API)</span> +
+                          <span class="text_block_highlight">Saas</span>;
                           <!-- <span class="text_block_highlight"></span>; -->
                           <!-- <span class="text_block_highlight">Angular / TypeScript</span>; -->
                         </p>
@@ -663,15 +671,28 @@
                       <div class="project_highlight">
                         <div class="text-block  highlight_release">
                           <p class="block-title">
-                            <i class="fa-solid fa-code-branch"></i>
+                            <span onclick="funcToggle('highlight_release')" class="cursor-pointer">
+                              <i class="fa-solid fa-code-branch"></i>
     
-                            <span class="text-bold">
-                              Releases:
+                              <span>
+                                <span class="text-bold">
+                                  Releases:
+                                </span>
+
+                                <!-- <span>
+                                  (Project Configuration)
+                                </span> -->
+                              </span>
                             </span>
+
+                            <!-- <span class="title-icon" onclick="funcToggle()">
+                              <span class="icon">
+                                <i class="fa-solid fa-plus-minus"></i>
+                              </s>
+                            </span> -->
                           </p>
-    
                           
-                          <div class="block-body">
+                          <div class="block-body open_closed hidden">
                             <div class="version-title-box">
                               <div class="title">
                                 <span>
@@ -733,9 +754,9 @@
                                 <!-- v1.0.0 (MVP) -->
                                 <li>
                                   <div class="release-title-block">
-                                    <div class="release-title  text-italic">
+                                    <div class="release-title">
                                       <a href="https://github.com/alibekbirlikbai/Pastebin-project/releases/tag/v1.0.0" target="_blank" class="link_for_project_release">
-                                        <span class="text-bold">
+                                        <span>
                                           v1.0.0
                                         </span>
   
@@ -778,9 +799,9 @@
                                 <!-- v1.1.0 -->
                                 <li>
                                   <div class="release-title-block">
-                                    <div class="release-title  text-italic">
+                                    <div class="release-title">
                                       <a href="https://github.com/alibekbirlikbai/Pastebin-project/releases/tag/v1.1.0" target="_blank">
-                                        <span class="text-bold">
+                                        <span>
                                           v1.1.0
                                         </span>
   
@@ -828,43 +849,58 @@
     
                         <div class="text-block  highlight_note">
                           <p class="block-title">
-                            <i class="fa-regular fa-circle-info fa-lg"></i>
+                            <span onclick="funcToggle('highlight_note')" class="cursor-pointer">
+                              <i class="fa-regular fa-circle-info fa-lg"></i>
     
-                            <span class="text-bold">
-                              Note:
+                              <span>
+                                <span class="text-bold">
+                                  Note: 
+                                </span>
+
+                                <span>
+                                  (Project Configuration)
+                                </span>
+                              </span>
                             </span>
+
+                            <!-- <span class="title-icon" onclick="funcToggle()">
+                              <span class="icon">
+                                <i class="fa-solid fa-plus-minus"></i>
+                              </s>
+                            </span> -->
                           </p>
-    
-                          <p class="inline">
-                            Реализовал
-                            <a href="https://github.com/alibekbirlikbai/Pastebin-project/commit/b4af9b79af45d9732660055d4b90c957e06aa0f8" target="_blank">
-                              соединение проекта с Облаком
-                            </a>
-    
-                            <i>(GoogleDrive API)</i>, 
-    
-                            но возникли проблемы с конфиденциальностью данных в <i>GitHub</i>,
-    
-                            из чего не смог загрузить в проект - <b><i>service-account-auth.json</i></b> (токен для доступа к <i>Google Cloud</i>).
-                          </p>
-    
-    
-                          <p class="text-indent">
-                            Решу проблему до следующего релиза (<b><i>v1.2.0</i></b>), а пока
-                            для запуска актуальной версии проекта
-    
-                            (<i>ветка - <b>develop</b></i>)
-    
-                            нужно будет вручную 
-                            <a href="https://drive.google.com/file/d/14kJCdaYXy0-xCGV_j8Wgt2QS82mUofkf/view?usp=sharing" target="_blank">
-                              скачать
-                            </a>
-                            <i>json</i> файл, и переместить в
-                            <span class="text_block_highlight">src / main / resources</span> 
-    
-                            (<i><b>Pastebin-backend</b></i>).
-                          </p>
-    
+
+                          <div class="open_closed hidden">
+                            <p class="">
+                              Реализовал
+                              <a href="https://github.com/alibekbirlikbai/Pastebin-project/commit/b4af9b79af45d9732660055d4b90c957e06aa0f8" target="_blank">
+                                соединение проекта с Облаком
+                              </a>
+      
+                              <i>(GoogleDrive API)</i>, 
+      
+                              но возникли проблемы с конфиденциальностью данных в <i>GitHub</i>,
+      
+                              из чего не смог загрузить в проект - <b><i>service-account-auth.json</i></b> (токен для доступа к <i>Google Cloud</i>).
+                            </p>
+
+      
+                            <p class="text-indent">
+                              Решу проблему до следующего релиза (<b><i>v1.2.0</i></b>), а пока
+                              для запуска актуальной версии проекта
+      
+                              (<i>ветка - <b>develop</b></i>)
+      
+                              нужно будет вручную 
+                              <a href="https://drive.google.com/file/d/14kJCdaYXy0-xCGV_j8Wgt2QS82mUofkf/view?usp=sharing" target="_blank">
+                                скачать
+                              </a>
+                              <i>json</i> файл, и переместить в
+                              <span class="text_block_highlight">src / main / resources</span> 
+      
+                              (<i><b>Pastebin-backend</b></i>).
+                            </p>
+                          </div>    
                         </div>
                       </div>
                     </div>
@@ -1066,14 +1102,20 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          cv site 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            cv site 
+                          </h5>
 
-                        <div class="tag  text-italic" id="resume">
-                          <span class="tag-title">
-                            Resume
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="resume">
+                            <span class="tag-title">
+                              Resume
+                            </span>
+                          </div>
                         </div>
                       </div>
 
@@ -1235,14 +1277,20 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          Diploma 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            Diploma 
+                          </h5>
 
-                        <div class="tag  text-italic" id="web_app">
-                          <span class="tag-title">
-                            Web-app
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="web_app">
+                            <span class="tag-title">
+                              Web-app
+                            </span>
+                          </div>
                         </div>
                       </div>
 
@@ -1372,17 +1420,22 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          News API 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            News API 
+                          </h5>
 
-                        <div class="tag  text-italic" id="mobile">
-                          <span class="tag-title">
-                            mobile
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="mobile">
+                            <span class="tag-title">
+                              mobile
+                            </span>
+                          </div>
                         </div>
                       </div>
-
                       
 
                       <div class="project_highlight">   
@@ -1395,8 +1448,20 @@
                             </span>
                           </p> -->
     
-                          <p class="inline  text-bold  text-italic">
-                            open-source contribution
+                          <p class="inline  text-italic">
+                            <a href="https://github.com/haerulmuttaqin/PopularNews">
+                              open-source contribution  
+                            </a>                                  
+                            
+                            
+                            
+                            <!-- <span class="text-bold">
+                              open-source contribution
+                            </span>
+                            
+                            <a href="https://github.com/haerulmuttaqin/PopularNews">
+                            [original]  
+                            </a> -->
                           </p>
                         </div>
                       </div>
@@ -1556,17 +1621,23 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          Django server 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            Django server  
+                          </h5>
 
-                        <div class="tag  text-italic" id="web_app">
-                          <span class="tag-title">
-                            Web-app
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="web_app">
+                            <span class="tag-title">
+                              Web-app
+                            </span>
+                          </div>
                         </div>
                       </div>
-
+                    
                       
                       <p>
                         <span class="text-bold">
@@ -1684,14 +1755,20 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          Booking system 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            Booking system  
+                          </h5>
 
-                        <div class="tag  text-italic" id="web_app">
-                          <span class="tag-title">
-                            Web-app
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="web_app">
+                            <span class="tag-title">
+                              Web-app
+                            </span>
+                          </div>
                         </div>
                       </div>
 
@@ -1811,14 +1888,20 @@
                   <div class="project_body">
                     <div class="project-info">
                       <div class="project-title">
-                        <h5 class="text-underline">
-                          Supply-management system 
-                        </h5>
+                        <div class="title-group">
+                          <h5 class="text-underline">
+                            Supply-management system  
+                          </h5>
 
-                        <div class="tag  text-italic" id="api_service">
-                          <span class="tag-title">
-                            API service
-                          </span>
+                          <!-- <img src="/utils/imgs/verified_icon.png" alt="current project"> -->
+                        </div>
+
+                        <div class="tag-group">
+                          <div class="tag  text-italic" id="api_service">
+                            <span class="tag-title">
+                              API service
+                            </span>
+                          </div>
                         </div>
                       </div>
 
