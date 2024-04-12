@@ -4122,12 +4122,20 @@ h1 .section_highlight_status {
 :root {
   --color-note-contribution: #c330fdf6;
 }
+
 .highlight_note_contribution {
   border-left: solid 7.5px var(--color-note-contribution);
 
   color: var(--color-note-contribution);
   font-size: 1.1em;
 }
+.highlight_important_info_before {
+  border-left: solid 7.5px #304cfd;
+  
+  font-size: 1em;
+}
+
+
 .project .project-info .highlight_note_contribution a {
   color: inherit;
   text-decoration: none;
