@@ -9,12 +9,7 @@ hljs.registerLanguage('java', java);
 hljs.registerLanguage('python', python);
 
 function Project1({ setProject, setLinks }) {
-    const javaCodeRef = useRef(null);  // Ref for the Java code block
-    const pythonCodeRef = useRef(null); // Ref for the Python code block
-
-    const [javaLanguage, setJavaLanguage] = useState('');  // State to track the language for Java block
-    const [pythonLanguage, setPythonLanguage] = useState('');  // State to track the language for Python block
-
+    const github_repo = 'repo'
     const project = 'Project Title'
     const articles = [
         { title: 'Github', id: 'github' },
@@ -23,6 +18,12 @@ function Project1({ setProject, setLinks }) {
         { title: 'Фичи', id: 'features' },
         { title: 'Детали', id: 'details' },
     ];
+
+    const javaCodeRef = useRef(null);  // Ref for the Java code block
+    const pythonCodeRef = useRef(null); // Ref for the Python code block
+
+    const [javaLanguage, setJavaLanguage] = useState('');  // State to track the language for Java block
+    const [pythonLanguage, setPythonLanguage] = useState('');  // State to track the language for Python block
 
     useEffect(() => {
         if (javaCodeRef.current) {

@@ -7,10 +7,10 @@ $space-between-sidebar-and-main: 17%
 
 $laptop: 1100px
 
-$sidebar-width-left_medium: 150px
-$sidebar-width-right_medium: 100px
+$sidebar-width-left_medium: 130px
+$sidebar-width-right_medium: 80px
 $sidebar-width_medium: 300px
-$phone: 750px
+$phone: 800px
 
 // Base Styles
 *
@@ -35,9 +35,7 @@ body, html
         height: $header-height
         width: 100%
 
-    .app-container
-
-        // Sidebar Styling
+    .app-container#home-page
         aside
             padding-top: .3em
             position: fixed
@@ -61,6 +59,14 @@ body, html
             padding-top: .3em
             overflow-y: auto
             text-align: justify
+
+    .app-container#contacts-page
+        main
+            text-align: left
+
+            .app-content
+                .contacts-page__blocks
+                    min-width: 500px
 
 @media screen and (min-width: $laptop)
     aside
