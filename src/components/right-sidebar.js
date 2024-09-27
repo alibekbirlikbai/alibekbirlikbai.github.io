@@ -1,11 +1,9 @@
-function SidebarRight({ project, links }) {
+function RightSidebar({ project, links }) {
     return (
         <aside className='sidebar-right'>
             <span className='sidebar-right__title'>{project}</span>
 
             <ul className='sidebar-right__list'>
-                {/* 1. GitHub */}
-
                 {links.map(link => (
                     <li className='sidebar-right__list-item' key={link.id}>
                         <a href={`#${link.id}`} className='sidebar-right__link'>{link.title}</a>
@@ -17,4 +15,4 @@ function SidebarRight({ project, links }) {
     );
 };
 
-export default SidebarRight;
+export default RightSidebar;

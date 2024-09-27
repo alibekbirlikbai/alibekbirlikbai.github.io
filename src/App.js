@@ -1,32 +1,28 @@
 import './sass/App.sass'
-import './sass/header.sass'
+import './sass/contacts-page.sass'
+import './sass/navigation.sass'
 import './sass/sidebars.sass'
 import './sass/projects.sass'
-import Header from './components/html/header'
-import Content from './components/html/content'
-import SidebarLeft from './components/html/sidebar-left'
-import SidebarRight from './components/html/sidebar-right'
 
-import { useState } from 'react';
+import Header from './components/navigation'
+import HomePage from './pages/home-page'
+import ContactsPage from './pages/contacts-page'
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [project, setProject] = useState([]);
-  const [links, setLinks] = useState([]);  // State to store sidebar links
 
   return (
-    <div className="App">
-      <Header/>
+    <Router>
+      <div className="App">
+        <Header/>
 
-      <div className='app-container'>
-        <SidebarLeft/>
-
-        {/* Pass setLinks to Content so projects can update the sidebar */}
-        <Content setProject={setProject} setLinks={setLinks} />
-
-        {/* Pass links to SidebarRight to dynamically render the section links */}
-        <SidebarRight project={project} links={links} />
+        <Routes>
+          <Route path='/'element={<HomePage/>}/>
+          <Route path='/contacts'element={<ContactsPage/>}/>
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -6,9 +6,10 @@
         list-style-type: none
 
         .navigation__item
-            a
-                color: black
+            .navigation__link
                 text-decoration: none
+                color: black
 
-            a:hover
-                text-decoration: underline
+                // Style for the active link
+                &.active
+                    text-decoration: underline

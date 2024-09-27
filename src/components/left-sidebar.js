@@ -1,4 +1,4 @@
-function SidebarLeft() {
+function LeftSidebar() {
     return (
         <aside className='sidebar-left'>
             <ul className='sidebar-left__list'>
@@ -18,4 +18,4 @@ function SidebarLeft() {
     );
 };
 
-export default SidebarLeft;
+export default LeftSidebar;
