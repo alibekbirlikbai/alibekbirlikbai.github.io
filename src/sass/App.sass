@@ -1,0 +1,100 @@
+// Variables
+$header-height: 100px
+
+$sidebar-width-left: 200px
+$sidebar-width-right: 150px
+$space-between-sidebar-and-main: 17%
+
+$laptop: 1100px
+
+$sidebar-width-left_medium: 150px
+$sidebar-width-right_medium: 100px
+$sidebar-width_medium: 300px
+$phone: 750px
+
+// Base Styles
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body, html
+    height: 100%
+    font-family: Arial, sans-serif
+
+.App
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+
+    // Header Styling
+    nav
+        display: flex
+        justify-content: center
+        align-items: center
+        height: $header-height
+        width: 100%
+
+    .app-container
+
+        // Sidebar Styling
+        aside
+            padding-top: .3em
+            position: fixed
+            top: $header-height
+            height: calc(100vh - $header-height)
+            overflow-y: auto
+
+            // Specific Sidebar Positions
+            &:first-of-type
+                width: $sidebar-width-left
+                left: 0
+
+            &:last-of-type
+                width: $sidebar-width-right
+                right: 0
+
+        // Content Section Styling
+        main
+            flex: 1
+            padding-bottom: 10em
+            padding-top: .3em
+            overflow-y: auto
+            text-align: justify
+
+@media screen and (min-width: $laptop)
+    aside
+        &:first-of-type
+            width: $sidebar-width-left
+            left: 0
+
+        &:last-of-type
+            width: $sidebar-width-right
+            right: 0
+    main
+        padding-left: calc(#{$sidebar-width-left} + #{$space-between-sidebar-and-main})
+        padding-right: calc(#{$sidebar-width-right} + #{$space-between-sidebar-and-main})
+        padding-bottom: 10em
+        overflow-y: auto
+        text-align: justify
+
+@media screen and (max-width: $laptop)
+    aside
+        width: $sidebar-width_medium // Smaller sidebar width on larger screens for balance
+
+    main
+        padding-left: calc(#{$sidebar-width-left_medium} + #{$space-between-sidebar-and-main})
+        padding-right: calc(#{$sidebar-width-right_medium} + #{$space-between-sidebar-and-main})
+        padding-bottom: 10em
+        overflow-y: auto
+        text-align: justify
+
+@media screen and (max-width: $phone) // Mobile view
+    aside
+        display: none // Hide sidebars on mobile
+
+    main
+        margin-left: 0 // Remove sidebar margins
+        margin-right: 0
+        padding: 1rem // Adjust padding for smaller screens
+        padding-bottom: 5em

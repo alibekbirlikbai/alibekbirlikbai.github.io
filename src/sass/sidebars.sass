@@ -1,0 +1,30 @@
+$gap-between-project: .5em
+
+aside
+    ul
+        display: flex
+        flex-direction: column
+        gap: $gap-between-project
+        list-style: none
+        padding-left: 1em
+
+        li
+
+            &:last-child
+                margin-bottom: 0 // Removes margin from the last li element
+
+            a
+                color: black
+                text-decoration: none // Removes default underline from links
+
+            a:hover
+                text-decoration: underline // Shows the underline on hover
+
+aside.sidebar-right
+
+    .sidebar-right__title
+        font-weight: 700
+
+    .sidebar-right__list
+        margin-left: .5em
+        margin-top: .5em

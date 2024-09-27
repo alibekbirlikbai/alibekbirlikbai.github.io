@@ -1,28 +1,29 @@
-import './App.sass'
-import Header from './components/header'
-import Content from './components/content'
-import SidebarLeft from './components/sidebar-left'
-import SidebarRight from './components/sidebar-right'
+import './sass/App.sass'
+import './sass/header.sass'
+import './sass/sidebars.sass'
+import './sass/projects.sass'
+import Header from './components/html/header'
+import Content from './components/html/content'
+import SidebarLeft from './components/html/sidebar-left'
+import SidebarRight from './components/html/sidebar-right'
+
+import { useState } from 'react';
 
 function App() {
+  const [links, setLinks] = useState([]);  // State to store sidebar links
+
   return (
     <div className="App">
-      <nav>
-        <Header/>
-      </nav>
+      <Header/>
 
-      <div>
-        <aside>
-          <SidebarLeft/>
-        </aside>
+      <div className='app-container'>
+        <SidebarLeft/>
 
-        <main>
-          <Content/>
-        </main>
+        {/* Pass setLinks to Content so projects can update the sidebar */}
+        <Content setLinks={setLinks} />
 
-        <aside>
-          <SidebarRight/>
-        </aside>
+        {/* Pass links to SidebarRight to dynamically render the section links */}
+        <SidebarRight links={links} />
       </div>
     </div>
   );
