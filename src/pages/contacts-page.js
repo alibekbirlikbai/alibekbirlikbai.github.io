@@ -4,11 +4,11 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faTelegram } from '@fortawesome/free-brands-svg-icons'
 
 function ContactsPage() {
-    const github_url = 'https://github.com/alibekbirlikbai'
     const linkedin_url = 'https://www.linkedin.com/in/alibek-birlikbai'
-    const phone = '+7 (771) 441-45-09'
-    const email = 'alibekbirlikbai@gmail.com'
+    const github_url = 'https://github.com/alibekbirlikbai'
     const telegram = 'alibekbirlikbai'
+    const email = 'alibekbirlikbai@gmail.com'
+    const phone = '+7 (771) 441-4509'
 
     return (
         <div className="app-container" id="contacts-page">
