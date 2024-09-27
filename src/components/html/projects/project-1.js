@@ -8,13 +8,14 @@ import 'highlight.js/styles/atom-one-light.css'; // Replace with your chosen sty
 hljs.registerLanguage('java', java);
 hljs.registerLanguage('python', python);
 
-function Project1({ setLinks }) {
+function Project1({ setProject, setLinks }) {
     const javaCodeRef = useRef(null);  // Ref for the Java code block
     const pythonCodeRef = useRef(null); // Ref for the Python code block
 
     const [javaLanguage, setJavaLanguage] = useState('');  // State to track the language for Java block
     const [pythonLanguage, setPythonLanguage] = useState('');  // State to track the language for Python block
 
+    const project = 'Project Title'
     const articles = [
         { title: 'Github', id: 'github' },
         { title: 'Описание', id: 'info' },
@@ -33,9 +34,9 @@ function Project1({ setLinks }) {
             setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');  // Set language to "python"
         }
 
-        // Pass the links to SidebarRight
+        setProject(project);
         setLinks(articles);
-    }, [setLinks]);
+    }, [setLinks, project]);
 
     // Function to render different content for each section based on the id
     const renderArticleContent = (sectionId) => {
@@ -177,7 +178,7 @@ print('The value of y after swapping: {}'.format(y))
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title'>Project Title</h1>
+                <h1 className='content__title'>{project}</h1>
 
                 {renderArticleContent('github')}
             </div>

@@ -1,7 +1,7 @@
-function SidebarRight({ links }) {
+function SidebarRight({ project, links }) {
     return (
         <aside className='sidebar-right'>
-            <span className='sidebar-right__title'>...</span>
+            <span className='sidebar-right__title'>{project}</span>
 
             <ul className='sidebar-right__list'>
                 {/* 1. GitHub */}

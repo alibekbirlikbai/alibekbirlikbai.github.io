@@ -10,6 +10,7 @@ import SidebarRight from './components/html/sidebar-right'
 import { useState } from 'react';
 
 function App() {
+  const [project, setProject] = useState([]);
   const [links, setLinks] = useState([]);  // State to store sidebar links
 
   return (
@@ -20,10 +21,10 @@ function App() {
         <SidebarLeft/>
 
         {/* Pass setLinks to Content so projects can update the sidebar */}
-        <Content setLinks={setLinks} />
+        <Content setProject={setProject} setLinks={setLinks} />
 
         {/* Pass links to SidebarRight to dynamically render the section links */}
-        <SidebarRight links={links} />
+        <SidebarRight project={project} links={links} />
       </div>
     </div>
   );
