@@ -1,7 +1,7 @@
 function RightSidebar({ project, links }) {
     return (
         <aside className='sidebar-right'>
-            <span className='sidebar-right__title'>{project}</span>
+            <a href='/#project-title' className='sidebar-right__title'>{project}</a>
 
             <ul className='sidebar-right__list'>
                 {links.map(link => (

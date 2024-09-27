@@ -8,7 +8,7 @@ function ContactsPage() {
     const github_url = 'https://github.com/alibekbirlikbai'
     const telegram = 'alibekbirlikbai'
     const email = 'alibekbirlikbai@gmail.com'
-    const phone = '+7 (771) 441-4509'
+    const phone = '+7 (771) 441-45-09'
 
     return (
         <div className="app-container" id="contacts-page">

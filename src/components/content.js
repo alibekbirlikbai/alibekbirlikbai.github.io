@@ -1,13 +1,22 @@
-import Project1 from './projects/project-1'
-import Project2 from './projects/project-2'
+import Project1 from './github/projects/project-1'
+import Project2 from './github/projects/project-2'
 
-function Content({ setProject, setLinks }) {
+function Content({ setProject, setLinks, currentRepo }) {
+    const renderProject = () => {
+        switch (currentRepo) {
+          case 'project-1':
+            return <Project1 setProject={setProject} setLinks={setLinks} />;
+          case 'project-2':
+            return <Project2 setProject={setProject} setLinks={setLinks} />;
+          default:
+            return <Project1 setProject={setProject} setLinks={setLinks} />;
+        }
+      };
+    
     return (
         <main>
             <div className='app-content'>
-                {/* Pass setLinks to Project1 so it can update the sidebar */}
-                <Project1 setProject={setProject} setLinks={setLinks} />
-                {/* <Project2/> */}
+                {renderProject()}
             </div>
         </main>
     );

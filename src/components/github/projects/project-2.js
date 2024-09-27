@@ -8,11 +8,11 @@ import 'highlight.js/styles/atom-one-light.css'; // Replace with your chosen sty
 hljs.registerLanguage('java', java);
 hljs.registerLanguage('python', python);
 
-function Project1({ setProject, setLinks }) {
+function Project2({ setProject, setLinks }) {
     const github_repo = 'repo'
-    const project = 'Project Title'
+    const project = 'Project Title 2'
     const articles = [
-        { title: 'Github', id: 'github' },
+        { title: 'Github', id: 'project-title' },
         { title: 'Описание', id: 'info' },
         { title: 'Демо', id: 'demo' },
         { title: 'Фичи', id: 'features' },
@@ -179,7 +179,7 @@ print('The value of y after swapping: {}'.format(y))
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title'>{project}</h1>
+                <h1 className='content__title' id='project-title'>{project}</h1>
 
                 {renderArticleContent('github')}
             </div>
@@ -199,4 +199,4 @@ print('The value of y after swapping: {}'.format(y))
     );
 };
 
-export default Project1;
+export default Project2;

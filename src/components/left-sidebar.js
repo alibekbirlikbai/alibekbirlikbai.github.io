@@ -1,21 +1,20 @@
+import { Link } from 'react-router-dom';
+import { projects } from '../components/github/projects-list';
+
 function LeftSidebar() {
     return (
         <aside className='sidebar-left'>
             <ul className='sidebar-left__list'>
-                <li className='sidebar-left__list-item'>
-                    <a href='jjj' className='sidebar-left__link'>hbfv jdhfbvhj bdhjfbv dfbv hjbfvhjb fb hjfvbhj bfdh jhbhjfvb hjbdhfv hjbfvh jbdf</a>
+                {projects.map(project => (
+                <li key={project.repo} className='sidebar-left__list-item'>
+                    <Link to={`/project/${project.repo}`} className='sidebar-left__link'>
+                        {project.title}
+                    </Link>
                 </li>
-
-                <li className='sidebar-left__list-item'>
-                    <a href='jjj' className='sidebar-left__link'>Project Title</a>
-                </li>
-
-                <li className='sidebar-left__list-item'>
-                    <a href='jjj' className='sidebar-left__link'>Project Title</a>
-                </li>
+                ))}
             </ul>
         </aside>
     );
-};
+}
 
 export default LeftSidebar;
