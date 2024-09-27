@@ -16,6 +16,7 @@ function Project1({ setLinks }) {
     const [pythonLanguage, setPythonLanguage] = useState('');  // State to track the language for Python block
 
     const articles = [
+        { title: 'Github', id: 'github' },
         { title: 'Описание', id: 'info' },
         { title: 'Демо', id: 'demo' },
         { title: 'Фичи', id: 'features' },
@@ -39,6 +40,35 @@ function Project1({ setLinks }) {
     // Function to render different content for each section based on the id
     const renderArticleContent = (sectionId) => {
         switch (sectionId) {
+            case 'github':
+                return (
+                    <div className='content__details' id={sectionId} key={sectionId}>
+                        <div className='content__stack'>
+                            <ul className='stack-list'>
+                                <li className='stack-list__item'>Java</li>
+                                <li className='stack-list__item'>Github Actions</li>
+                                <li className='stack-list__item'>GraphQL</li>
+                            </ul>
+                        </div>
+
+                        <div className='content__version-control'>
+                            <div className='version-control'>
+                                <p className='version-control__url'>
+                                    <span>github:&nbsp;</span>
+                                    <a href='fff' target='_blank' rel='noopener noreferrer'>
+                                        /alibekbirlikbai
+                                    </a>
+                                </p>
+                                <p className='version-control__last-pull-request'>
+                                    <span>pull-request:&nbsp;</span>
+                                    <a href='fff' target='_blank' rel='noopener noreferrer'>
+                                        Новая фича
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                );
             case 'info':
                 return (
                     <div className='content__block-description'>
@@ -149,41 +179,18 @@ print('The value of y after swapping: {}'.format(y))
             <div className='content__header'>
                 <h1 className='content__title'>Project Title</h1>
 
-                <div className='content__details'>
-                    <div className='content__stack'>
-                        <ul className='stack-list'>
-                            <li className='stack-list__item'>Java</li>
-                            <li className='stack-list__item'>Github Actions</li>
-                            <li className='stack-list__item'>GraphQL</li>
-                        </ul>
-                    </div>
-
-                    <div className='content__version-control'>
-                        <div className='version-control'>
-                            <p className='version-control__url'>
-                                <span>github:&nbsp;</span>
-                                <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                    /alibekbirlikbai
-                                </a>
-                            </p>
-                            <p className='version-control__last-pull-request'>
-                                <span>pull-request:&nbsp;</span>
-                                <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                    Новая фича
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {renderArticleContent('github')}
             </div>
 
             <div className='content__body'>
-                {articles.map(section => (
-                    <article className='content__block' key={section.id}>
-                        <h2 id={section.id} className='content__block-title'>{section.title}</h2>
-                        
-                        {renderArticleContent(section.id)}
-                    </article>
+                {articles
+                    .filter(section => section.id != 'github')
+                    .map(section => (
+                        <article className='content__block' key={section.id}>
+                            <h2 id={section.id} className='content__block-title'>{section.title}</h2>
+                            
+                            {renderArticleContent(section.id)}
+                        </article>
                 ))}
             </div>
         </section>
