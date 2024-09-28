@@ -58,8 +58,45 @@ aside.sidebar-right
         margin-top: .5em
 
         .sidebar-right__list-item
+            display: flex
+            flex-direction: column
+            gap: $padding-top-and-down-for-active
 
             .sidebar-right__link
                 &.active
                     padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
                     background-color: lightgray
+
+            .sidebar-right__sub-list
+                margin-left: .5em
+
+                .sub-article
+                    text-decoration: underline
+
+            .sidebar-right__sub-list-header
+                display: flex
+                flex-direction: row
+
+                .dropdown-icon
+                    cursor: pointer
+                    display: inline-block
+
+                    position: relative
+                    left: -1.5em
+
+                    margin: auto 0
+
+                .dropdown-icon.open
+                    transform: rotate(180deg)
+
+                .dropdown-icon + .sidebar-right__link
+                    // Apply padding-left only to the link that follows the dropdown-icon
+                    position: relative
+                    left: -1em
+
+            /* Hide sub-list when closed */
+            .sidebar-right__sub-list
+                display: none
+
+                &.open
+                    display: flex

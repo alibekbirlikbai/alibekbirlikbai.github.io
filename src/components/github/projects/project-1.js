@@ -8,15 +8,23 @@ import 'highlight.js/styles/atom-one-light.css';
 hljs.registerLanguage('java', java);
 hljs.registerLanguage('python', python);
 
+const articles = [
+    { title: 'Github', id: 'github' },
+    { title: 'Демо', id: 'demo' },
+    { title: 'Описание', id: 'info' },
+    { title: 'Фичи', id: 'features' },
+    { 
+        title: 'Детали', 
+        id: 'details',
+        subArticles: [
+            { title: 'Sub Article 1', id: 'sub-article-1' },
+            { title: 'Sub Article 2', id: 'sub-article-2' },
+        ]
+    },
+];
+
 function Project1({ setProject, setLinks, projectTitle }) {
     const github_repo = 'repo'
-    const articles = [
-        { title: 'Github', id: 'project-title' },
-        { title: 'Описание', id: 'info' },
-        { title: 'Демо', id: 'demo' },
-        { title: 'Фичи', id: 'features' },
-        { title: 'Детали', id: 'details' },
-    ];
 
     const javaCodeRef = useRef(null);
     const pythonCodeRef = useRef(null);
@@ -42,8 +50,119 @@ function Project1({ setProject, setLinks, projectTitle }) {
         setLinks(articles);
     }, [projectTitle, setLinks, setProject]);
 
+
+
+    const renderSubArticleContent = (subArticleId) => {
+        switch (subArticleId) {
+            case 'sub-article-1':
+                return (
+                    <div className='content__sub-article-container'>
+                        <p className='content__block-text'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
+                        </p>
+
+                        <div className='content__block-code'>
+                            <div className='content__code-header'>
+                                <span className='content__code-language'>{javaLanguage}</span>
+                            </div>
+
+                            <pre>
+                                <code ref={javaCodeRef}>
+                                    {`public class HelloWorld {
+    public static void main(String[] args) {
+    System.out.println("Hello, World!");    
+    }
+}`}
+                                </code>
+                            </pre>
+                        </div>
+
+                        <p className='content__block-text'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
+                        </p>
+                    </div>
+                );
+            case 'sub-article-2':
+                return (
+                    <div className='content__sub-article-container'>
+                        <p className='content__block-text'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
+                        </p>
+
+                        <div className='content__block-code'>
+                            <div className='content__code-header'>
+                                <span className='content__code-language'>{pythonLanguage}</span>
+                            </div>
+
+                            <pre>
+                                <code ref={pythonCodeRef}>
+                                    {`
+# Python program to swap two variables variables variables variables variables variables variables variables variables variables variables variables variables
+x = 5
+y = 10
+
+# To take inputs from the user
+#x = input('Enter value of x: ')
+#y = input('Enter value of y: ')
+
+# create a temporary variable and swap the values
+temp = x
+x = y
+y = temp
+
+print('The value of x after swapping: {}'.format(x))
+print('The value of y after swapping: {}'.format(y))
+`}
+                                </code>
+                            </pre>
+                        </div>
+                        
+                        <p className='content__block-text'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
+                        </p>
+                    </div>
+                );
+            default:
+                return <p>No content available for this sub-article.</p>;
+        }
+    };
+
     // Function to render different content for each article based on the id
     const renderArticleContent = (articleId) => {
+        const article = articles.find(article => article.id === articleId);
+        if (!article) return <p>No content available</p>;
+
+        // const renderSubArticles = (subArticles) => {
+        //     return (
+        //         <div className='content__sub-articles'>
+        //             {subArticles.map(subArticle => (
+        //                 <div className='content__sub-article' key={subArticle.id}>
+        //                     <h4 className='content__sub-article-title' id={`#${subArticle.id}`}>{subArticle.title}</h4>
+
+        //                     {renderSubArticleContent(subArticle.id)}
+        //                 </div>
+        //             ))}
+        //         </div>
+        //     );
+        // };
+
+        const renderSubArticles = (subArticles) => {
+            return (
+                <div className='content__sub-articles'>
+                    {
+                        subArticles.map(subArticle => (
+                            <div key={subArticle.id} className='sub-article' id={subArticle.id}>
+                                <h3>{subArticle.title}</h3>
+        
+                                {renderSubArticleContent(subArticle.id)}
+                            </div>
+                        ))
+                    }
+                </div>
+            );
+        };
+        
+
         switch (articleId) {
             case 'github':
                 return (
@@ -122,56 +241,7 @@ function Project1({ setProject, setLinks, projectTitle }) {
             case 'details':
                 return (
                     <div className='content__block-description'>
-                        <p className='content__block-text'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
-                        </p>
-
-                        <div className='content__block-code'>
-                            <div className='content__code-header'>
-                                <span className='content__code-language'>{javaLanguage}</span>
-                            </div>
-
-                            <pre>
-                                <code ref={javaCodeRef}>
-                                    {`public class HelloWorld {
-    public static void main(String[] args) {
-    System.out.println("Hello, World!");
-    }
-}`}
-                                </code>
-                            </pre>
-                        </div>
-
-                        <div className='content__block-code'>
-                            <div className='content__code-header'>
-                                <span className='content__code-language'>{pythonLanguage}</span>
-                            </div>
-
-                            <pre>
-                                <code ref={pythonCodeRef}>
-                                    {`# Python program to swap two variables
-x = 5
-y = 10
-
-# To take inputs from the user
-#x = input('Enter value of x: ')
-#y = input('Enter value of y: ')
-
-# create a temporary variable and swap the values
-temp = x
-x = y
-y = temp
-
-print('The value of x after swapping: {}'.format(x))
-print('The value of y after swapping: {}'.format(y))
-`}
-                                </code>
-                            </pre>
-                        </div>
-                        
-                        <p className='content__block-text'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
-                        </p>
+                        {article.subArticles && renderSubArticles(article.subArticles)}
                     </div>
                 );
             default:
@@ -191,7 +261,7 @@ print('The value of y after swapping: {}'.format(y))
                 {articles
                     .filter(article => article.id != 'github')
                     .map(article => (
-                        <article className='content__block' key={article.id} id={`article-${article.id}`}>
+                        <article className='content__block' key={article.id} id={article.id}>
                             <h2 id={article.id} className='content__block-title'>{article.title}</h2>
                             
                             {renderArticleContent(article.id)}

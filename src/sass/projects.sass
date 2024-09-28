@@ -1,8 +1,11 @@
 $title-gap: .5em
 $header-block-gap: .7em
 $header-content-gap: 1.3em
-$content-block-gap: 1em
-$block-item-gap: .5em
+$content-block-gap: 1.4em
+$block-item-gap: .7em
+
+$sub-article-header-gap: .5em
+$sub-articles-beetween-gap: 1.5em
 
 .app-content
     display: flex
@@ -78,11 +81,23 @@ $block-item-gap: .5em
 
                 .content__block-title
 
-                .content__block-description
+                .content__block-description,
+                .content__sub-articles,
+                .content__sub-article-container
                     display: flex
                     flex-direction: column
                     gap: $block-item-gap
                     //border: 3px dashed red
+
+                    .content__sub-articles
+                        display: flex
+                        flex-direction: column
+                        gap: $sub-articles-beetween-gap
+
+                        .sub-article
+                            display: flex
+                            flex-direction: column
+                            gap: $sub-article-header-gap
 
                     .content__block-media
                         display: flex
@@ -116,7 +131,13 @@ $block-item-gap: .5em
                         //border: 3px dashed red
 
                     .content__block-code
+                        position: relative
+
                         .content__code-header
+                            // text-align: right
+                            // position: absolute
+                            // top: .7em
+                            // right: .7em
 
                             .content__code-language
                                 font-style: italic
