@@ -1,4 +1,6 @@
 $gap-between-project: .5em
+$padding-top-and-down-for-active: .3em
+$padding-left-and-right-for-active: .5em
 
 aside
     ul
@@ -27,7 +29,7 @@ aside.sidebar-left
             // background-color: red
 
             &:has(.active)
-                padding: .3em .5em
+                padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
                 background-color: lightgray
 
             .sidebar-left__link
@@ -54,3 +56,10 @@ aside.sidebar-right
     .sidebar-right__list
         margin-left: .5em
         margin-top: .5em
+
+        .sidebar-right__list-item
+
+            .sidebar-right__link
+                &.active
+                    padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
+                    background-color: lightgray

@@ -42,12 +42,12 @@ function Project1({ setProject, setLinks, projectTitle }) {
         setLinks(articles);
     }, [projectTitle, setLinks, setProject]);
 
-    // Function to render different content for each section based on the id
-    const renderArticleContent = (sectionId) => {
-        switch (sectionId) {
+    // Function to render different content for each article based on the id
+    const renderArticleContent = (articleId) => {
+        switch (articleId) {
             case 'github':
                 return (
-                    <div className='content__details' id={sectionId} key={sectionId}>
+                    <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
                             <ul className='stack-list'>
                                 <li className='stack-list__item'>Java</li>
@@ -189,12 +189,12 @@ print('The value of y after swapping: {}'.format(y))
 
             <div className='content__body'>
                 {articles
-                    .filter(section => section.id != 'github')
-                    .map(section => (
-                        <article className='content__block' key={section.id}>
-                            <h2 id={section.id} className='content__block-title'>{section.title}</h2>
+                    .filter(article => article.id != 'github')
+                    .map(article => (
+                        <article className='content__block' key={article.id} id={`article-${article.id}`}>
+                            <h2 id={article.id} className='content__block-title'>{article.title}</h2>
                             
-                            {renderArticleContent(section.id)}
+                            {renderArticleContent(article.id)}
                         </article>
                 ))}
             </div>
