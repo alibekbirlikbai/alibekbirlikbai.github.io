@@ -1,6 +1,8 @@
-import { NavLink } from 'react-router-dom';  // Import NavLink for active link styling
+import { NavLink, useLocation } from 'react-router-dom';
 
 function Navigation() {
+    const location = useLocation();  // current route location
+
     return (
         <nav>
             <div className='navigation'>
@@ -9,8 +11,10 @@ function Navigation() {
                         {/* Use NavLink to apply active class when the route matches */}
                         <NavLink 
                             to="/" 
-                            className='navigation__link'
-                            end // Ensures the root path is only active on the home page
+                            className={({ isActive }) =>
+                                isActive || location.pathname.startsWith('/projects') ? 'navigation__link active' : 'navigation__link'
+                            }
+                            end 
                         >
                             Docs
                         </NavLink>

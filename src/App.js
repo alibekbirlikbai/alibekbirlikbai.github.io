@@ -9,7 +9,8 @@ import Content from './components/content'
 import HomePage from './pages/home-page'
 import ContactsPage from './pages/contacts-page'
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { projects } from './components/github/projects-list'
 
 function App() {
 
@@ -19,9 +20,18 @@ function App() {
         <Header/>
 
         <Routes>
-          <Route path='/'element={<HomePage/>}/>
-          <Route path='/contacts'element={<ContactsPage/>}/>
-          <Route path="/project/:repo" element={<HomePage />} />
+          <Route 
+            path='/' 
+            element={<Navigate to={`/projects/${projects[0].repo}`} />} 
+          />
+          <Route 
+            path='/contacts'
+            element={<ContactsPage/>}
+          />
+          <Route 
+            path="/projects/:repo" 
+            element={<HomePage />} 
+          />
         </Routes>
       </div>
     </Router>

@@ -11,14 +11,35 @@ aside
         li
 
             &:last-child
-                margin-bottom: 0 // Removes margin from the last li element
+                margin-bottom: 0
 
             a
                 color: black
-                text-decoration: none // Removes default underline from links
+                text-decoration: none
 
             a:hover
-                text-decoration: underline // Shows the underline on hover
+                text-decoration: underline
+
+aside.sidebar-left
+
+    .sidebar-left__list
+        .sidebar-left__list-item
+            // background-color: red
+
+            &:has(.active)
+                padding: .3em .5em
+                background-color: lightgray
+
+            .sidebar-left__link
+                text-decoration: none
+                color: black
+
+                &.active
+                    // text-decoration: underline
+                    // background-color: lightgray
+
+            a:hover
+                text-decoration: underline
 
 aside.sidebar-right
 

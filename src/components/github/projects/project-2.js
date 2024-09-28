@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
 import java from 'highlight.js/lib/languages/java';
 import python from 'highlight.js/lib/languages/python';
-import 'highlight.js/styles/atom-one-light.css'; // Replace with your chosen style
+import 'highlight.js/styles/atom-one-light.css';
 
-// Register languages
+// Register languages (code highlight)
 hljs.registerLanguage('java', java);
 hljs.registerLanguage('python', python);
 
-function Project2({ setProject, setLinks }) {
+function Project2({ setProject, setLinks, projectTitle }) {
     const github_repo = 'repo'
-    const project = 'Project Title 2'
+    const project_title = projectTitle;  // Use the dynamically passed project title
     const articles = [
         { title: 'Github', id: 'project-title' },
         { title: 'Описание', id: 'info' },
@@ -19,25 +19,25 @@ function Project2({ setProject, setLinks }) {
         { title: 'Детали', id: 'details' },
     ];
 
-    const javaCodeRef = useRef(null);  // Ref for the Java code block
-    const pythonCodeRef = useRef(null); // Ref for the Python code block
+    const javaCodeRef = useRef(null);
+    const pythonCodeRef = useRef(null);
 
-    const [javaLanguage, setJavaLanguage] = useState('');  // State to track the language for Java block
-    const [pythonLanguage, setPythonLanguage] = useState('');  // State to track the language for Python block
+    const [javaLanguage, setJavaLanguage] = useState('');
+    const [pythonLanguage, setPythonLanguage] = useState('');
 
     useEffect(() => {
         if (javaCodeRef.current) {
-            hljs.highlightElement(javaCodeRef.current);  // Highlight Java code
-            setJavaLanguage(javaCodeRef.current?.dataset.language || 'java');  // Set language to "java"
+            hljs.highlightElement(javaCodeRef.current); 
+            setJavaLanguage(javaCodeRef.current?.dataset.language || 'java'); 
         }
         if (pythonCodeRef.current) {
-            hljs.highlightElement(pythonCodeRef.current);  // Highlight Python code
-            setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');  // Set language to "python"
+            hljs.highlightElement(pythonCodeRef.current);
+            setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
         }
 
-        setProject(project);
+        setProject(project_title);
         setLinks(articles);
-    }, [setLinks, project]);
+    }, [setLinks, project_title]);
 
     // Function to render different content for each section based on the id
     const renderArticleContent = (sectionId) => {
@@ -179,7 +179,7 @@ print('The value of y after swapping: {}'.format(y))
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>{project}</h1>
+                <h1 className='content__title' id='project-title'>{project_title}</h1>
 
                 {renderArticleContent('github')}
             </div>
