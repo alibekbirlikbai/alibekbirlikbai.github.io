@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import './sass/App.sass'
+import './sass/contacts-page.sass'
+import './sass/navigation.sass'
+import './sass/sidebars.sass'
+import './sass/projects.sass'
+
+import Header from './components/navigation'
+import Content from './components/content'
+import HomePage from './pages/home-page'
+import ContactsPage from './pages/contacts-page'
+
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { projects } from './components/github/projects-list'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header/>
+
+        <Routes>
+          <Route 
+            path='/' 
+            element={<Navigate to={`/projects/${projects[0].repo}`} />} 
+          />
+          <Route 
+            path='/contacts'
+            element={<ContactsPage/>}
+          />
+          <Route 
+            path="/projects/:repo" 
+            element={<HomePage />} 
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,102 @@
+$gap-between-project: .5em
+$padding-top-and-down-for-active: .3em
+$padding-left-and-right-for-active: .5em
+
+aside
+    ul
+        display: flex
+        flex-direction: column
+        gap: $gap-between-project
+        list-style: none
+        padding-left: 1em
+
+        li
+
+            &:last-child
+                margin-bottom: 0
+
+            a
+                color: black
+                text-decoration: none
+
+            a:hover
+                text-decoration: underline
+
+aside.sidebar-left
+
+    .sidebar-left__list
+        .sidebar-left__list-item
+            // background-color: red
+
+            &:has(.active)
+                padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
+                background-color: lightgray
+
+            .sidebar-left__link
+                text-decoration: none
+                color: black
+
+                &.active
+                    // text-decoration: underline
+                    // background-color: lightgray
+
+            a:hover
+                text-decoration: underline
+
+aside.sidebar-right
+
+    .sidebar-right__title
+        font-weight: 700
+        color: black
+        text-decoration: none
+
+    .sidebar-right__title:hover
+        text-decoration: underline
+
+    .sidebar-right__list
+        margin-left: .5em
+        margin-top: .5em
+
+        .sidebar-right__list-item
+            display: flex
+            flex-direction: column
+            gap: $padding-top-and-down-for-active
+
+            .sidebar-right__link
+                &.active
+                    padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
+                    background-color: lightgray
+
+            .sidebar-right__sub-list
+                margin-left: .5em
+
+                .sub-article
+                    text-decoration: underline
+
+            .sidebar-right__sub-list-header
+                display: flex
+                flex-direction: row
+
+                .dropdown-icon
+                    cursor: pointer
+                    display: inline-block
+
+                    position: relative
+                    left: -1.5em
+
+                    margin: auto 0
+
+                .dropdown-icon.open
+                    transform: rotate(180deg)
+
+                .dropdown-icon + .sidebar-right__link
+                    // Apply padding-left only to the link that follows the dropdown-icon
+                    position: relative
+                    left: -1em
+
+            /* Hide sub-list when closed */
+            .sidebar-right__sub-list
+                display: none
+
+                &.open
+                    display: flex

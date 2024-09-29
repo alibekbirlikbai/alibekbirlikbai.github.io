@@ -1,0 +1,101 @@
+$header-height: 100px
+
+$sidebar-width-left: 200px
+$sidebar-width-right: 200px
+$space-between-sidebar-and-main: 17%
+
+$laptop: 1100px
+
+$sidebar-width-left_medium: 130px
+$sidebar-width-right_medium: 80px
+$sidebar-width_medium: 300px
+$phone: 800px
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body, html
+    height: 100%
+    font-family: Arial, sans-serif
+
+.App
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+
+    nav
+        display: flex
+        justify-content: center
+        align-items: center
+        height: $header-height
+        width: 100%
+
+    .app-container#home-page
+        aside
+            padding-top: .3em
+            position: fixed
+            top: $header-height
+            height: calc(100vh - $header-height)
+            overflow-y: auto
+
+            &:first-of-type
+                width: $sidebar-width-left
+                left: 0
+
+            &:last-of-type
+                width: $sidebar-width-right
+                right: 0
+
+        main
+            flex: 1
+            padding-bottom: 15em
+            padding-top: .3em
+            overflow-y: auto
+            text-align: justify
+
+    .app-container#contacts-page
+        main
+            text-align: left
+
+            .app-content
+                .contacts-page__blocks
+                    min-width: 500px
+
+@media screen and (min-width: $laptop)
+    aside
+        &:first-of-type
+            width: $sidebar-width-left
+            left: 0
+
+        &:last-of-type
+            width: $sidebar-width-right
+            right: 0
+    main
+        padding-left: calc(#{$sidebar-width-left} + #{$space-between-sidebar-and-main})
+        padding-right: calc(#{$sidebar-width-right} + #{$space-between-sidebar-and-main})
+        padding-bottom: 10em
+        overflow-y: auto
+        text-align: justify
+
+@media screen and (max-width: $laptop)
+    aside
+        width: $sidebar-width_medium
+
+    main
+        padding-left: calc(#{$sidebar-width-left_medium} + #{$space-between-sidebar-and-main})
+        padding-right: calc(#{$sidebar-width-right_medium} + #{$space-between-sidebar-and-main})
+        padding-bottom: 10em
+        overflow-y: auto
+        text-align: justify
+
+@media screen and (max-width: $phone)
+    aside
+        display: none
+
+    main
+        margin-left: 0
+        margin-right: 0
+        padding: 1rem
+        padding-bottom: 5em
