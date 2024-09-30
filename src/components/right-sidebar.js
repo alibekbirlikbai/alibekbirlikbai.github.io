@@ -6,7 +6,6 @@ import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 function RightSidebar({ project, links = [] }) {
   const [activeArticle, setActiveArticle] = useState('github');
   const [activeSubArticle, setActiveSubArticle] = useState('');
-  const [timeoutId, setTimeoutId] = useState(null);
   const [openSubList, setOpenSubList] = useState({});
 
   useEffect(() => {
@@ -34,7 +33,6 @@ function RightSidebar({ project, links = [] }) {
 
       if (currentArticle) {
         setActiveArticle(currentArticle.id);
-        clearTimeout(timeoutId); 
 
         const currentSubArticle = currentArticle.subArticles?.find(sub => {
           const subElement = document.getElementById(sub.id);
@@ -53,11 +51,6 @@ function RightSidebar({ project, links = [] }) {
           setActiveSubArticle(''); 
         }
       } else {
-        const newTimeoutId = setTimeout(() => {
-          setActiveArticle('github');
-        }, 200); // 0.1 second delay
-
-        setTimeoutId(newTimeoutId);
         setActiveSubArticle(''); 
       }
     };
@@ -66,7 +59,6 @@ function RightSidebar({ project, links = [] }) {
       const hash = window.location.hash.slice(1);
       if (hash) {
         setActiveArticle(hash);
-        clearTimeout(timeoutId); 
       } else if (!activeArticle) {
         setActiveArticle('');
       }
@@ -81,9 +73,8 @@ function RightSidebar({ project, links = [] }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
-      clearTimeout(timeoutId); 
     };
-  }, [links, activeArticle, timeoutId]);
+  }, [links, activeArticle]);
 
   const toggleSubList = (linkId) => {
     setOpenSubList(prevState => ({
