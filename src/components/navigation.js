@@ -16,7 +16,7 @@ function Navigation() {
                             }
                             end 
                         >
-                            Docs
+                            Проекты
                         </NavLink>
                     </li>
                     

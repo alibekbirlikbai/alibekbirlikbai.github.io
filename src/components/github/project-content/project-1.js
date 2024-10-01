@@ -23,9 +23,7 @@ const articles = [
     },
 ];
 
-function Project1({ setProject, setLinks, projectTitle }) {
-    const github_repo = 'repo'
-
+function Project1({ currentProject }) {
     const javaCodeRef = useRef(null);
     const pythonCodeRef = useRef(null);
 
@@ -41,16 +39,7 @@ function Project1({ setProject, setLinks, projectTitle }) {
             hljs.highlightElement(pythonCodeRef.current);
             setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
         }
-
-        
-        if (projectTitle) {
-            setProject(projectTitle);
-        }
-
-        setLinks(articles);
-    }, [projectTitle, setLinks, setProject]);
-
-
+    }, []);
 
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
@@ -123,35 +112,23 @@ print('The value of y after swapping: {}'.format(y))
                     </div>
                 );
             default:
-                return <p>No content available for this sub-article.</p>;
+                return <p>Контент для sub-article не определен</p>;
         }
     };
 
     // Function to render different content for each article based on the id
     const renderArticleContent = (articleId) => {
+        let articleContentNotFound = <p>Контент для article не определен</p>;
+
         const article = articles.find(article => article.id === articleId);
-        if (!article) return <p>No content available</p>;
-
-        // const renderSubArticles = (subArticles) => {
-        //     return (
-        //         <div className='content__sub-articles'>
-        //             {subArticles.map(subArticle => (
-        //                 <div className='content__sub-article' key={subArticle.id}>
-        //                     <h4 className='content__sub-article-title' id={`#${subArticle.id}`}>{subArticle.title}</h4>
-
-        //                     {renderSubArticleContent(subArticle.id)}
-        //                 </div>
-        //             ))}
-        //         </div>
-        //     );
-        // };
+        if (!article) return articleContentNotFound
 
         const renderSubArticles = (subArticles) => {
             return (
                 <div className='content__sub-articles'>
                     {
                         subArticles.map(subArticle => (
-                            <div key={subArticle.id} className='sub-article' id={subArticle.id}>
+                            <div className='sub-article' id={subArticle.id} key={subArticle.id}>
                                 <h3>{subArticle.title}</h3>
         
                                 {renderSubArticleContent(subArticle.id)}
@@ -169,24 +146,36 @@ print('The value of y after swapping: {}'.format(y))
                     <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
                             <ul className='stack-list'>
-                                <li className='stack-list__item'>Java</li>
-                                <li className='stack-list__item'>Github Actions</li>
-                                <li className='stack-list__item'>GraphQL</li>
+
+                                {currentProject.topics.map(
+                                    skill => (
+                                        <li className='stack-list__item'>{skill}</li>
+                                    )
+                                )}
+
                             </ul>
                         </div>
 
                         <div className='content__version-control'>
                             <div className='version-control'>
                                 <p className='version-control__url'>
-                                    <span>github:&nbsp;</span>
+                                    <span>updated:&nbsp;</span>
                                     <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                        /alibekbirlikbai
+                                        {currentProject.updated_at}
                                     </a>
                                 </p>
+
+                                <p className='version-control__url'>
+                                    <span>github repo:&nbsp;</span>
+                                    <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
+                                        {currentProject.name}
+                                    </a>
+                                </p>
+
                                 <p className='version-control__last-pull-request'>
                                     <span>pull-request:&nbsp;</span>
                                     <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                        Новая фича
+                                        
                                     </a>
                                 </p>
                             </div>
@@ -231,6 +220,10 @@ print('The value of y after swapping: {}'.format(y))
             case 'features':
                 return (
                     <div className='content__block-description'>
+                        <p className='content__block-text'>
+                            Users should be able to:
+                        </p>
+
                         <ul className='content__block-feature-list'>
                             <li className='content__block-feature-item'>feature</li>
                             <li className='content__block-feature-item'>feature</li>
@@ -245,14 +238,14 @@ print('The value of y after swapping: {}'.format(y))
                     </div>
                 );
             default:
-                return <p>No content available</p>;
+                return articleContentNotFound;
         }
     };
 
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>{projectTitle}</h1>
+                <h1 className='content__title' id='project-title'>{currentProject.description}</h1>
 
                 {renderArticleContent('github')}
             </div>

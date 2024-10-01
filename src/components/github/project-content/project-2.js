@@ -24,8 +24,6 @@ const articles = [
 ];
 
 function Project2({ setProject, setLinks, projectTitle }) {
-    const github_repo = 'repo'
-
     const javaCodeRef = useRef(null);
     const pythonCodeRef = useRef(null);
 
@@ -88,7 +86,7 @@ function Project2({ setProject, setLinks, projectTitle }) {
                         <p className='content__block-text'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus. Aliquam bibendum quam vel dolor elementum, tempus commodo diam molestie. Maecenas non ligula lacinia, gravida leo ut, venenatis dui. Duis volutpat tempus est vitae tincidunt. Duis dolor leo, tempor et congue sit amet, rutrum quis ex. Integer ornare nulla dui. Integer eu risus tellus. Donec a felis turpis.
                         </p>
-                        
+
                         <div className='content__block-code'>
                             <div className='content__code-header'>
                                 <span className='content__code-language'>{pythonLanguage}</span>
@@ -96,7 +94,8 @@ function Project2({ setProject, setLinks, projectTitle }) {
 
                             <pre>
                                 <code ref={pythonCodeRef}>
-                                    {`# Python program to swap two variables
+                                    {`
+# Python program to swap two variables variables variables variables variables variables variables variables variables variables variables variables variables
 x = 5
 y = 10
 
@@ -230,6 +229,10 @@ print('The value of y after swapping: {}'.format(y))
             case 'features':
                 return (
                     <div className='content__block-description'>
+                        <p className='content__block-text'>
+                            Users should be able to:
+                        </p>
+
                         <ul className='content__block-feature-list'>
                             <li className='content__block-feature-item'>feature</li>
                             <li className='content__block-feature-item'>feature</li>

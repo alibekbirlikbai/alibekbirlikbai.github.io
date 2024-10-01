@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import LeftSidebar from '../components/left-sidebar';
+import Content from '../components/content'
 
 function HomePage({ projects }) {
     const [allProjects, setAllProjects] = useState([]);
@@ -20,25 +22,16 @@ function HomePage({ projects }) {
         }
     }, [currentProject, projects, navigate]);
 
-    if (!projects.length) {
-        return <div>No public repo in Github</div>;
-    }
-
-    if (!currentProject) {
-        return null; 
-    }
-
     return (
         <div className='app-container' id="home-page">
             <LeftSidebar projects={allProjects} />
 
-            {/* 
             <Content
-                currentRepo={repo}
-                projectTitle={currentProject.title}
-                key={repo}  // Re-renders component when the `repo` changes
+                currentProject={currentProject}
+                key={repo}
             />
 
+            {/* 
             <RightSidebar
                 project={currentProject.title}
                 links={currentProject.articles || []}  // Assuming `articles` is a field

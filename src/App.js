@@ -20,13 +20,11 @@ function App() {
   useEffect(() => {
     const loadProjects = async () => {
       setIsLoading(true);
-
-      // Fetch the data from GitHub
       const fetchedProjects = await fetchGithubData();
-      // console.log(fetchedProjects);  // Log the fetched projects data
+      
+      console.log(fetchedProjects);  // Log the fetched projects data
       // console.log(fetchedProjects[0].name);  // Log the fetched projects data
 
-      // Set the fetched projects in state
       setProjects(fetchedProjects);
       setIsLoading(false);
     };
@@ -38,7 +36,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  // Check if there are projects before setting defaultProject
   const defaultProject = projects.length > 0 ? projects[0].name : null;
 
   return (
@@ -47,13 +44,12 @@ function App() {
         <Header/>
 
         <Routes>
-          {/* Only navigate if defaultProject is defined */}
           <Route 
             path='/' 
             element={
               defaultProject 
                 ? <Navigate to={`/projects/${defaultProject}`} />
-                : <div>No public repos found on GitHub</div>
+                : <div>У GitHub аккаунта нет public repo</div>
             }
           />
           <Route 
