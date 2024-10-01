@@ -1,71 +1,51 @@
-import Content from '../components/content'
-import LeftSidebar from '../components/left-sidebar'
-import RightSidebar from '../components/right-sidebar'
-
-
-import { useState, useEffect  } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import LeftSidebar from '../components/left-sidebar';
 
-import { projects } from '../components/github/projects-list';
-
-function HomePage() {
-    const [project, setProject] = useState('');
-    const [id_links, setLinks] = useState([]);
-    const [is_loading, set_is_loading] = useState(true);
+function HomePage({ projects }) {
+    const [allProjects, setAllProjects] = useState([]);
     const { repo } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Reload the page if the repo has changed (force page refresh)
-        if (repo && !is_loading) {
-          window.location.href = `/projects/${repo}`;
-          return;
-        }
+        setAllProjects(projects);
+    }, [projects]);
 
-        set_is_loading(true);
-        let currentProject;
-    
-        if (repo) {
-          currentProject = projects.find(p => p.repo === repo);
-        } else {
-          currentProject = projects[0];
-          navigate(`/projects/${currentProject.repo}`, { replace: true });
+    let currentProject = projects.find(p => p.name === repo);
+
+    useEffect(() => {
+        if (!currentProject && projects.length > 0) {
+            const defaultProject = projects[0];
+            navigate(`/projects/${defaultProject.name}`, { replace: true });
         }
-    
-        if (currentProject) {
-          setProject(currentProject.title);
-          setLinks(currentProject.articles);
-        } else {
-          setProject('Project Not Found');
-          setLinks([]);
-        }
-    
-        set_is_loading(false);
-      }, [repo, navigate]);
-    
-      if (is_loading) {
-        return <div>Loading...</div>;
-      }
-    
+    }, [currentProject, projects, navigate]);
+
+    if (!projects.length) {
+        return <div>No public repo in Github</div>;
+    }
+
+    if (!currentProject) {
+        return null; 
+    }
+
     return (
         <div className='app-container' id="home-page">
-            <LeftSidebar/>
+            <LeftSidebar projects={allProjects} />
 
-            <Content 
-              setProject={setProject} 
-              setLinks={setLinks} 
-              currentRepo={repo} 
-              projectTitle={project} 
-              key={repo}
+            {/* 
+            <Content
+                currentRepo={repo}
+                projectTitle={currentProject.title}
+                key={repo}  // Re-renders component when the `repo` changes
             />
 
-            <RightSidebar 
-              project={project} 
-              links={id_links} 
-            />
+            <RightSidebar
+                project={currentProject.title}
+                links={currentProject.articles || []}  // Assuming `articles` is a field
+            /> 
+            */}
         </div>
     );
-};
-  
+}
+
 export default HomePage;
-  
