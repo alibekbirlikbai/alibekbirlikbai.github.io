@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import hljs from 'highlight.js';
 import java from 'highlight.js/lib/languages/java';
 import python from 'highlight.js/lib/languages/python';
 import 'highlight.js/styles/atom-one-light.css';
+
+import PullRequestList from '../fetch-pullrequests'
+import CalculateLastUpdate from '../calculate-last-update'
 
 // Register languages (code highlight)
 hljs.registerLanguage('java', java);
@@ -10,8 +14,8 @@ hljs.registerLanguage('python', python);
 
 const articles = [
     { title: 'Github', id: 'github' },
-    { title: 'Демо', id: 'demo' },
-    { title: 'Описание', id: 'info' },
+    // { title: 'Demo', id: 'demo' },
+    { title: 'Описание', id: 'overview' },
     { title: 'Фичи', id: 'features' },
     { 
         title: 'Детали', 
@@ -23,7 +27,7 @@ const articles = [
     },
 ];
 
-function Project1({ currentProject }) {
+function Project1({ currentProject, onUpdateArticles }) {
     const javaCodeRef = useRef(null);
     const pythonCodeRef = useRef(null);
 
@@ -40,6 +44,12 @@ function Project1({ currentProject }) {
             setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
         }
     }, []);
+
+    useEffect(() => {
+        if (onUpdateArticles) {
+            onUpdateArticles(articles);
+        }
+    }, [onUpdateArticles]);
 
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
@@ -149,7 +159,12 @@ print('The value of y after swapping: {}'.format(y))
 
                                 {currentProject.topics.map(
                                     skill => (
-                                        <li className='stack-list__item'>{skill}</li>
+                                        <li className='stack-list__item'>
+                                            {skill
+                                                .replace(/-/g, ' ')
+                                                .replace(/\b\w+/g, word => word.toLowerCase() === 'api' ? 'API' : word.charAt(0).toUpperCase() + word.slice(1)) 
+                                            }
+                                        </li>
                                     )
                                 )}
 
@@ -158,88 +173,124 @@ print('The value of y after swapping: {}'.format(y))
 
                         <div className='content__version-control'>
                             <div className='version-control'>
-                                <p className='version-control__url'>
-                                    <span>updated:&nbsp;</span>
-                                    <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                        {currentProject.updated_at}
-                                    </a>
-                                </p>
+                                <div className='version-control__block'>
+                                    <div className='version-control__block-title'>
+                                        github:&nbsp;
+                                    </div>
 
-                                <p className='version-control__url'>
-                                    <span>github repo:&nbsp;</span>
-                                    <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                        {currentProject.name}
-                                    </a>
-                                </p>
+                                    <div className='version-control__block-container'>
+                                        <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
+                                            {currentProject.full_name}
+                                        </a>
+                                    </div>
+                                </div>
 
-                                <p className='version-control__last-pull-request'>
-                                    <span>pull-request:&nbsp;</span>
-                                    <a href='fff' target='_blank' rel='noopener noreferrer'>
-                                        
-                                    </a>
-                                </p>
+                                <div className='version-control__block'>
+                                    <div className='version-control__block-title'>
+                                        pull-request:&nbsp;
+                                    </div>
+
+                                    <div className='version-control__block-container'>
+                                        <PullRequestList currentProject={currentProject} />
+                                    </div>
+                                </div>
+
+                                <div className='version-control__block text-italic'>
+                                    <div className='version-control__block-title'>
+                                        обновлен&nbsp;
+                                    </div>
+
+                                    <div className='version-control__block-container'>
+                                        <CalculateLastUpdate currentProject={currentProject} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 );
-            case 'info':
-                return (
-                    <div className='content__block-description'>
-                        <p className='content__block-text'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus.
-                        </p>
-                    </div>
-                );
-            case 'demo':
-                return (
-                    <div className='content__block-description'>
-                        <div className='content__block-media'>
-                            <div className='content__block-image'>
-                                <figure>
-                                    <img src='/img/test.png' alt='Description of the image' className='content__block-image' />
-                                    <figcaption className='content__block-caption'>
-                                        This is a description of the image.
-                                    </figcaption>
-                                </figure>
-                            </div>
+            // case 'overview':
+            //     return (
+            //         <div className='content__block-description'>
+            //             <div className='content__block-media'>
+            //                 <div className='content__block-image'>
+            //                     <figure>
+            //                         <img src='/img/site-design.png' alt='Description of the image' className='content__block-image' />
+            //                         <figcaption className='content__block-caption'>
+            //                             This is a description of the image.
+            //                         </figcaption>
+            //                     </figure>
+            //                 </div>
 
-                            {/* <div className='content__block-video'>
-                                <figure>
-                                    <video controls className='content__block-video-element'>
-                                        <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/webm" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    <figcaption className='content__block-caption'>
-                                        This is a description of the video.
-                                    </figcaption>
-                                </figure>
-                            </div> */}
-                        </div>
-                    </div>
-                );
-            case 'features':
-                return (
-                    <div className='content__block-description'>
-                        <p className='content__block-text'>
-                            Users should be able to:
-                        </p>
+            //                 <div className='content__block-video'>
+            //                     <figure>
+            //                         <video controls className='content__block-video-element'>
+            //                             <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/webm" />
+            //                             Your browser does not support the video tag.
+            //                         </video>
+            //                         <figcaption className='content__block-caption'>
+            //                             This is a description of the video.
+            //                         </figcaption>
+            //                     </figure>
+            //                 </div>
+            //             </div>
+                        
+            //             <p className='content__block-text'>
+            //                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut sagittis erat, ut elementum nisi. Ut condimentum velit dapibus metus rutrum, ac faucibus ligula posuere. Curabitur elementum metus mauris, non laoreet ligula mattis in. Aenean sagittis convallis ligula ut volutpat. Vivamus suscipit diam id pretium luctus.
+            //             </p>
+            //         </div>
+            //     );
+            // // case 'demo':
+            // //     return (
+            // //         <div className='content__block-description'>
+            // //             <div className='content__block-media'>
+            // //                 <div className='content__block-image'>
+            // //                     <figure>
+            // //                         <img src='/img/test.png' alt='Description of the image' className='content__block-image' />
+            // //                         <figcaption className='content__block-caption'>
+            // //                             This is a description of the image.
+            // //                         </figcaption>
+            // //                     </figure>
+            // //                 </div>
 
-                        <ul className='content__block-feature-list'>
-                            <li className='content__block-feature-item'>feature</li>
-                            <li className='content__block-feature-item'>feature</li>
-                            <li className='content__block-feature-item'>feature</li>
-                        </ul>
-                    </div>
-                );
-            case 'details':
-                return (
-                    <div className='content__block-description'>
-                        {article.subArticles && renderSubArticles(article.subArticles)}
-                    </div>
-                );
+            // //                 <div className='content__block-video'>
+            // //                     <figure>
+            // //                         <video controls className='content__block-video-element'>
+            // //                             <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/webm" />
+            // //                             Your browser does not support the video tag.
+            // //                         </video>
+            // //                         <figcaption className='content__block-caption'>
+            // //                             This is a description of the video.
+            // //                         </figcaption>
+            // //                     </figure>
+            // //                 </div>
+            // //             </div>
+            // //         </div>
+            // //     );
+            // case 'features':
+            //     return (
+            //         <div className='content__block-description'>
+            //             <p className='content__block-text'>
+            //                 Users should be able to:
+            //             </p>
+
+            //             <ul className='content__block-feature-list'>
+            //                 <li className='content__block-feature-item'>feature</li>
+            //                 <li className='content__block-feature-item'>feature</li>
+            //                 <li className='content__block-feature-item'>feature</li>
+            //             </ul>
+            //         </div>
+            //     );
+            // case 'details':
+            //     return (
+            //         <div className='content__block-description'>
+            //             {article.subArticles && renderSubArticles(article.subArticles)}
+            //         </div>
+            //     );
             default:
                 return articleContentNotFound;
         }
+
+        
     };
 
     return (
@@ -253,9 +304,11 @@ print('The value of y after swapping: {}'.format(y))
             <div className='content__body'>
                 {articles
                     .filter(article => article.id != 'github')
-                    .map(article => (
-                        <article className='content__block' key={article.id} id={article.id}>
-                            <h2 id={article.id} className='content__block-title'>{article.title}</h2>
+                    .map((article, index) => (
+                        <article className='content__block' id={article.id} key={article.id}>
+                            <h2 className='content__block-title' id={article.id} >
+                                {article.title}
+                            </h2>
                             
                             {renderArticleContent(article.id)}
                         </article>

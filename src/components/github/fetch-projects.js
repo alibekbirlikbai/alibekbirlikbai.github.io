@@ -1,8 +1,34 @@
-import fetchGithubData from './github-api-integration'
+import axios from 'axios';
+import fetchLastUpdatedTime from './fetch-last-updated-time'
+
+const GIHUB_URL = "https://api.github.com/users/alibekbirlikbai/repos"
+
+export const fetchGithubData = async () => {
+    try {
+        const response = await axios.get(GIHUB_URL);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching GitHub data:', error);
+        return []
+    }
+}
 
 export const fetchProjects = async () => {
     try {
-        return await fetchGithubData();
+        const projects = await fetchGithubData();
+
+        // // Fetch the last updated time for each project
+        // const projectsWithUpdateTimes = await Promise.all(projects.map(async (project) => {
+        //     const lastUpdatedTime = await fetchLastUpdatedTime(project.owner.login, project.name);
+        //     return {
+        //         ...project,
+        //         lastUpdatedTime
+        //     };
+        // }));
+        // projectsWithUpdateTimes.sort((a, b) => b.lastUpdatedTime - a.lastUpdatedTime);
+
+        // Sort projects by lastUpdatedTime (most recent first)
+        return projects ; 
     } catch (error) {
         console.error('Error fetching projects from GitHub:', error);
         return [];
