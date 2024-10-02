@@ -1,42 +1,52 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; 
 import { useEffect, useState } from 'react';
-
 import LeftSidebar from '../components/left-sidebar';
-import Content from '../components/content'
+import RightSidebar from '../components/right-sidebar';
+import Content from '../components/content';
 
-function HomePage({ projects }) {
+function HomePage({ projects, defaultProject }) {
     const [allProjects, setAllProjects] = useState([]);
+    const [currentArticles, setCurrentArticles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { repo } = useParams();
     const navigate = useNavigate();
+
+    let currentProject = projects.find(p => p.name === repo);
 
     useEffect(() => {
         setAllProjects(projects);
     }, [projects]);
 
-    let currentProject = projects.find(p => p.name === repo);
-
     useEffect(() => {
         if (!currentProject && projects.length > 0) {
-            const defaultProject = projects[0];
             navigate(`/projects/${defaultProject.name}`, { replace: true });
         }
-    }, [currentProject, projects, navigate]);
+
+        // Reload the page if the repo has changed (force page refresh)
+        if (repo && !isLoading) {
+            window.location.href = `/projects/${repo}`;
+            return;
+        }
+        setIsLoading(true);
+
+        setIsLoading(false);
+            
+    }, [currentProject, projects, navigate, repo]);
+
+    const handleArticlesUpdate = (articles) => {
+        setCurrentArticles(articles);
+    };
 
     return (
         <div className='app-container' id="home-page">
             <LeftSidebar projects={allProjects} />
+            
+            <Content currentProject={currentProject} onUpdateArticles={handleArticlesUpdate} />
 
-            <Content
-                currentProject={currentProject}
-                key={repo}
-            />
-
-            {/* 
             <RightSidebar
-                project={currentProject.title}
-                links={currentProject.articles || []}  // Assuming `articles` is a field
-            /> 
-            */}
+                currentProject={currentProject}
+                allArticles={currentArticles} 
+            />
         </div>
     );
 }

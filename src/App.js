@@ -11,7 +11,7 @@ import Header from './components/navigation';
 import HomePage from './pages/home-page';
 import ContactsPage from './pages/contacts-page';
 
-import { fetchGithubData } from './components/github/github-api-integration';
+import { fetchGithubData } from './components/github/fetch-projects';
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -22,7 +22,7 @@ function App() {
       setIsLoading(true);
       const fetchedProjects = await fetchGithubData();
       
-      console.log(fetchedProjects);  // Log the fetched projects data
+      // console.log(fetchedProjects);  // Log the fetched projects data
       // console.log(fetchedProjects[0].name);  // Log the fetched projects data
 
       setProjects(fetchedProjects);
@@ -49,7 +49,7 @@ function App() {
             element={
               defaultProject 
                 ? <Navigate to={`/projects/${defaultProject}`} />
-                : <div>У GitHub аккаунта нет public repo</div>
+                : <div> На данный момент у меня в GitHub нет public repo</div>
             }
           />
           <Route 
@@ -58,7 +58,7 @@ function App() {
           />
           <Route 
             path="/projects/:repo" 
-            element={<HomePage projects={projects}/>} 
+            element={<HomePage projects={projects} defaultProject={defaultProject}/>} 
           />
         </Routes>
       </div>
