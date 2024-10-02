@@ -1,6 +1,10 @@
 $gap-between-project: .5em
+
 $padding-top-and-down-for-active: .3em
 $padding-left-and-right-for-active: .5em
+
+$padding-top-for-sidebar: .7em
+$margin-for-left-and-right: 1em
 
 aside
     ul
@@ -8,7 +12,7 @@ aside
         flex-direction: column
         gap: $gap-between-project
         list-style: none
-        padding-left: 1em
+        padding-left: 1.7em
 
         li
 
@@ -23,8 +27,13 @@ aside
                 text-decoration: underline
 
 aside.sidebar-left
-
     .sidebar-left__list
+        padding: 1em
+        margin: 0 $margin-for-left-and-right
+        background-color: red
+        padding-top: $padding-top-for-sidebar
+        // list-style-type: decimal
+
         .sidebar-left__list-item
             // background-color: red
 
@@ -44,14 +53,14 @@ aside.sidebar-left
                 text-decoration: underline
 
 aside.sidebar-right
+    text-align: justify
+    padding: 1em
+    margin: 0 $margin-for-left-and-right
+    background-color: red
 
     .sidebar-right__title
         font-weight: 700
-        color: black
-        text-decoration: none
-
-    .sidebar-right__title:hover
-        text-decoration: underline
+        padding-top: $padding-top-for-sidebar - .3em
 
     .sidebar-right__list
         margin-left: .5em

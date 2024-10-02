@@ -3,125 +3,155 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
-function RightSidebar({ project, links = [] }) {
+function RightSidebar({ currentProject, allArticles = [] }) {
   const [activeArticle, setActiveArticle] = useState('github');
   const [activeSubArticle, setActiveSubArticle] = useState('');
-  const [timeoutId, setTimeoutId] = useState(null);
   const [openSubList, setOpenSubList] = useState({});
 
   useEffect(() => {
-    if (!links || links.length === 0) return;
-
+    if (!allArticles || allArticles.length === 0) return;
+  
     const initialState = {};
-    links.forEach(link => {
-      initialState[link.id] = true;
+    allArticles.forEach(article => {
+      initialState[article.id] = true;
     });
     setOpenSubList(initialState);
-    
+  
+    const scrollToSection = (id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setActiveArticle(id);
+      }
+    };
+  
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 10;
-
-      const currentArticle = links.find(link => {
-        const element = document.getElementById(link.id);
+  
+      let currentArticleFound = false;
+  
+      allArticles.forEach(article => {
+        const element = document.getElementById(article.id);
         if (element) {
           const rect = element.getBoundingClientRect();
           const offsetTop = window.pageYOffset + rect.top;
           const offsetBottom = offsetTop + rect.height;
-          return scrollPosition >= offsetTop && scrollPosition < offsetBottom;
-        }
-        return false;
-      });
-
-      if (currentArticle) {
-        setActiveArticle(currentArticle.id);
-        clearTimeout(timeoutId); 
-
-        const currentSubArticle = currentArticle.subArticles?.find(sub => {
-          const subElement = document.getElementById(sub.id);
-          if (subElement) {
-            const rect = subElement.getBoundingClientRect();
-            const offsetTop = window.pageYOffset + rect.top;
-            const offsetBottom = offsetTop + rect.height;
-            return scrollPosition >= offsetTop && scrollPosition < offsetBottom;
+  
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveArticle(article.id);
+            currentArticleFound = true;
+  
+            const currentSubArticle = article.subArticles?.find(sub => {
+              const subElement = document.getElementById(sub.id);
+              if (subElement) {
+                const subRect = subElement.getBoundingClientRect();
+                const subOffsetTop = window.pageYOffset + subRect.top;
+                const subOffsetBottom = subOffsetTop + subRect.height;
+                return scrollPosition >= subOffsetTop && scrollPosition < subOffsetBottom;
+              }
+              return false;
+            });
+  
+            if (currentSubArticle) {
+              setActiveSubArticle(currentSubArticle.id);
+            } else {
+              setActiveSubArticle('');
+            }
           }
-          return false;
-        });
+        }
+      });
+  
+      if (!currentArticleFound && scrollPosition <= 100) {
+        setActiveArticle('github');
+      }
+    };
 
-        if (currentSubArticle) {
-          setActiveSubArticle(currentSubArticle.id);
+    const activateParentArticle = (subArticleId) => {
+      allArticles.forEach(article => {
+        if (article.subArticles) {
+          const subArticle = article.subArticles.find(sub => sub.id === subArticleId);
+          if (subArticle) {
+            setActiveArticle(article.id); 
+            setActiveSubArticle(subArticleId); 
+          }
+        }
+      });
+    };
+  
+    
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1); 
+      if (hash) {
+        
+        scrollToSection(hash);
+
+        
+        const isSubArticle = allArticles.some(article => article.subArticles?.some(sub => sub.id === hash));
+        if (isSubArticle) {
+          
+          activateParentArticle(hash);
         } else {
+          
+          setActiveArticle(hash);
           setActiveSubArticle(''); 
         }
-      } else {
-        const newTimeoutId = setTimeout(() => {
-          setActiveArticle('github');
-        }, 200); // 0.1 second delay
-
-        setTimeoutId(newTimeoutId);
-        setActiveSubArticle(''); 
       }
     };
-
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash) {
-        setActiveArticle(hash);
-        clearTimeout(timeoutId); 
-      } else if (!activeArticle) {
-        setActiveArticle('');
-      }
-    };
-
+  
+    
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('hashchange', handleHashChange);
-
-    handleScroll();
-    handleHashChange();
-
+  
+    
+    handleHashChange(); 
+  
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
-      clearTimeout(timeoutId); 
     };
-  }, [links, activeArticle, timeoutId]);
+  }, [allArticles]);
+  
 
-  const toggleSubList = (linkId) => {
+  const toggleSubList = (articleId) => {
     setOpenSubList(prevState => ({
       ...prevState,
-      [linkId]: !prevState[linkId],
+      [articleId]: !prevState[articleId],
     }));
   };
 
-  if (!project || !links || links.length === 0) {
+  if (!currentProject || !allArticles || allArticles.length === 0) {
     return null;
   }
 
   return (
     <aside className='sidebar-right'>
-      <a href='#project-title' className='sidebar-right__title'>{project}</a>
+      <p className='sidebar-right__title'>
+        {currentProject.description}
+      </p>
 
       <ul className='sidebar-right__list'>
-        {links.map(link => (
-          <li className='sidebar-right__list-item' key={link.id}>
+        {allArticles.map(article => (
+          <li className='sidebar-right__list-item' key={article.id}>
             <div className='sidebar-right__sub-list-header'>
-              {link.subArticles && link.subArticles.length > 0 && (
+              {article.subArticles && article.subArticles.length > 0 && (
                 <span 
-                  className={`dropdown-icon ${openSubList[link.id] ? 'open' : ''}`}
-                  onClick={() => toggleSubList(link.id)}
+                  className={`dropdown-icon ${openSubList[article.id] ? 'open' : ''}`}
+                  onClick={() => toggleSubList(article.id)}
                 >
                   <FontAwesomeIcon icon={faAngleUp} />
                 </span>
               )}
 
-              <a href={`#${link.id}`} className={`sidebar-right__link ${activeArticle === link.id ? 'active' : ''}`}>
-                {link.title}
+              <a href={`#${article.id}`} className={`sidebar-right__link ${activeArticle === article.id ? 'active' : ''}`}>
+                {article.title}
               </a>
             </div>            
 
             {/* Render sub-articles if any */}
-            {link.subArticles && link.subArticles.length > 0 && (
-              <ul className={`sidebar-right__sub-list ${openSubList[link.id] ? 'open' : 'closed'}`}>
-                {link.subArticles.map(subArticle => (
+            {article.subArticles && article.subArticles.length > 0 && (
+              <ul className={`sidebar-right__sub-list ${openSubList[article.id] ? 'open' : 'closed'}`}>
+                {article.subArticles.map(subArticle => (
                   <li key={subArticle.id} className='sidebar-right__sub-list-item'>
                     <a
                       href={`#${subArticle.id}`}

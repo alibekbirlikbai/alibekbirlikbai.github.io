@@ -1,13 +1,13 @@
 $header-height: 100px
 
-$sidebar-width-left: 200px
-$sidebar-width-right: 200px
-$space-between-sidebar-and-main: 17%
+$sidebar-width-left: 260px
+$sidebar-width-right: 220px
+$space-between-sidebar-and-main: 15%
 
 $laptop: 1100px
 
-$sidebar-width-left_medium: 130px
-$sidebar-width-right_medium: 80px
+$sidebar-width-left_medium: 150px
+$sidebar-width-right_medium: 100px
 $sidebar-width_medium: 300px
 $phone: 800px
 
@@ -60,6 +60,9 @@ body, html
             text-align: left
 
             .app-content
+                background-color: red
+                padding: 1em
+
                 .contacts-page__blocks
                     min-width: 500px
 
@@ -89,6 +92,7 @@ body, html
         padding-bottom: 10em
         overflow-y: auto
         text-align: justify
+        margin: 0 1.2em
 
 @media screen and (max-width: $phone)
     aside
@@ -99,3 +103,6 @@ body, html
         margin-right: 0
         padding: 1rem
         padding-bottom: 5em
+
+.text-italic
+    font-style: italic
