@@ -15,26 +15,20 @@ import { fetchGithubData } from './components/github/fetch-projects';
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadProjects = async () => {
-      setIsLoading(true);
       const fetchedProjects = await fetchGithubData();
       
       // console.log(fetchedProjects);  // Log the fetched projects data
       // console.log(fetchedProjects[0].name);  // Log the fetched projects data
 
       setProjects(fetchedProjects);
-      setIsLoading(false);
     };
 
     loadProjects();
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   const defaultProject = projects.length > 0 ? projects[0].name : null;
 

@@ -3,6 +3,7 @@ $header-block-gap: .7em
 $header-content-gap: 1.3em
 $content-block-gap: 1.4em
 $block-item-gap: .7em
+$github-content-block-gap: .3em
 
 $sub-article-header-gap: .5em
 $sub-articles-beetween-gap: 1.5em
@@ -23,7 +24,7 @@ $sub-articles-beetween-gap: 1.5em
         .content__header
             display: flex
             flex-direction: column
-            gap: $title-gap
+            gap: $title-gap + .2em
 
             //border: 3px dashed blue
 
@@ -51,7 +52,7 @@ $sub-articles-beetween-gap: 1.5em
                         li
                             font-style: italic
                             border-radius: 5px
-                            background-color: lightblue
+                            background-color: red
                             padding: .15em .2em
                             margin: 0
 
@@ -59,12 +60,30 @@ $sub-articles-beetween-gap: 1.5em
                     //border: 3px dashed red
 
                     .version-control
+                        display: flex
+                        flex-direction: column
+                        gap: $github-content-block-gap
                         //border: 3px dashed red
 
-                        .version-control__url,
-                        .version-control__last-pull-request
-                            a
-                                font-style: italic
+                        .version-control__block
+                            display: flex
+                            flex-direction: row
+
+                            &:last-of-type
+                                display: flex
+                                flex-direction: row
+                                justify-content: start
+
+                            .version-control__block-title
+                                display: inline-block
+                                white-space: nowrap
+
+                            ul
+                                // list-style-type: none
+                                padding-left: 1.3em
+                                display: flex
+                                flex-direction: column
+                                gap: $github-content-block-gap
 
         .content__body
             display: flex
