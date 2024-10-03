@@ -31,25 +31,27 @@ function HomePage({ projects, defaultProject }) {
   };
 
   return (
-    <div className='app-container' id="home-page">
-      <LoadingSection isLoading={isProjectLoading}>
-        <LeftSidebar projects={projects} />
-      </LoadingSection>
-      
-      <LoadingSection isLoading={isProjectLoading || isArticlesLoading}>
-        <Content 
-          currentProject={currentProject} 
-          onUpdateArticles={handleArticlesUpdate} 
-        />
-      </LoadingSection>
-      
-      <LoadingSection isLoading={isArticlesLoading}>
-        <RightSidebar
-          currentProject={currentProject}
-          allArticles={currentArticles}
-        />
-      </LoadingSection>
-    </div>
+    <LoadingSection>
+      <div className='app-container' id="home-page">
+        <LoadingSection isLoading={isProjectLoading}>
+          <LeftSidebar projects={projects} />
+        </LoadingSection>
+        
+        <LoadingSection isLoading={isProjectLoading || isArticlesLoading}>
+          <Content 
+            currentProject={currentProject} 
+            onUpdateArticles={handleArticlesUpdate} 
+          />
+        </LoadingSection>
+        
+        <LoadingSection isLoading={isArticlesLoading}>
+          <RightSidebar
+            currentProject={currentProject}
+            allArticles={currentArticles}
+          />
+        </LoadingSection>
+      </div>
+    </LoadingSection>
   );
 }
 

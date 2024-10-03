@@ -43,7 +43,7 @@ function App() {
             element={
               defaultProject 
                 ? <Navigate to={`/projects/${defaultProject}`} />
-                : <div> На данный момент у меня в GitHub нет public repo</div>
+                : <div> Превышен лимит запросов Github API </div>
             }
           />
           <Route 

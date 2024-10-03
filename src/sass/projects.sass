@@ -1,9 +1,12 @@
 $title-gap: .5em
 $header-block-gap: .7em
 $header-content-gap: 1.3em
+
 $content-block-gap: 1.4em
 $block-item-gap: .7em
 $github-content-block-gap: .3em
+
+$feature-list-gap: .15em
 
 $sub-article-header-gap: .5em
 $sub-articles-beetween-gap: 1.5em
@@ -52,7 +55,7 @@ $sub-articles-beetween-gap: 1.5em
                         li
                             font-style: italic
                             border-radius: 5px
-                            background-color: red
+                            background-color: #ededed
                             padding: .15em .2em
                             margin: 0
 
@@ -149,6 +152,25 @@ $sub-articles-beetween-gap: 1.5em
                     .content__block-text
                         //border: 3px dashed red
 
+                    .content__block-text::after
+                        content: "."
+
+                    .content__block-quote
+                        blockquote
+                            background-color: #ededed
+                            padding: 15px
+                            border-radius: 0 5px 5px 0
+                            border-left: .3em blue solid
+
+                        blockquote p::before 
+                            content: '\201C'
+
+                        blockquote p::after 
+                            content: '\201D'
+
+                        blockquote + p 
+                            text-align: right
+
                     .content__block-code
                         position: relative
 
@@ -163,7 +185,24 @@ $sub-articles-beetween-gap: 1.5em
 
                     .content__block-feature-list
                         list-style-type: disc
-                        padding-left: 20px
+                        padding-left: 30px
+                        display: flex
+                        flex-direction: column
+                        gap: $feature-list-gap
 
                         .content__block-feature-item
                             margin-bottom: 5px
+
+                        .content__block-feature-item::after
+                            content: ";"
+
+// utils
+.content__block-feature-item,
+.content__block-text
+    code
+        background-color: #ededed
+        padding: 0px 4px
+        padding-bottom: 1.5px
+        border-radius: 4px
+        font-size: 95%
+        font-weight: 700

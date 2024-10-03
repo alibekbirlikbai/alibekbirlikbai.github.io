@@ -1,19 +1,39 @@
 import { NavLink } from 'react-router-dom';
 
 const excludedProjects = [
-    'spring-backend',
     'proxy-server',
+    'git-polygone',
+    'spring-security-polygone',
 ];
 
 const projectsOrder = [
     'alibekbirlikbai',
-    'alibekbirlikbai.github.io',
+    'transaction-manager',
+    'cloud-url-storage',
     'news-api',
-    'university-bachelor',
-    'microservice-expenses',
-    'jwt-backend',
-    'pastebin-backend',
+    'charity-ux-ui',
+    'alibekbirlikbai.github.io',
 ];
+
+// Helper function to format description and bold the text in the parentheses
+function formatDescription(description) {
+    const regex = /(.*)(\([^)]*\))$/; // Regex to match the text inside parentheses
+    const match = description.match(regex);
+
+    if (match) {
+        return (
+            <>
+                {match[1]} 
+                <br/>
+                <strong>
+                    {match[2]}
+                </strong>
+            </>
+        );
+    }
+    
+    return description; // Return original description if no parentheses found
+}
 
 function LeftSidebar({ projects }) {
     const filteredProjects = projects.filter(project => !excludedProjects.includes(project.name));
@@ -41,7 +61,7 @@ function LeftSidebar({ projects }) {
                 {sortedProjects.map(project => (
                     <li key={project.name} className='sidebar-left__list-item'>
                         <NavLink to={`/projects/${project.name}`} className='sidebar-left__link'>
-                            {project.description}
+                            {formatDescription(project.description)}
                         </NavLink>
                     </li>
                 ))}
