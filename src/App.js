@@ -15,6 +15,7 @@ import { fetchGithubData } from './components/github/fetch-projects';
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -24,13 +25,18 @@ function App() {
       // console.log(fetchedProjects[0].name);  // Log the fetched projects data
 
       setProjects(fetchedProjects);
+      setIsLoading(false); 
     };
 
     loadProjects();
   }, []);
 
-
   const defaultProject = projects.length > 0 ? projects[0].name : null;
+
+  // Render a loading state until projects are fetched
+  if (isLoading) {
+    return <div>Loading projects...</div>;  // You can replace this with a spinner component if needed
+  }
 
   return (
     <Router>
