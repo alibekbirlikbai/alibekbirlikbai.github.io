@@ -1,53 +1,53 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import hljs from 'highlight.js';
-import java from 'highlight.js/lib/languages/java';
-import python from 'highlight.js/lib/languages/python';
 import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../fetch-pullrequests'
 import CalculateLastUpdate from '../calculate-last-update'
-
-// Register languages (code highlight)
-hljs.registerLanguage('java', java);
-hljs.registerLanguage('python', python);
 
 const articles = [
     { title: 'Github', id: 'github' },
     // { title: 'Demo', id: 'demo' },
     { title: 'Описание', id: 'overview' },
     { title: 'Фичи', id: 'features' },
-    { 
-        title: 'Детали', 
-        id: 'details',
-        // subArticles: [
-        //     { title: 'Sub Article 1', id: 'sub-article-1' },
-        // ]
-    },
+    // { 
+    //     title: 'Детали', 
+    //     id: 'details',
+    //     // subArticles: [
+    //     //     { title: 'GraphQL запрос', id: 'query-graphql' },
+    //     // ]
+    // },
 ];
 
 function PersonalSiteProject({ currentProject, onUpdateArticles }) {
-    const javaCodeRef = useRef(null);
-    const pythonCodeRef = useRef(null);
-
-    const [javaLanguage, setJavaLanguage] = useState('');
-    const [pythonLanguage, setPythonLanguage] = useState('');
-
+    const codeBlockRefs = useRef({}); 
+    
     useEffect(() => {
-        if (javaCodeRef.current) {
-            hljs.highlightElement(javaCodeRef.current); 
-            setJavaLanguage(javaCodeRef.current?.dataset.language || 'java'); 
-        }
-        if (pythonCodeRef.current) {
-            hljs.highlightElement(pythonCodeRef.current);
-            setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
-        }
+        Object.values(codeBlockRefs.current).forEach((ref) => {
+            if (ref) {
+                const codeBlocks = ref.querySelectorAll('pre code');
+                codeBlocks.forEach((block) => {
+                    hljs.highlightElement(block); 
+                    const language = block.dataset.language || 'plaintext'; 
+                    const headerElement = block.closest('.content__block-code').querySelector('.content__code-language');
+                    if (headerElement) {
+                        headerElement.textContent = language; 
+                        headerElement.setAttribute('data-language', language);
+                    }
+                });
+            }
+        });
 
         // это для ссылок (html)
-        const links = document.querySelectorAll('main.a');
-            links.forEach(link => {
-            link.setAttribute('target', '_blank');
-            });
+        const links = document.querySelectorAll('a');
+
+        links.forEach(link => {
+            const isInsideExcludedTags = link.closest('aside') || link.closest('nav');
+
+            if (!isInsideExcludedTags) {
+                link.setAttribute('target', '_blank');
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -56,6 +56,21 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
         }
     }, [onUpdateArticles]);
 
+    const renderCodeBlock = (code, language, blockKey) => {
+        return (
+            <div className='content__block-code' ref={(el) => codeBlockRefs.current[blockKey] = el}>
+                <div className='content__code-header'>
+                    <span className='content__code-language'></span>
+                </div>
+                <pre>
+                    <code data-language={language}>
+                        {code}
+                    </code>
+                </pre>
+            </div>
+        );
+    };
+    
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
             // case '':

@@ -1,16 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import hljs from 'highlight.js';
-import java from 'highlight.js/lib/languages/java';
-import python from 'highlight.js/lib/languages/python';
 import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../fetch-pullrequests'
 import CalculateLastUpdate from '../calculate-last-update'
-
-// Register languages (code highlight)
-hljs.registerLanguage('java', java);
-hljs.registerLanguage('python', python);
 
 const articles = [
     { title: 'Github', id: 'github' },
@@ -27,27 +20,34 @@ const articles = [
 ];
 
 function CloudUrlStorageProject({ currentProject, onUpdateArticles }) {
-    const javaCodeRef = useRef(null);
-    const pythonCodeRef = useRef(null);
-
-    const [javaLanguage, setJavaLanguage] = useState('');
-    const [pythonLanguage, setPythonLanguage] = useState('');
-
+    const codeBlockRefs = useRef({}); 
+    
     useEffect(() => {
-        if (javaCodeRef.current) {
-            hljs.highlightElement(javaCodeRef.current); 
-            setJavaLanguage(javaCodeRef.current?.dataset.language || 'java'); 
-        }
-        if (pythonCodeRef.current) {
-            hljs.highlightElement(pythonCodeRef.current);
-            setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
-        }
+        Object.values(codeBlockRefs.current).forEach((ref) => {
+            if (ref) {
+                const codeBlocks = ref.querySelectorAll('pre code');
+                codeBlocks.forEach((block) => {
+                    hljs.highlightElement(block); 
+                    const language = block.dataset.language || 'plaintext'; 
+                    const headerElement = block.closest('.content__block-code').querySelector('.content__code-language');
+                    if (headerElement) {
+                        headerElement.textContent = language; 
+                        headerElement.setAttribute('data-language', language);
+                    }
+                });
+            }
+        });
 
         // это для ссылок (html)
-        const links = document.querySelectorAll('main.a');
-            links.forEach(link => {
-            link.setAttribute('target', '_blank');
-            });
+        const links = document.querySelectorAll('a');
+
+        links.forEach(link => {
+            const isInsideExcludedTags = link.closest('aside') || link.closest('nav');
+
+            if (!isInsideExcludedTags) {
+                link.setAttribute('target', '_blank');
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -56,14 +56,95 @@ function CloudUrlStorageProject({ currentProject, onUpdateArticles }) {
         }
     }, [onUpdateArticles]);
 
+    const renderCodeBlock = (code, language, blockKey) => {
+        return (
+            <div className='content__block-code' ref={(el) => codeBlockRefs.current[blockKey] = el}>
+                <div className='content__code-header'>
+                    <span className='content__code-language'></span>
+                </div>
+                <pre>
+                    <code data-language={language}>
+                        {code}
+                    </code>
+                </pre>
+            </div>
+        );
+    };
+
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
-            // case 'integrate-google-drive':
-            //     return (
-            //         <div className='content__sub-article-container'>
-                        
-            //         </div>
-            //     );
+            case 'integrate-google-drive':
+                return (
+                    <div className='content__sub-article-container'>
+                        {renderCodeBlock(`public class GoogleDriveService {
+    // Подключение к Google Drive
+    static Drive drive;
+
+    static {
+        try {
+            drive = GoogleDriveConnector.connectGoogleDrive();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String storeBinInCloud(Bin bin) throws IOException {
+        Map<String, java.io.File> fileMap = CloudUtils.createFile(bin);
+
+        fileUploadIntoCloud(fileMap, bin);
+
+        // return fileName
+        return fileMap.entrySet().iterator().next().getKey();
+    }
+
+    public static String getBinFromCloud(String fileId) throws IOException {
+        // Получаем инфо о файле по ID
+        File file = drive.files().get(fileId).execute();
+
+        // Получение потока ввода содержимого файла
+        try (InputStream inputStream = drive.files().get(fileId).executeMediaAsInputStream()) {
+            // Чтение содержимого файла в байтовый массив
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] contentBytes = outputStream.toByteArray();
+
+            // Конвертация байтового массива в строку
+            String fileContent = new String(contentBytes, StandardCharsets.UTF_8);
+            return fileContent;
+        }
+    }
+
+    public static void deleteBinFromCloud(String fileId) throws IOException {
+        drive.files().delete(fileId).execute();
+        System.out.println("File with ID " + fileId + " has been deleted successfully.");
+    }
+
+    private static void fileUploadIntoCloud(Map<String, java.io.File> fileMap, Bin bin) throws IOException {
+        String fileName = fileMap.entrySet().iterator().next().getKey();
+        java.io.File serverFile = fileMap.entrySet().iterator().next().getValue();
+
+        // Загрузка файла на Google Drive
+        File fileMetadata = new File();
+        fileMetadata.setName(fileName);
+        fileMetadata.setParents(Collections.singletonList(GoogleDriveConnector.folderId));
+        FileContent mediaContent = new FileContent("text/plain", serverFile);
+        File file = drive.files().create(fileMetadata, mediaContent)
+                .setFields("id")
+                .execute();
+
+        bin.setCloud_id(file.getId());
+        System.out.println("File ID: " + file.getId());
+
+        // Удаление файла с сервера
+        serverFile.delete();
+    }
+}`, 'java', 'integrate-google-drive')}
+                    </div>
+                );
             default:
                 return <p>Контент для sub-article не определен</p>;
         }

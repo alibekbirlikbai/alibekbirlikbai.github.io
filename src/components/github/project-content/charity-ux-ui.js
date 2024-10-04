@@ -1,16 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import hljs from 'highlight.js';
-import java from 'highlight.js/lib/languages/java';
-import python from 'highlight.js/lib/languages/python';
 import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../fetch-pullrequests'
 import CalculateLastUpdate from '../calculate-last-update'
-
-// Register languages (code highlight)
-hljs.registerLanguage('java', java);
-hljs.registerLanguage('python', python);
 
 const articles = [
     { title: 'Github', id: 'github' },
@@ -20,34 +13,44 @@ const articles = [
     { 
         title: 'Детали', 
         id: 'details',
-        // subArticles: [
-        //     { title: 'Sub Article 1', id: 'sub-article-1' },
-        // ]
+        subArticles: [
+            { title: 'Sequence diagram', id: 'sequence-diagram' },
+            { title: 'Home pages', id: 'home-pages' },
+            { title: 'Site map', id: 'site-map' },
+            { title: 'User interaction flow', id: 'user-interaction-flow' },
+        ]
     },
 ];
 
 function CharityUxUiProject({ currentProject, onUpdateArticles }) {
-    const javaCodeRef = useRef(null);
-    const pythonCodeRef = useRef(null);
-
-    const [javaLanguage, setJavaLanguage] = useState('');
-    const [pythonLanguage, setPythonLanguage] = useState('');
-
+    const codeBlockRefs = useRef({}); 
+    
     useEffect(() => {
-        if (javaCodeRef.current) {
-            hljs.highlightElement(javaCodeRef.current); 
-            setJavaLanguage(javaCodeRef.current?.dataset.language || 'java'); 
-        }
-        if (pythonCodeRef.current) {
-            hljs.highlightElement(pythonCodeRef.current);
-            setPythonLanguage(pythonCodeRef.current?.dataset.language || 'python');
-        }
+        Object.values(codeBlockRefs.current).forEach((ref) => {
+            if (ref) {
+                const codeBlocks = ref.querySelectorAll('pre code');
+                codeBlocks.forEach((block) => {
+                    hljs.highlightElement(block); 
+                    const language = block.dataset.language || 'plaintext'; 
+                    const headerElement = block.closest('.content__block-code').querySelector('.content__code-language');
+                    if (headerElement) {
+                        headerElement.textContent = language; 
+                        headerElement.setAttribute('data-language', language);
+                    }
+                });
+            }
+        });
 
         // это для ссылок (html)
-        const links = document.querySelectorAll('main.a');
-            links.forEach(link => {
-            link.setAttribute('target', '_blank');
-            });
+        const links = document.querySelectorAll('a');
+
+        links.forEach(link => {
+            const isInsideExcludedTags = link.closest('aside') || link.closest('nav');
+
+            if (!isInsideExcludedTags) {
+                link.setAttribute('target', '_blank');
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -56,14 +59,114 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
         }
     }, [onUpdateArticles]);
 
+    const renderCodeBlock = (code, language, blockKey) => {
+        return (
+            <div className='content__block-code' ref={(el) => codeBlockRefs.current[blockKey] = el}>
+                <div className='content__code-header'>
+                    <span className='content__code-language'></span>
+                </div>
+                <pre>
+                    <code data-language={language}>
+                        {code}
+                    </code>
+                </pre>
+            </div>
+        );
+    };
+
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
-            // case '':
-            //     return (
-            //         <div className='content__sub-article-container'>
-                        
-            //         </div>
-            //     );
+            case 'sequence-diagram':
+                return (
+                    <div className='content__sub-article-container'>
+                        <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src='/img/charity-ux-ui.details.sequence-diagram.png' alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
+                        </div>
+
+                        <p className='content__block-text'>
+                            Это диаграмма используется для визуализации взаимодействия между объектами в системе
+                        </p>
+                    </div>
+                );
+            case 'home-pages':
+                return (
+                    <div className='content__sub-article-container'>
+                        <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src='/img/charity-ux-ui.details.main-page.donor.png' alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src='/img/charity-ux-ui.details.main-page.charity.png' alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
+                        </div>
+
+                        <p className='content__block-text'>
+                            На этих диаграммах показаны основные компоненты <code>home-page</code> для пользователей с ролями <code>"Donor"</code> и <code>"Charity"</code>, такие как навигационное меню, content-layout и другие интерактивные функции, а также дается краткое объяснение их функциональности
+                        </p>
+
+                        <p className='content__block-text'>
+                            ddd
+                        </p>
+                    </div>
+                );
+            case 'site-map':
+                return (
+                    <div className='content__sub-article-container'>
+                        <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src='/img/charity-ux-ui.details.site-map.png' alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
+                        </div>
+
+                        <p className='content__block-text'>
+                            На этой диаграмме показана взаимосвязь между главными страницами и то, как пользователи могут перемещаться по приложению. На ней представлен обзор ключевых функций предлагаемой системы
+                        </p>
+                    </div>
+                );
+            case 'user-interaction-flow':
+                return (
+                    <div className='content__sub-article-container'>
+                        <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src='/img/charity-ux-ui.details.user-interaction-flow.png' alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
+                        </div>
+
+                        <p className='content__block-text'>
+                            На этой диаграмме показано структурное представление внешнего вида страниц и расположения компонентов на нем, а также возможные сценарии взаимодействия пользователя с экранами приложений и реакции приложения на различные действия, выполняемые пользователем
+                        </p>
+                    </div>
+                );
             default:
                 return <p>Контент для sub-article не определен</p>;
         }
@@ -154,22 +257,22 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
             case 'overview':
                 return (
                     <div className='content__block-description'>
+                        <p className='content__block-quote'>
+                            <blockquote>
+                                UI для остальных страниц находится в <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
+                            </blockquote>
+                        </p>
+                        
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
-                                    <img src='' alt='img' className='content__block-image' />
+                                    <img src='/img/charity-ux-ui.demo.png' alt='img' className='content__block-image' />
                                     {/* <figcaption className='content__block-caption'>
                                         This is a img.
                                     </figcaption> */}
                                 </figure>
                             </div>
                         </div>
-
-                        <p className='content__block-quote'>
-                            <blockquote>
-                                Проект из универа, курсовая по UX/UI-дизайну
-                            </blockquote>
-                        </p>
                         
                         <p className='content__block-text'>
                             UX/UI прототип сервиса с учетем <a href='https://aws.amazon.com/what-is/sdlc/'>SDLC</a> / <a href='https://habr.com/ru/articles/52681/'>SRS</a>

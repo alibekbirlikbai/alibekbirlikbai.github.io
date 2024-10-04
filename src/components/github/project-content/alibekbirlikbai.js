@@ -14,9 +14,9 @@ const articles = [
         title: 'Детали', 
         id: 'details',
         subArticles: [
-            { title: 'readme_update.yaml (workflow)', id: 'workflow-readme-update' },
-            { title: 'merge_branch.yaml (workflow)', id: 'workflow-merge-branch' },
             { title: 'GraphQL запрос', id: 'query-graphql' },
+            { title: 'merge_branch.yaml (workflow)', id: 'workflow-merge-branch' },
+            { title: 'readme_update.yaml (workflow)', id: 'workflow-readme-update' },
         ]
     },
 ];
@@ -41,10 +41,15 @@ function GithubReadmeProject({ currentProject, onUpdateArticles }) {
         });
 
         // это для ссылок (html)
-        const links = document.querySelectorAll('main.a');
-            links.forEach(link => {
-            link.setAttribute('target', '_blank');
-            });
+        const links = document.querySelectorAll('a');
+
+        links.forEach(link => {
+            const isInsideExcludedTags = link.closest('aside') || link.closest('nav');
+
+            if (!isInsideExcludedTags) {
+                link.setAttribute('target', '_blank');
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -70,140 +75,167 @@ function GithubReadmeProject({ currentProject, onUpdateArticles }) {
 
     const renderSubArticleContent = (subArticleId) => {
         switch (subArticleId) {
-            case 'workflow-merge-branch':
+            case 'workflow-readme-update':
                 return (
                     <div className='content__sub-article-container'>
-                        {renderCodeBlock(`name: Merge 'Dev' to 'Test'
+                        {renderCodeBlock(`name: Update README
 
 on:
   push:
     branches:
-      - dev
+      - test
+      - main
   workflow_dispatch:
   schedule:
     - cron: '8,28,48 * * * *'
 
 jobs:
-  merge_dev_to_test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Check out repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: Set up Git for merging
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - uses: actions/cache@v2
+        name: Configure pip caching
+        with:
+          path: ~/.cache/pip
+          key: \${{ runner.os }}-pip-\${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            \${{ runner.os }}-pip-
+
+      - name: Install Python dependencies
         run: |
+          python -m pip install -r requirements.txt
+
+      - name: Update README, pull requests, and commits
+        env:
+          REPO_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        run: |-
+          python build_readme.py
+          cat README.md
+          cat md/pull_requests.md
+          cat md/commits.md
+          cat md/releases.md
+
+      - name: Commit and push if changed
+        run: |-
+          git diff
           git config --global user.email "actions@users.noreply.github.com"
-          git config --global user.name "push-bot"
+          git config --global user.name "readme-bot"
+          git add -A
+          git commit -m "feat(readme-bot): auto-update content" || exit 0
+          git push`, 'yaml', 'workflow-readme-update')}
+                    </div>
+                );
+            case 'workflow-merge-branch':
+                return (
+                    <div className='content__sub-article-container'>
+                        {renderCodeBlock(`name: Merge 'Dev' to 'Test'
+        
+on:
+    push:
+    branches:
+        - dev
+    workflow_dispatch:
+    schedule:
+    - cron: '8,28,48 * * * *'
 
-      - name: Merge 'dev' into 'test'
+jobs:
+    merge_dev_to_test:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+
+        - name: Set up Git for merging
         run: |
-          git checkout test
-          git merge origin/dev --strategy-option theirs || (echo "Conflicts detected, attempting to resolve..." && git merge --abort && exit 1)
-          git push origin test
+            git config --global user.email "actions@users.noreply.github.com"
+            git config --global user.name "push-bot"
 
-      - name: Trigger Update README workflow
+        - name: Merge 'dev' into 'test'
+        run: |
+            git checkout test
+            git merge origin/dev --strategy-option theirs || (echo "Conflicts detected, attempting to resolve..." && git merge --abort && exit 1)
+            git push origin test
+
+        - name: Trigger Update README workflow
         if: success()  # Only trigger if the merge was successful
         run: |
-          curl -X POST \
+            curl -X POST \
             -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/alibekbirlikbai/alibekbirlikbai/actions/workflows/readme_update.yaml/dispatches \
             -d '{"ref": "test"}'`, 'yaml', 'workflow-merge-branch')}
                         </div>
-                    );
-            // case 'query-graphql':
-            //     return (
-            //         <div className='content__sub-article-container'>
-
-            //         </div>
-            //     );
-            case 'workflow-readme-update':
-                return (
-                    <div className='content__sub-article-container'>
-                        {renderCodeBlock(`name: Merge 'Dev' to 'Test'
-
-on:
-  push:
-    branches:
-      - dev
-  workflow_dispatch:
-  schedule:
-    - cron: '8,28,48 * * * *'
-
-jobs:
-  merge_dev_to_test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up Git for merging
-        run: |
-          git config --global user.email "actions@users.noreply.github.com"
-          git config --global user.name "push-bot"
-
-      - name: Merge 'dev' into 'test'
-        run: |
-          git checkout test
-          git merge origin/dev --strategy-option theirs || (echo "Conflicts detected, attempting to resolve..." && git merge --abort && exit 1)
-          git push origin test
-
-      - name: Trigger Update README workflow
-        if: success()  # Only trigger if the merge was successful
-        run: |
-          curl -X POST \
-            -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/alibekbirlikbai/alibekbirlikbai/actions/workflows/readme_update.yaml/dispatches \
-            -d '{"ref": "test"}'`, 'yaml', 'workflow-readme-update')}
-                        </div>
-                    );
-            
+                );
             case 'query-graphql':
                 return (
                     <div className='content__sub-article-container'>
-                        {renderCodeBlock(`name: Merge 'Dev' to 'Test'
-
-on:
-push:
-branches:
-  - dev
-workflow_dispatch:
-schedule:
-- cron: '8,28,48 * * * *'
-
-jobs:
-merge_dev_to_test:
-runs-on: ubuntu-latest
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v2
-    with:
-      fetch-depth: 0
-
-  - name: Set up Git for merging
-    run: |
-      git config --global user.email "actions@users.noreply.github.com"
-      git config --global user.name "push-bot"
-
-  - name: Merge 'dev' into 'test'
-    run: |
-      git checkout test
-      git merge origin/dev --strategy-option theirs || (echo "Conflicts detected, attempting to resolve..." && git merge --abort && exit 1)
-      git push origin test
-
-  - name: Trigger Update README workflow
-    if: success()  # Only trigger if the merge was successful
-    run: |
-      curl -X POST \
-        -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" \
-        -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/alibekbirlikbai/alibekbirlikbai/actions/workflows/readme_update.yaml/dispatches \
-        -d '{"ref": "test"}'`, 'yaml', 'query-graphql')}
+                        {renderCodeBlock(`query {
+  search(first: 100, type: REPOSITORY, query: "is:public owner:alibekbirlikbai sort:updated", after: AFTER) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      __typename
+      ... on Repository {
+        name
+        url
+        pullRequests(first: 100, states: [OPEN, MERGED], orderBy: {field: UPDATED_AT, direction: DESC}) {
+          nodes {
+            title
+            url
+            state
+            updatedAt
+            createdAt
+            merged
+            mergedAt
+            author {
+              login
+            }
+            commits {
+              totalCount
+            }
+          }
+        }
+        refs(first: 100, refPrefix: "refs/heads/") {
+          nodes {
+            name
+            target {
+              ... on Commit {
+                history(first: 1) {  # Последний коммит для текущей ветки
+                  totalCount
+                  nodes {
+                    message
+                    committedDate
+                    url
+                    author {
+                      user {
+                        login
+                      }
+                    }
+                    oid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`, 'graphql', 'query-graphql')}
                     </div>
                 );
             default:
