@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import LeftSidebar from '../components/left-sidebar';
-import RightSidebar from '../components/right-sidebar';
-import Content from '../components/content';
-import LoadingSection from '../components/loading-section';
+import LeftSidebar from '../components/sidebars/left-sidebar';
+import RightSidebar from '../components/sidebars/right-sidebar';
+import Content from '../components/github/projects/content-structure';
+import LoadingSection from '../components/html/loading-section';
 
 function HomePage({ projects, defaultProject }) {
   const [currentProject, setCurrentProject] = useState(null);

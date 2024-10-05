@@ -1,3 +1,4 @@
+// gap
 $title-gap: .5em
 $header-block-gap: .7em
 $header-content-gap: 1.3em
@@ -10,6 +11,9 @@ $feature-list-gap: .15em
 
 $sub-article-header-gap: .5em
 $sub-articles-beetween-gap: 1.6em
+
+// color 
+$content-highlight-color: #ededed
 
 .app-content
     display: flex
@@ -55,7 +59,7 @@ $sub-articles-beetween-gap: 1.6em
                         li
                             font-style: italic
                             border-radius: 5px
-                            background-color: #ededed
+                            background-color: $content-highlight-color
                             padding: .15em .2em
                             margin: 0
 
@@ -125,15 +129,23 @@ $sub-articles-beetween-gap: 1.6em
                         display: flex
                         flex-direction: column
                         gap: $block-item-gap
-                        //border: 3px dashed red
+                        // border: 3px dashed red
 
                         .content__block-image
-                            width: 100%
+                            width: 95%
+                            margin: 0 auto
 
                             //border: 3px dashed red
 
                         .content__block-video
-                            //border: 3px dashed red
+                            width: 100% // Ensures video container takes the width of the media block
+                            max-width: 100% // Prevents the video from exceeding container width
+                            //border: 3px dashed red;
+                            margin: 0 auto
+
+                            .content__block-video-element
+                                width: 100% // Video element takes the full width of its container
+                                max-width: 100% // Prevent video from exceeding the parent container
 
                         figure
                             img,
@@ -154,22 +166,6 @@ $sub-articles-beetween-gap: 1.6em
 
                     .content__block-text::after
                         content: "."
-
-                    .content__block-quote
-                        blockquote
-                            background-color: #ededed
-                            padding: 15px
-                            border-radius: 0 5px 5px 0
-                            border-left: .3em blue solid
-
-                        blockquote p::before 
-                            content: '\201C'
-
-                        blockquote p::after 
-                            content: '\201D'
-
-                        blockquote + p 
-                            text-align: right
 
                     .content__block-code
                         position: relative
@@ -200,9 +196,49 @@ $sub-articles-beetween-gap: 1.6em
 .content__block-feature-item,
 .content__block-text
     code
-        background-color: #ededed
+        background-color: $content-highlight-color
         padding: 0px 4px
         padding-bottom: 1.5px
         border-radius: 4px
         font-size: 95%
         font-weight: 700
+
+blockquote
+    code
+        padding: 0 2px
+
+// .content__block-description
+//     .content__block-quote
+//         blockquote
+//             code
+//                 background-color: $content-highlight-color
+//                 padding: 0px 4px
+//                 padding-bottom: 1.5px
+//                 border-radius: 4px
+//                 font-size: 95%
+//                 font-weight: 700
+
+.content__details,
+.content__block-description,
+.content__sub-articles,
+.content__sub-article-container
+    .content__block-quote
+        blockquote
+            background-color: $content-highlight-color
+            padding: 15px
+            border-radius: 0 5px 5px 0
+            border-left: .3em blue solid
+
+            blockquote p::before 
+            content: '\201C'
+
+            blockquote p::after 
+            content: '\201D'
+
+            blockquote + p 
+            // text-align: right
+
+.content__block-description
+    .content__block-quote
+        blockquote
+            border-color: #b56aee

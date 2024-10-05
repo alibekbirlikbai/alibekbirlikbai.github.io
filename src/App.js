@@ -7,11 +7,11 @@ import './sass/projects.sass';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import Header from './components/navigation';
+import Header from './pages/navigation';
 import HomePage from './pages/home-page';
 import ContactsPage from './pages/contacts-page';
 
-import { fetchGithubData } from './components/github/fetch-projects';
+import { fetchGithubData } from './components/github/github-api-integration/fetch-projects';
 
 function App() {
   const [projects, setProjects] = useState([]);
