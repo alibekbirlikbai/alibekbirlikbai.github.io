@@ -31,7 +31,8 @@ function App() {
     loadProjects();
   }, []);
 
-  const defaultProject = projects.length > 0 ? projects[0].name : null;
+  // const defaultProject = projects.length > 0 ? projects[0].name : null;
+  const defaultProject = projects.length > 0 ? 'alibekbirlikbai.github.io' : null;
 
   // Render a loading state until projects are fetched
   if (isLoading) {
@@ -54,7 +55,11 @@ function App() {
           />
           <Route 
             path='/contacts'
-            element={<ContactsPage/>}
+            element={<ContactsPage projects={projects} defaultProject={defaultProject}/>}
+          />
+          <Route 
+            path='/projects'
+            element={<HomePage projects={projects} defaultProject={defaultProject}/>} 
           />
           <Route 
             path="/projects/:repo" 

@@ -1,19 +1,19 @@
 // gap
-$title-gap: .5em
-$header-block-gap: .7em
-$header-content-gap: 1.3em
+$header-title-gap: 1.8em
 
-$content-block-gap: 1.4em
-$block-item-gap: 1em
+$title-gap: 1em
+
+$content-block-gap: 0em
+$block-item-gap: 1.5em
 $github-content-block-gap: .3em
-
-$feature-list-gap: .15em
 
 $sub-article-header-gap: .5em
 $sub-articles-beetween-gap: 1.6em
 
+$blockquote-color: #2f81f7
+
 // color 
-$content-highlight-color: #ededed
+$content-highlight-color: hsla(215,8%,47%,.4)
 
 .app-content
     display: flex
@@ -24,23 +24,27 @@ $content-highlight-color: #ededed
     .content
         display: flex
         flex-direction: column
-        gap: $header-content-gap
+        gap: $header-title-gap
 
         //  border: 3px dashed red
 
         .content__header
             display: flex
             flex-direction: column
-            gap: $title-gap + .2em
+            gap: $header-title-gap
 
             //border: 3px dashed blue
 
             .content__title
+            // background-color: red
+
+            .content__title:first-line
+                line-height: 100% !important
 
             .content__details
                 display: flex
                 flex-direction: column
-                gap: $header-block-gap
+                gap: $header-title-gap
                 //border: 3px dashed black
 
                 .content__stack
@@ -57,14 +61,17 @@ $content-highlight-color: #ededed
                         //border: 3px dashed red
 
                         li
-                            font-style: italic
+                            // font-style: italic
+                            font-weight: 400
                             border-radius: 5px
                             background-color: $content-highlight-color
-                            padding: .15em .2em
+                            padding: .15em .4em
                             margin: 0
 
                 .content__version-control
-                    //border: 3px dashed red
+                    // padding: 1em 1.5em
+                    // background-color: #282e33
+                    // border-radius: 6px
 
                     .version-control
                         display: flex
@@ -75,6 +82,7 @@ $content-highlight-color: #ededed
                         .version-control__block
                             display: flex
                             flex-direction: row
+                            font-weight: 400
 
                             &:last-of-type
                                 display: flex
@@ -106,6 +114,7 @@ $content-highlight-color: #ededed
                 //border: 3px dashed red
 
                 .content__block-title
+                    border-bottom: 2px solid #30363d
 
                 .content__block-description,
                 .content__sub-articles,
@@ -178,13 +187,16 @@ $content-highlight-color: #ededed
 
                             .content__code-language
                                 font-style: italic
+                        pre
+                            code
+                                margin-top: .3em
 
                     .content__block-feature-list
+                        // font-style: italic
                         list-style-type: disc
                         padding-left: 30px
                         display: flex
                         flex-direction: column
-                        gap: $feature-list-gap
 
                         .content__block-feature-item
                             margin-bottom: 5px
@@ -197,37 +209,29 @@ $content-highlight-color: #ededed
 .content__block-text
     code
         background-color: $content-highlight-color
-        padding: 0px 4px
-        padding-bottom: 1.5px
+        padding: .1em .4em
         border-radius: 4px
         font-size: 95%
-        font-weight: 700
+        // font-weight: 700
 
-blockquote
-    code
-        padding: 0 2px
+.content__block-description
+    .content__block-quote
+        blockquote
+            code
+                background-color: $content-highlight-color
+                padding: .1em .4em
+                border-radius: 4px
+                font-size: 95%
 
-// .content__block-description
-//     .content__block-quote
-//         blockquote
-//             code
-//                 background-color: $content-highlight-color
-//                 padding: 0px 4px
-//                 padding-bottom: 1.5px
-//                 border-radius: 4px
-//                 font-size: 95%
-//                 font-weight: 700
-
-.content__details,
 .content__block-description,
 .content__sub-articles,
 .content__sub-article-container
     .content__block-quote
         blockquote
-            background-color: $content-highlight-color
-            padding: 15px
+            // background-color: $content-highlight-color
+            padding: .5rem 1rem
             border-radius: 0 5px 5px 0
-            border-left: .3em blue solid
+            border-left: .25em $blockquote-color solid
 
             blockquote p::before 
             content: '\201C'
@@ -238,7 +242,10 @@ blockquote
             blockquote + p 
             // text-align: right
 
-.content__block-description
-    .content__block-quote
-        blockquote
-            border-color: #b56aee
+            .quote-title
+                color: $blockquote-color
+                font-weight: 600
+
+.content__details
+    blockquote
+        color: #848d97

@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
+// import scrollToSection from '../html/scrollToSection'
+
 function formatDescription(description) {
   if (!description.endsWith(')')) {
       return description;
@@ -32,7 +34,7 @@ function formatDescription(description) {
 }
 
 function RightSidebar({ currentProject, allArticles = [] }) {
-  const [activeArticle, setActiveArticle] = useState('github');
+  const [activeArticle, setActiveArticle] = useState('version-control');
   const [activeSubArticle, setActiveSubArticle] = useState('');
   const [openSubList, setOpenSubList] = useState({});
 
@@ -90,7 +92,7 @@ function RightSidebar({ currentProject, allArticles = [] }) {
       });
   
       if (!currentArticleFound && scrollPosition <= 100) {
-        setActiveArticle('github');
+        setActiveArticle('version-control');
       }
     };
 
@@ -155,6 +157,7 @@ function RightSidebar({ currentProject, allArticles = [] }) {
   return (
     <aside className='sidebar-right'>
       <p className='sidebar-right__title'>
+        {/* {currentProject.name} */}
         {formatDescription(currentProject.description)}
       </p>
 
@@ -162,16 +165,23 @@ function RightSidebar({ currentProject, allArticles = [] }) {
         {allArticles.map(article => (
           <li className='sidebar-right__list-item' key={article.id}>
             <div className='sidebar-right__sub-list-header'>
-              {article.subArticles && article.subArticles.length > 0 && (
+              {/* {article.subArticles && article.subArticles.length > 0 && (
                 <span 
                   className={`dropdown-icon ${openSubList[article.id] ? 'open' : ''}`}
                   onClick={() => toggleSubList(article.id)}
                 >
                   <FontAwesomeIcon icon={faAngleUp} />
                 </span>
-              )}
+              )} */}
 
-              <a href={`#${article.id}`} className={`sidebar-right__link ${activeArticle === article.id ? 'active' : ''}`}>
+              <a 
+                href={`#${article.id}`} 
+                className={`sidebar-right__link ${activeArticle === article.id ? 'active' : ''}`}
+                // onClick={(event) => {
+                //   event.preventDefault()
+                //   scrollToSection(article.id)}
+                // }  
+              >
                 {article.title}
               </a>
             </div>            
@@ -184,6 +194,10 @@ function RightSidebar({ currentProject, allArticles = [] }) {
                     <a
                       href={`#${subArticle.id}`}
                       className={`sidebar-right__link ${activeSubArticle === subArticle.id ? 'sub-article' : ''}`}
+                      // onClick={(event) => {
+                      //   event.preventDefault()
+                      //   scrollToSection(subArticle.id)}
+                      // }
                     >
                       {subArticle.title}
                     </a>

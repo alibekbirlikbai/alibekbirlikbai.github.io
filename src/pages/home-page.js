@@ -40,16 +40,17 @@ function HomePage({ projects, defaultProject }) {
         <LoadingSection isLoading={isProjectLoading || isArticlesLoading}>
           <Content 
             currentProject={currentProject} 
-            onUpdateArticles={handleArticlesUpdate} 
+            onUpdateArticles={handleArticlesUpdate}
+            currentArticles={currentArticles}
           />
         </LoadingSection>
         
-        <LoadingSection isLoading={isArticlesLoading}>
+        {/* <LoadingSection isLoading={isArticlesLoading}>
           <RightSidebar
             currentProject={currentProject}
             allArticles={currentArticles}
           />
-        </LoadingSection>
+        </LoadingSection> */}
       </div>
     </LoadingSection>
   );

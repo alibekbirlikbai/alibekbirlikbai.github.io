@@ -7,12 +7,12 @@ const excludedProjects = [
 ];
 
 const projectsOrder = [
+    'alibekbirlikbai.github.io',
     'alibekbirlikbai',
-    'transaction-manager',
     'cloud-url-storage',
+    'transaction-manager',
     'news-api',
     'charity-ux-ui',
-    'alibekbirlikbai.github.io',
 ];
 
 function formatDescription(description) {

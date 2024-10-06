@@ -4,11 +4,12 @@ import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
+import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Github', id: 'github' },
+    { title: 'Version Control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
     { title: 'Описание', id: 'overview' },
     { title: 'Фичи', id: 'features' },
@@ -258,7 +259,7 @@ jobs:
                     {
                         subArticles.map(subArticle => (
                             <div className='sub-article' id={subArticle.id} key={subArticle.id}>
-                                <h3>{subArticle.title}</h3>
+                                <h3 className='sub-article-title'>{subArticle.title}</h3>
         
                                 {renderSubArticleContent(subArticle.id)}
                             </div>
@@ -270,49 +271,18 @@ jobs:
         
 
         switch (articleId) {
-            case 'github':
+            case 'version-control':
                 return (
                     <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
-                            <ul className='stack-list'>
-
-                                {currentProject.topics.map(
-                                    skill => (
-                                        <li className='stack-list__item'>
-                                            {skill
-                                                .replace(/-/g, ' ')
-                                                .replace(/\b\w+/g, word => word.toLowerCase() === 'api' ? 'API' : word.charAt(0).toUpperCase() + word.slice(1)) 
-                                            }
-                                        </li>
-                                    )
-                                )}
-
-                            </ul>
+                            <PrioritizeSpecificStack currentProject={currentProject}/>
                         </div>
-
-                        <p className='content__block-quote'>
-                            <blockquote>
-                                Проект вдохновлен <a href='https://github.com/simonw/simonw'>github.com/simonw</a> и статьей <a href='https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/'>"Building a self-updating profile README for GitHub"</a>
-                            </blockquote>
-                        </p>
 
                         <div className='content__version-control'>
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        github:&nbsp;
-                                    </div>
-
-                                    <div className='version-control__block-container'>
-                                        <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.homepage}
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* <div className='version-control__block'>
-                                    <div className='version-control__block-title'>
-                                        deployment:&nbsp;
+                                        Github:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -320,16 +290,37 @@ jobs:
                                             {currentProject.full_name}
                                         </a>
                                     </div>
-                                </div> */}
+                                </div>
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        pull-request:&nbsp;
+                                        Deploy:&nbsp;
+                                    </div>
+
+                                    <div className='version-control__block-container'>
+                                        <a href="https://github.com/alibekbirlikbai/alibekbirlikbai/actions" target='_blank' rel='noopener noreferrer'>
+                                            alibekbirlikbai/actions
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className='version-control__block'>
+                                    <div className='version-control__block-title'>
+                                        Pull-Request:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <PullRequestList currentProject={currentProject} />
                                     </div>
+                                </div>
+
+                                <div className='version-control__block'>
+                                    <p className='content__block-quote'>
+                                        <blockquote>
+                                            {/* <span className='quote-title'>Note:</span>  */}
+                                            Проект основан на <a href='https://github.com/simonw/simonw'>github.com/simonw</a> и статье <a href='https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/'>"Building a self-updating profile README for GitHub"</a>
+                                        </blockquote>
+                                    </p>
                                 </div>
 
                                 {/* <div className='version-control__block text-italic'>
@@ -351,7 +342,7 @@ jobs:
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                *нужно делать <b>rebase/merge</b> при <code>push</code> из-за github бота (readme-bot) который периодический обновляет ветку 
+                                <span className='quote-title'>Note:</span> <code>rebase/merge</code> при <code>push</code> делается из-за github бота (readme-bot), который периодический обновляет ветку 
                             </blockquote>
                         </p>
 
@@ -420,10 +411,10 @@ jobs:
 
                         <ul className='content__block-feature-list'>
                             <li className='content__block-feature-item'>Запланированное обновление Readme.md по <a href='https://medium.com/@burakkara010/creating-a-recurring-github-actions-workflow-with-cron-jobs-15ce9e41f417' target='_blank'>расписанию</a> каждые 20 мин</li>
-                            <li className='content__block-feature-item'>Триггер на обновление Readme.md при изменениях на удаленной ветке (<code>main</code> / <code>test</code>)</li>
+                            <li className='content__block-feature-item'>Триггер на обновление Readme.md при изменениях на удаленной ветке (<code>main</code>/<code>test</code>)</li>
                             <li className='content__block-feature-item'>Слияние веток dev / test при изменениях на ветке <code>dev</code></li>
                             <li className='content__block-feature-item'>Cкрипт на Python для получения последних commit и pull-request аккаунта (запрос через <a href='https://docs.github.com/en/graphql/overview/about-the-graphql-api'>Github GraphQL API</a>)</li>
-                            <li className='content__block-feature-item'>Интеграция <a href='https://github.com/orgs/community/discussions/42133'>Github PAT токена как env variable</a></li>
+                            <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> как <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
                         </ul>
                     </div>
                 );
@@ -443,16 +434,16 @@ jobs:
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>
+                <h2 className='content__title' id='project-title'>
                     {formatContentDescription(currentProject.description)}
-                </h1>
+                </h2>
 
-                {renderArticleContent('github')}
+                {renderArticleContent('version-control')}
             </div>
 
             <div className='content__body'>
                 {articles
-                    .filter(article => article.id != 'github')
+                    .filter(article => article.id != 'version-control')
                     .map((article, index) => (
                         <article className='content__block' id={article.id} key={article.id}>
                             <h2 className='content__block-title' id={article.id} >

@@ -10,7 +10,7 @@ function Navigation() {
                     <li className='navigation__item'>
                         {/* Use NavLink to apply active class when the route matches */}
                         <NavLink 
-                            to="/" 
+                            to="/projects" 
                             className={({ isActive }) =>
                                 isActive || location.pathname.startsWith('/projects') ? 'navigation__link active' : 'navigation__link'
                             }
@@ -25,7 +25,7 @@ function Navigation() {
                             to="/contacts" 
                             className='navigation__link'
                         >
-                            Контакты
+                            Контакты / CV
                         </NavLink>
                     </li>
                 </ul>

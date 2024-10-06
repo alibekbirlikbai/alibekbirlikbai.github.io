@@ -93,7 +93,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
 
                         <p className='content__block-text'>
-                            Это диаграмма используется для визуализации взаимодействия между объектами в системе
+                            Визуализация взаимодействия между объектами в системе
                         </p>
                     </div>
                 );
@@ -112,7 +112,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
 
                         <p className='content__block-text'>
-                            На этих диаграммах показаны основные компоненты <code>home-page</code> для пользователей с ролями <code>"Donor"</code> и <code>"Charity"</code>, такие как навигационное меню, content-layout и другие интерактивные функции, а также дается краткое объяснение их функциональности
+                            Основные компоненты <code>home-page</code> для пользователей с ролями <code>"Donor"</code> и <code>"Charity"</code>, такие как <i>навигационное меню, content-layout</i> и другие интерактивные функции, а также краткое объяснение их функциональности
                         </p>
                     </div>
                 );
@@ -131,7 +131,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
 
                         <p className='content__block-text'>
-                            На этой диаграмме показана взаимосвязь между главными страницами и то, как пользователи могут перемещаться по приложению. На ней представлен обзор ключевых функций предлагаемой системы
+                            Взаимосвязь между главными страницами и то, как пользователи могут перемещаться по приложению. Представлен обзор ключевых функций предлагаемой системы
                         </p>
                     </div>
                 );
@@ -150,7 +150,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
 
                         <p className='content__block-text'>
-                            На этой диаграмме показано структурное представление внешнего вида страниц и расположения компонентов на нем, а также возможные сценарии взаимодействия пользователя с экранами приложений и реакции приложения на различные действия, выполняемые пользователем
+                            Структурное представление внешнего вида страниц и расположения компонентов на нем, а также возможные сценарии взаимодействия пользователя с экранами приложений и реакции приложения на различные действия со стороны пользователя
                         </p>
                     </div>
                 );
@@ -246,7 +246,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                UI для остальных страниц находится в <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
+                                UI для остальных страниц - <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
                             </blockquote>
                         </p>
                         
