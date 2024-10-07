@@ -4,11 +4,12 @@ import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
+import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Github', id: 'github' },
+    { title: 'Version Control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
     { title: 'Описание', id: 'overview' },
     // { title: 'Фичи', id: 'features' },
@@ -18,7 +19,7 @@ const articles = [
         subArticles: [
             { title: 'Sequence diagram', id: 'sequence-diagram' },
             { title: 'Home pages', id: 'home-pages' },
-            { title: 'Site map', id: 'site-map' },
+            // { title: 'Site map', id: 'site-map' },
             { title: 'User interaction flow', id: 'user-interaction-flow' },
         ]
     },
@@ -116,25 +117,25 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </p>
                     </div>
                 );
-            case 'site-map':
-                return (
-                    <div className='content__sub-article-container'>
-                        <div className='content__block-media'>
-                            <div className='content__block-image'>
-                                <figure>
-                                    <img src='/img/charity-ux-ui.details.site-map.png' alt='img' className='content__block-image' />
-                                    {/* <figcaption className='content__block-caption'>
-                                        This is a img.
-                                    </figcaption> */}
-                                </figure>
-                            </div>
-                        </div>
+            // case 'site-map':
+            //     return (
+            //         <div className='content__sub-article-container'>
+            //                  <div className='content__block-image'>
+            //            <div className='content__block-media'>
+            //                     <figure>
+            //                         <img src='/img/charity-ux-ui.details.site-map.png' alt='img' className='content__block-image' />
+            //                         {/* <figcaption className='content__block-caption'>
+            //                             This is a img.
+            //                         </figcaption> */}
+            //                     </figure>
+            //                 </div>
+            //             </div>
 
-                        <p className='content__block-text'>
-                            Взаимосвязь между главными страницами и то, как пользователи могут перемещаться по приложению. Представлен обзор ключевых функций предлагаемой системы
-                        </p>
-                    </div>
-                );
+            //             <p className='content__block-text'>
+            //                 Взаимосвязь между главными страницами и то, как пользователи могут перемещаться по приложению. Представлен обзор ключевых функций предлагаемой системы
+            //             </p>
+            //         </div>
+            //     );
             case 'user-interaction-flow':
                 return (
                     <div className='content__sub-article-container'>
@@ -150,7 +151,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
 
                         <p className='content__block-text'>
-                            Структурное представление внешнего вида страниц и расположения компонентов на нем, а также возможные сценарии взаимодействия пользователя с экранами приложений и реакции приложения на различные действия со стороны пользователя
+                            Структурное представление внешнего вида страниц и расположения компонентов на нем, а также возможные сценарии взаимодействия с экранами приложений и реакции приложения на различные действия со стороны пользователя
                         </p>
                     </div>
                 );
@@ -184,36 +185,23 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
         
 
         switch (articleId) {
-            case 'github':
+            case 'version-control':
                 return (
                     <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
-                            <ul className='stack-list'>
-
-                                {currentProject.topics.map(
-                                    skill => (
-                                        <li className='stack-list__item'>
-                                            {skill
-                                                .replace(/-/g, ' ')
-                                                .replace(/\b\w+/g, word => word.toLowerCase() === 'api' ? 'API' : word.charAt(0).toUpperCase() + word.slice(1)) 
-                                            }
-                                        </li>
-                                    )
-                                )}
-
-                            </ul>
+                            <PrioritizeSpecificStack currentProject={currentProject}/>
                         </div>
 
                         <div className='content__version-control'>
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        github:&nbsp;
+                                        Github:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.full_name}
+                                            {currentProject.name}
                                         </a>
                                     </div>
                                 </div>
@@ -246,7 +234,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                UI для остальных страниц - <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
+                                <span className='quote-title'>Note:</span> UI для остальных страниц - <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
                             </blockquote>
                         </p>
                         
@@ -327,12 +315,12 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                     {formatContentDescription(currentProject.description)}
                 </h1>
 
-                {renderArticleContent('github')}
+                {renderArticleContent('version-control')}
             </div>
 
             <div className='content__body'>
                 {articles
-                    .filter(article => article.id != 'github')
+                    .filter(article => article.id != 'version-control')
                     .map((article, index) => (
                         <article className='content__block' id={article.id} key={article.id}>
                             <h2 className='content__block-title' id={article.id} >

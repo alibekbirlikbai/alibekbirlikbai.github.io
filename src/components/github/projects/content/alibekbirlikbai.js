@@ -18,8 +18,8 @@ const articles = [
         id: 'details',
         subArticles: [
             { title: 'GraphQL запрос', id: 'query-graphql' },
-            { title: 'merge_branch.yaml (workflow)', id: 'workflow-merge-branch' },
-            { title: 'readme_update.yaml (workflow)', id: 'workflow-readme-update' },
+            { title: 'Merge Branch Workflow (merge_branch.yaml)', id: 'workflow-merge-branch' },
+            { title: 'Automated README Update Workflow (readme_update.yaml)', id: 'workflow-readme-update' },
         ]
     },
 ];
@@ -287,7 +287,7 @@ jobs:
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.full_name}
+                                            {currentProject.name}
                                         </a>
                                     </div>
                                 </div>
@@ -298,8 +298,8 @@ jobs:
                                     </div>
 
                                     <div className='version-control__block-container'>
-                                        <a href="https://github.com/alibekbirlikbai/alibekbirlikbai/actions" target='_blank' rel='noopener noreferrer'>
-                                            alibekbirlikbai/actions
+                                        <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
+                                            {currentProject.homepage}
                                         </a>
                                     </div>
                                 </div>
@@ -414,7 +414,7 @@ jobs:
                             <li className='content__block-feature-item'>Триггер на обновление Readme.md при изменениях на удаленной ветке (<code>main</code>/<code>test</code>)</li>
                             <li className='content__block-feature-item'>Слияние веток dev / test при изменениях на ветке <code>dev</code></li>
                             <li className='content__block-feature-item'>Cкрипт на Python для получения последних commit и pull-request аккаунта (запрос через <a href='https://docs.github.com/en/graphql/overview/about-the-graphql-api'>Github GraphQL API</a>)</li>
-                            <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> как <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
+                            <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> / <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
                         </ul>
                     </div>
                 );

@@ -2,7 +2,7 @@ const prioritizedStacks = ['open-source-contribution', 'university-project'];
 
 const styles = {
     openSource: {
-        backgroundColor: '#ab7df8',
+        backgroundColor: '#785dc8',
     },
     universityProject: {
         backgroundColor: '#2f81f7',

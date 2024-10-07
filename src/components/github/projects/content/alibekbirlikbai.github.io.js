@@ -4,11 +4,12 @@ import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
+import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Github', id: 'github' },
+    { title: 'Version Control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
     { title: 'Описание', id: 'overview' },
     { title: 'Фичи', id: 'features' },
@@ -111,55 +112,42 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
         
 
         switch (articleId) {
-            case 'github':
+            case 'version-control':
                 return (
                     <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
-                            <ul className='stack-list'>
-
-                                {currentProject.topics.map(
-                                    skill => (
-                                        <li className='stack-list__item'>
-                                            {skill
-                                                .replace(/-/g, ' ')
-                                                .replace(/\b\w+/g, word => word.toLowerCase() === 'api' ? 'API' : word.charAt(0).toUpperCase() + word.slice(1)) 
-                                            }
-                                        </li>
-                                    )
-                                )}
-
-                            </ul>
+                            <PrioritizeSpecificStack currentProject={currentProject}/>
                         </div>
 
                         <div className='content__version-control'>
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        github:&nbsp;
+                                        Github:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.full_name}
+                                            {currentProject.name}
                                         </a>
                                     </div>
                                 </div>
 
-                                {/* <div className='version-control__block'>
+                                <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        deployment:&nbsp;
+                                        Deploy:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
-                                        <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.full_name}
+                                        <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
+                                            {currentProject.homepage}
                                         </a>
                                     </div>
-                                </div> */}
+                                </div>
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        pull-request:&nbsp;
+                                        Pull-Request:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -183,6 +171,12 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
             case 'overview':
                 return (
                     <div className='content__block-description'>
+                        <p className='content__block-quote'>
+                            <blockquote>
+                                <span className='quote-title'>Note:</span> Мобильная версия сайта еще в разработке
+                            </blockquote>
+                        </p>
+                        
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
@@ -192,7 +186,7 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
                         </div>
                         
                         <p className='content__block-text'>
-                            Hub для документирования и хостинга проектов
+                            Сайт/Hub для документирования и хостинга проектов
                         </p>
                     </div>
                 );
@@ -232,6 +226,7 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
 
                         <ul className='content__block-feature-list'>
                             <li className='content__block-feature-item'>Скрипт на JavaScript для динамического извлечения и отображения данных о репозиториях аккаунта (запрос через <a href='https://docs.github.com/en/rest?apiVersion=2022-11-28'>Github REST API</a>)</li>
+                            <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> / <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
                         </ul>
                     </div>
                 );
@@ -255,12 +250,12 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
                     {formatContentDescription(currentProject.description)}
                 </h1>
 
-                {renderArticleContent('github')}
+                {renderArticleContent('version-control')}
             </div>
 
             <div className='content__body'>
                 {articles
-                    .filter(article => article.id != 'github')
+                    .filter(article => article.id != 'version-control')
                     .map((article, index) => (
                         <article className='content__block' id={article.id} key={article.id}>
                             <h2 className='content__block-title' id={article.id} >

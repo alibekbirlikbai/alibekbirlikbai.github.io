@@ -4,11 +4,12 @@ import 'highlight.js/styles/atom-one-light.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
+import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Github', id: 'github' },
+    { title: 'Version Control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
     { title: 'Описание', id: 'overview' },
     { title: 'Фичи', id: 'features' },
@@ -170,31 +171,18 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
         
 
         switch (articleId) {
-            case 'github':
+            case 'version-control':
                 return (
                     <div className='content__details' id={articleId} key={articleId}>
                         <div className='content__stack'>
-                            <ul className='stack-list'>
-
-                                {currentProject.topics.map(
-                                    skill => (
-                                        <li className='stack-list__item'>
-                                            {skill
-                                                .replace(/-/g, ' ')
-                                                .replace(/\b\w+/g, word => word.toLowerCase() === 'api' ? 'API' : word.charAt(0).toUpperCase() + word.slice(1)) 
-                                            }
-                                        </li>
-                                    )
-                                )}
-
-                            </ul>
+                            <PrioritizeSpecificStack currentProject={currentProject}/>
                         </div>
 
                         <div className='content__version-control'>
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        github:&nbsp;
+                                        Github:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -206,7 +194,7 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        pull-request:&nbsp;
+                                        Pull-Request:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -232,7 +220,7 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                Идея проекта заключается в разработке прототипа микросервиса, который можно легко интегрировать в уже готовую систему (банк)
+                                <span className='quote-title'>Note:</span> Идея проекта заключается в разработке прототипа микросервиса, который можно легко интегрировать в уже готовую систему (банк)
                             </blockquote>
                         </p>
 
@@ -322,12 +310,12 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
                     {formatContentDescription(currentProject.description)}
                 </h1>
 
-                {renderArticleContent('github')}
+                {renderArticleContent('version-control')}
             </div>
 
             <div className='content__body'>
                 {articles
-                    .filter(article => article.id != 'github')
+                    .filter(article => article.id != 'version-control')
                     .map((article, index) => (
                         <article className='content__block' id={article.id} key={article.id}>
                             <h2 className='content__block-title' id={article.id} >
