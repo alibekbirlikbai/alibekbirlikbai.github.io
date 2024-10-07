@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import LeftSidebar from '../components/left-sidebar';
-import RightSidebar from '../components/right-sidebar';
-import Content from '../components/content';
-import LoadingSection from '../components/loading-section';
+import LeftSidebar from '../components/sidebars/left-sidebar';
+import RightSidebar from '../components/sidebars/right-sidebar';
+import Content from '../components/github/projects/content-structure';
+import LoadingSection from '../components/html/loading-section';
 
 function HomePage({ projects, defaultProject }) {
   const [currentProject, setCurrentProject] = useState(null);
@@ -31,25 +31,28 @@ function HomePage({ projects, defaultProject }) {
   };
 
   return (
-    <div className='app-container' id="home-page">
-      <LoadingSection isLoading={isProjectLoading}>
-        <LeftSidebar projects={projects} />
-      </LoadingSection>
-      
-      <LoadingSection isLoading={isProjectLoading || isArticlesLoading}>
-        <Content 
-          currentProject={currentProject} 
-          onUpdateArticles={handleArticlesUpdate} 
-        />
-      </LoadingSection>
-      
-      <LoadingSection isLoading={isArticlesLoading}>
-        <RightSidebar
-          currentProject={currentProject}
-          allArticles={currentArticles}
-        />
-      </LoadingSection>
-    </div>
+    <LoadingSection>
+      <div className='app-container' id="home-page">
+        <LoadingSection isLoading={isProjectLoading}>
+          <LeftSidebar projects={projects} />
+        </LoadingSection>
+        
+        <LoadingSection isLoading={isProjectLoading || isArticlesLoading}>
+          <Content 
+            currentProject={currentProject} 
+            onUpdateArticles={handleArticlesUpdate}
+            currentArticles={currentArticles}
+          />
+        </LoadingSection>
+        
+        {/* <LoadingSection isLoading={isArticlesLoading}>
+          <RightSidebar
+            currentProject={currentProject}
+            allArticles={currentArticles}
+          />
+        </LoadingSection> */}
+      </div>
+    </LoadingSection>
   );
 }
 

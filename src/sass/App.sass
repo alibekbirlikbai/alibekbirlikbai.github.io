@@ -1,15 +1,22 @@
-$header-height: 100px
+// $header-height: 100px
 
-$sidebar-width-left: 260px
-$sidebar-width-right: 220px
-$space-between-sidebar-and-main: 15%
+$tablet: 1100px
+// $phone: 800px
 
-$laptop: 1100px
+$left-sidebar-width: 300px
 
-$sidebar-width-left_medium: 150px
-$sidebar-width-right_medium: 100px
-$sidebar-width_medium: 300px
-$phone: 800px
+$top-margin: 4em
+$left-sidebar: 21.5vw
+
+$content-space-top: 1.5em
+$content-padding-left: 3.5vw
+$gap-between-section-and-sidebarright: 7.5vw
+
+$padding-right-sidebar-right: 3vw
+
+$border-color: #30363d
+$font-default-color: #e6edf3
+$background-default-color: #0d1117
 
 *
     margin: 0
@@ -18,7 +25,12 @@ $phone: 800px
 
 body, html
     height: 100%
-    font-family: Arial, sans-serif
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji
+    line-height: 1.5
+    color: $font-default-color
+    font-weight: 400
+    word-break: break-word
+    background-color: $background-default-color
 
 .App
     display: flex
@@ -29,80 +41,151 @@ body, html
         display: flex
         justify-content: center
         align-items: center
-        height: $header-height
+        height: $top-margin
         width: 100%
+        position: fixed
+        top: 0
 
-    .app-container#home-page
-        aside
-            padding-top: .3em
+        z-index: 100
+
+        // background-color: blue
+        background-color: $background-default-color
+        border-bottom: 2px solid $border-color
+
+    .app-container
+        display: flex
+        flex-direction: row
+
+        .sidebar-left
             position: fixed
-            top: $header-height
-            height: calc(100vh - $header-height)
+            top: $top-margin
+            width: $left-sidebar
+            height: 100vh
+            // background-color: red
             overflow-y: auto
 
-            &:first-of-type
-                width: $sidebar-width-left
-                left: 0
+            padding-top: $content-space-top
+            padding-right: $content-space-top
 
-            &:last-of-type
-                width: $sidebar-width-right
-                right: 0
+            border-right: 2px solid $border-color
 
         main
-            flex: 1
-            padding-bottom: 15em
-            padding-top: .3em
-            overflow-y: auto
-            text-align: justify
-
-    .app-container#contacts-page
-        main
-            text-align: left
-
             .app-content
-                background-color: red
-                padding: 1em
+                margin-top: $top-margin
+                padding-left: $content-padding-left
+                padding-top: $content-space-top
 
-                .contacts-page__blocks
-                    min-width: 500px
+                // background-color: aqua
+                display: flex
+                flex-direction: column
+                gap: 2.5em
 
-@media screen and (min-width: $laptop)
-    aside
-        &:first-of-type
-            width: $sidebar-width-left
-            left: 0
+                // border: 3px black dashed
 
-        &:last-of-type
-            width: $sidebar-width-right
-            right: 0
+                .page-uri
+                    display: flex
+                    flex-direction: row
+                    gap: .6em
+                    // background-color: purple
+                    color: #848d97
+                    // font-weight: 100
+
+                    a
+                        color: #848d97
+                        text-decoration: none
+
+                    a:hover
+                        text-decoration: underline
+                        color: #2f81f7
+
+                .page-content
+                    display: flex
+                    flex-direction: row
+
+                    section
+                        width: 100%
+                        min-width: 52vw
+                        // background-color: blue
+                        padding-right: $gap-between-section-and-sidebarright
+                        // padding-bottom: 150px
+
+                        a
+                            color: #2f81f7
+
+                .page-footer
+                    // background-color: red
+                    // min-width: 70vw
+
+                    display: flex
+                    flex-direction: row
+                    gap: 3em
+
+                    margin-top: 10em
+                    margin-bottom: 5em
+
+                    div
+                        color: #c9d1d9
+                        background-color: #21262d
+                        border-color: #21262d
+                        // border-color: rgba(240,246,252,.1)
+                        border-radius: 6px
+                        border: 1px solid
+                        padding: 5px 16px
+
+                    ul
+                        list-style-type: none
+                        display: flex
+                        flex-direction: row
+                        gap: 1em
+
+                        li
+                            a
+                                color: #2f81f7
+            #contacts-page
+                a
+                    color: #2f81f7
+
+    .sidebar-right
+        padding-right: $padding-right-sidebar-right
+        // background-color: purple
+
+@media screen and (min-width: $tablet)
+    .sidebar-right
+        min-width: 18.9vw
+
     main
-        padding-left: calc(#{$sidebar-width-left} + #{$space-between-sidebar-and-main})
-        padding-right: calc(#{$sidebar-width-right} + #{$space-between-sidebar-and-main})
-        padding-bottom: 10em
-        overflow-y: auto
-        text-align: justify
+        margin-left: 0 // Reset margin-left since the sidebar is hidden
+        width: 100% // Full width for main content
+        padding-left: 0 // Reset padding-left since the sidebar is hidden
 
-@media screen and (max-width: $laptop)
-    aside
-        width: $sidebar-width_medium
+        .app-content
+            width: calc(77vw - $left-sidebar) // Remaining space after LeftSidebar
 
-    main
-        padding-left: calc(#{$sidebar-width-left_medium} + #{$space-between-sidebar-and-main})
-        padding-right: calc(#{$sidebar-width-right_medium} + #{$space-between-sidebar-and-main})
-        padding-bottom: 10em
-        overflow-y: auto
-        text-align: justify
-        margin: 0 1.2em
+            margin-left: $left-sidebar // Pushes the main content to the right after LeftSidebar
 
-@media screen and (max-width: $phone)
-    aside
+@media screen and (max-width: $tablet)
+    .sidebar-left
         display: none
 
-    main
-        margin-left: 0
-        margin-right: 0
-        padding: 1rem
-        padding-bottom: 5em
+    .app-container
+        .app-content
+            min-width: 100vw
+            padding: 0
+            // background-color: red 
 
-.text-italic
-    font-style: italic
+            .page-content
+                .sidebar-right
+                    display: none
+                    background-color: yellow
+
+                main
+                    margin-left: 0
+                    width: 100% // Full width for main content
+                    min-width: 100vw
+                    padding-left: 0
+                    z-index: 10
+a
+    color: $font-default-color
+
+.content__block-title
+    padding-top: $top-margin - 1.5em

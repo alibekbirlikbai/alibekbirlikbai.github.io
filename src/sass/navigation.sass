@@ -2,13 +2,18 @@
     .navigation__list
         display: flex
         flex-direction: row
-        gap: .6em
+        // gap: .6em
         list-style-type: none
 
+        .navigation__item:not(:first-child)
+            border-left: 2px solid #30363d
+            // background-color: red
+
         .navigation__item
+            padding: 0 1em
+
             .navigation__link
                 text-decoration: none
-                color: black
 
                 &.active
                     text-decoration: underline

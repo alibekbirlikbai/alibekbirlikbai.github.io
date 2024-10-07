@@ -1,12 +1,19 @@
-$title-gap: .5em
-$header-block-gap: .7em
-$header-content-gap: 1.3em
-$content-block-gap: 1.4em
-$block-item-gap: .7em
+// gap
+$header-title-gap: 1.8em
+
+$title-gap: 1em
+
+$content-block-gap: 0em
+$block-item-gap: 1.5em
 $github-content-block-gap: .3em
 
 $sub-article-header-gap: .5em
-$sub-articles-beetween-gap: 1.5em
+$sub-articles-beetween-gap: 1.6em
+
+$blockquote-color: #2f81f7
+
+// color 
+$content-highlight-color: hsla(215,8%,47%,.4)
 
 .app-content
     display: flex
@@ -17,23 +24,27 @@ $sub-articles-beetween-gap: 1.5em
     .content
         display: flex
         flex-direction: column
-        gap: $header-content-gap
+        gap: $header-title-gap
 
         //  border: 3px dashed red
 
         .content__header
             display: flex
             flex-direction: column
-            gap: $title-gap + .2em
+            gap: $header-title-gap
 
             //border: 3px dashed blue
 
             .content__title
+            // background-color: red
+
+            .content__title:first-line
+                line-height: 100% !important
 
             .content__details
                 display: flex
                 flex-direction: column
-                gap: $header-block-gap
+                gap: $header-title-gap
                 //border: 3px dashed black
 
                 .content__stack
@@ -50,14 +61,17 @@ $sub-articles-beetween-gap: 1.5em
                         //border: 3px dashed red
 
                         li
-                            font-style: italic
+                            // font-style: italic
+                            font-weight: 400
                             border-radius: 5px
-                            background-color: red
-                            padding: .15em .2em
+                            background-color: $content-highlight-color
+                            padding: .15em .4em
                             margin: 0
 
                 .content__version-control
-                    //border: 3px dashed red
+                    // padding: 1em 1.5em
+                    // background-color: #282e33
+                    // border-radius: 6px
 
                     .version-control
                         display: flex
@@ -68,6 +82,7 @@ $sub-articles-beetween-gap: 1.5em
                         .version-control__block
                             display: flex
                             flex-direction: row
+                            font-weight: 400
 
                             &:last-of-type
                                 display: flex
@@ -99,6 +114,7 @@ $sub-articles-beetween-gap: 1.5em
                 //border: 3px dashed red
 
                 .content__block-title
+                    border-bottom: 2px solid #30363d
 
                 .content__block-description,
                 .content__sub-articles,
@@ -122,15 +138,23 @@ $sub-articles-beetween-gap: 1.5em
                         display: flex
                         flex-direction: column
                         gap: $block-item-gap
-                        //border: 3px dashed red
+                        // border: 3px dashed red
 
                         .content__block-image
-                            width: 100%
+                            width: 95%
+                            margin: 0 auto
 
                             //border: 3px dashed red
 
                         .content__block-video
-                            //border: 3px dashed red
+                            width: 100% // Ensures video container takes the width of the media block
+                            max-width: 100% // Prevents the video from exceeding container width
+                            //border: 3px dashed red;
+                            margin: 0 auto
+
+                            .content__block-video-element
+                                width: 100% // Video element takes the full width of its container
+                                max-width: 100% // Prevent video from exceeding the parent container
 
                         figure
                             img,
@@ -149,21 +173,79 @@ $sub-articles-beetween-gap: 1.5em
                     .content__block-text
                         //border: 3px dashed red
 
+                    .content__block-text::after
+                        content: "."
+
                     .content__block-code
                         position: relative
 
                         .content__code-header
-                            // text-align: right
+                            text-align: right
                             // position: absolute
                             // top: .7em
                             // right: .7em
 
                             .content__code-language
                                 font-style: italic
+                        pre
+                            code
+                                margin-top: .3em
 
                     .content__block-feature-list
+                        // font-style: italic
                         list-style-type: disc
-                        padding-left: 20px
+                        padding-left: 30px
+                        display: flex
+                        flex-direction: column
 
                         .content__block-feature-item
                             margin-bottom: 5px
+
+                        .content__block-feature-item::after
+                            content: ";"
+
+// utils
+.content__block-feature-item,
+.content__block-text
+    code
+        background-color: $content-highlight-color
+        padding: .1em .4em
+        border-radius: 4px
+        font-size: 95%
+        // font-weight: 700
+
+.content__block-description
+    .content__block-quote
+        blockquote
+            code
+                background-color: $content-highlight-color
+                padding: .1em .4em
+                border-radius: 4px
+                font-size: 95%
+
+.content__block-description,
+.content__sub-articles,
+.content__sub-article-container
+    .content__block-quote
+        blockquote
+            // background-color: $content-highlight-color
+            padding: .5rem 1rem
+            border-radius: 0 5px 5px 0
+            border-left: .25em $blockquote-color solid
+
+            blockquote p::before 
+            content: '\201C'
+
+            blockquote p::after 
+            content: '\201D'
+
+            blockquote + p 
+            // text-align: right
+
+            .quote-title
+                color: $blockquote-color
+                font-weight: 600
+
+.content__details
+    blockquote
+        color: #848d97
