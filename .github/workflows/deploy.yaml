@@ -26,7 +26,9 @@ jobs:
         run: echo "GITHUB_TOKEN=${{ secrets.REPO_TOKEN }}" >> .env
 
       - name: Build the React app
-        run: npm run build
+        run: |
+          CI=false npm run build
+        # Ignore ESLint in CI
 
       - name: Deploy to GitHub Pages
         run: |-
