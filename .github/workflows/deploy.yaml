@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main,
+      - dev,
       - test
 
 jobs:
@@ -11,31 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code into reun environment
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Set env variable
-        run: echo "GITHUB_TOKEN=${{ secrets.REPO_TOKEN }}" >> .env
-
-      - name: Build the React app
-        run: |
-          CI=false npm run build
-        # Ignore ESLint in CI
-
-      - name: Deploy to GitHub Pages
+      - name: Set env varaibles
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-        run: |-
-          git config --global user.email "actions@users.noreply.github.com"
-          git config --global user.name "deploy-bot"
-          git add .
-          git commit -m "feat(deploy-bot): deploy to Github Pages" || exit 0
-          git push origin test
