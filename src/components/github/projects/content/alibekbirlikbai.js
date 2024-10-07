@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/atom-one-dark.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
 import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
+
+import videoDemo from '../../../../assets/video/video.ci-cd.demo.mp4'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
@@ -342,7 +344,7 @@ jobs:
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                <span className='quote-title'>Note:</span> <code>rebase/merge</code> при <code>push</code> делается из-за github бота (readme-bot), который периодический обновляет ветку 
+                                <span className='quote-title'>Note:</span> <code>rebase/merge</code> при <code>push</code> из-за github бота (readme-bot), который периодический обновляет ветку
                             </blockquote>
                         </p>
 
@@ -359,7 +361,7 @@ jobs:
                             <div className='content__block-video'>
                                 <figure>
                                     <video controls className='content__block-video-element'>
-                                        <source src="/video/video.ci-cd.demo.mp4" type="video/webm" />
+                                        <source src={videoDemo} type="video/webm" />
                                         Your browser does not support the video tag.
                                     </video>
                                     {/* <figcaption className='content__block-caption'>

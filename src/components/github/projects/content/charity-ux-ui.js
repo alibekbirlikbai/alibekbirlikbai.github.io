@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/atom-one-dark.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
 import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
+
+import imgDemo from '../../../../assets/img/charity-ux-ui.demo.png'
+import imgDetailsMainPage from '../../../../assets/img/charity-ux-ui.details.main-page.png'
+import imgDetailsSequenceDiagram from '../../../../assets/img/charity-ux-ui.details.sequence-diagram.png'
+import imgDetailsUserInteractionFlow from '../../../../assets/img/charity-ux-ui.details.user-interaction-flow.png'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
@@ -85,7 +90,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
-                                    <img src='/img/charity-ux-ui.details.sequence-diagram.png' alt='img' className='content__block-image' />
+                                    <img src={imgDetailsSequenceDiagram} alt='img' className='content__block-image' />
                                     {/* <figcaption className='content__block-caption'>
                                         This is a img.
                                     </figcaption> */}
@@ -104,7 +109,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
-                                    <img src='/img/charity-ux-ui.details.main-page.png' alt='img' className='content__block-image' />
+                                    <img src={imgDetailsMainPage} alt='img' className='content__block-image' />
                                     {/* <figcaption className='content__block-caption'>
                                         This is a img.
                                     </figcaption> */}
@@ -142,7 +147,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
-                                    <img src='/img/charity-ux-ui.details.user-interaction-flow.png' alt='img' className='content__block-image' />
+                                    <img src={imgDetailsUserInteractionFlow} alt='img' className='content__block-image' />
                                     {/* <figcaption className='content__block-caption'>
                                         This is a img.
                                     </figcaption> */}
@@ -241,7 +246,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         <div className='content__block-media'>
                             <div className='content__block-image'>
                                 <figure>
-                                    <img src='/img/charity-ux-ui.demo.png' alt='img' className='content__block-image' />
+                                    <img src={imgDemo} alt='img' className='content__block-image' />
                                     {/* <figcaption className='content__block-caption'>
                                         This is a img.
                                     </figcaption> */}

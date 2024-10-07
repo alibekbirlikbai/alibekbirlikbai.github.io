@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/atom-one-dark.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
 import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
+
+import imgDemo from '../../../../assets/img/news-api.demo.png'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
@@ -172,17 +174,21 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
             case 'overview':
                 return (
                     <div className='content__block-description'>
+                        {/*
                         <div className='content__block-media'>
-                            <div className='content__block-image'>
-                                <figure>
-                                    <img src='/img/news-api.demo.png' alt='img' className='content__block-image' />
-                                    {/* <figcaption className='content__block-caption'>
-                                        This is a img.
-                                    </figcaption> */}
-                                </figure>
-                            </div>
 
-                            {/* <div className='content__block-video'>
+
+                                <div className='content__block-image'>
+                                    <figure>
+                                        <img src={imgDemo} alt='img' className='content__block-image' />
+                                        <figcaption className='content__block-caption'>
+                                            This is a img.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+
+
+                                <div className='content__block-video'>
                                 <figure>
                                     <video controls className='content__block-video-element'>
                                         <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/webm" />
@@ -192,8 +198,9 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
                                         This is a description of the video.
                                     </figcaption>
                                 </figure>
-                            </div> */}
+                            </div>
                         </div>
+                        */}
                         
                         <p className='content__block-text'>
                             Мобильное приложение, для получения и отображения новостных лент в режиме реального времени с функциями управления постами и добавления их в избранное

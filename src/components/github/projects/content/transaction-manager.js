@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/atom-one-dark.css';
 
 import PullRequestList from '../../github-api-integration/fetch-pullrequests'
 import CalculateLastUpdate from '../../github-api-integration/calculate-last-update'
 import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
+
+import videoDemo from '../../../../assets/video/video.transaction-manager.demo.mp4'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
@@ -218,17 +220,20 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
             case 'overview':
                 return (
                     <div className='content__block-description'>
-                        <p className='content__block-quote'>
-                            <blockquote>
-                                <span className='quote-title'>Note:</span> Идея проекта заключается в разработке прототипа микросервиса, который можно легко интегрировать в уже готовую систему (банк)
-                            </blockquote>
-                        </p>
+
+                        {/*
+                            <p className='content__block-quote'>
+                                <blockquote>
+                                    <span className='quote-title'>Note:</span> Разработке прототипа сервиса, который можно легко интегрировать в уже готовую систему (банк)
+                                </blockquote>
+                            </p>
+                        */}
 
                         <div className='content__block-media'>
                             <div className='content__block-video'>
                                 <figure>
                                     <video controls className='content__block-video-element'>
-                                        <source src="/video/video.transaction-manager.demo.mp4" type="video/webm" />
+                                        <source src={videoDemo} type="video/webm" />
                                         Your browser does not support the video tag.
                                     </video>
 
