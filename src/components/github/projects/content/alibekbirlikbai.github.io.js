@@ -226,7 +226,9 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
 
                         <ul className='content__block-feature-list'>
                             <li className='content__block-feature-item'>Скрипт на JavaScript для динамического извлечения и отображения данных о репозиториях аккаунта (запрос через <a href='https://docs.github.com/en/rest?apiVersion=2022-11-28'>Github REST API</a>)</li>
-                            <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> / <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
+                            {/* 
+                                <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> / <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
+                            */}
                         </ul>
                     </div>
                 );

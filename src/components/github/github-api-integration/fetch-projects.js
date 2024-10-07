@@ -2,15 +2,15 @@ import axios from 'axios';
 import fetchLastUpdatedTime from './fetch-last-updated-time'
 
 const GIHUB_URL = "https://api.github.com/users/alibekbirlikbai/repos"
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+// const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const fetchGithubData = async () => {
     try {
         console.log('Fetching GitHub repositories...'); 
         const response = await axios.get(GIHUB_URL, {
-            headers: {
-                Authorization: `token ${GITHUB_TOKEN}` 
-            }
+            // headers: {
+            //     Authorization: `token ${GITHUB_TOKEN}` 
+            // }
         });
         console.log('GitHub response:', response.data);  
         return response.data;
