@@ -233,7 +233,7 @@ function CloudUrlStorageProject({ currentProject, onUpdateArticles }) {
                         <p className='content__block-quote'>
                             <blockquote>
                                 Для подключения к <b>Google Drive</b> нужно сгенерировать токен (<b>service-account-auth.json</b>) с permissions в <b>Google Cloud Console</b>
-                            </blockquote>ф
+                            </blockquote>
                         </p>
                         <div className='content__block-media'>
                             <div className='content__block-video'>
