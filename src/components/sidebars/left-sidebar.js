@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 const excludedProjects = [
     'proxy-server',
     'git-polygone',
+    'sql-polygone',
     'spring-security-polygone',
 ];
 
