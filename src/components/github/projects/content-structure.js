@@ -11,11 +11,14 @@ import TransactionManagerProject from './content/transaction-manager';
 function Content({ currentProject, onUpdateArticles, currentArticles }) {
   const projectNotFound = <div>Контент для проекта не определен</div>
   const [pathPieces, setPathPieces] = useState([]);
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    // Handle both cases: with and without currentProject
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+  
+  useEffect(() => {
     if (currentProject?.name) {
-      // If we have a specific project
       const processedPieces = [
         { text: 'projects', url: '/projects' },
         { text: '/', url: null },
@@ -23,7 +26,6 @@ function Content({ currentProject, onUpdateArticles, currentArticles }) {
       ];
       setPathPieces(processedPieces);
     } else {
-      // If we're on the main projects page
       setPathPieces([
         { text: 'projects', url: '/projects' }
       ]);
@@ -55,17 +57,14 @@ function Content({ currentProject, onUpdateArticles, currentArticles }) {
   };
 
   const renderProject = () => {
-    // If no project is selected, render a default view or return null
     if (!currentProject?.name) {
       return (
         <div className="projects-overview">
           <h1>Проекты</h1>
-          {/* You can add a projects list or overview here */}
         </div>
       );
     }
 
-    // Otherwise, render the specific project
     switch (currentProject.name) {
       case 'alibekbirlikbai':
         return <GithubReadmeProject currentProject={currentProject} onUpdateArticles={onUpdateArticles} />;
@@ -104,24 +103,15 @@ function Content({ currentProject, onUpdateArticles, currentArticles }) {
 
         <div className='page-footer'>
           <ul>
-            <li>
-              <a href='https://github.com/alibekbirlikbai'>
-                Github
-              </a>
-            </li>
-            
-            <li>
-              <a href='https://www.linkedin.com/in/alibek-birlikbai'>
-                Linkedin
-              </a>
-            </li>
-            
-            <li>
-              <a href='https://t.me/alibekbirlikbai'>
-                Telegram
-              </a>
-            </li>
+            <li><a href='https://github.com/alibekbirlikbai'>Github</a></li>
+            <li><a href='https://www.linkedin.com/in/alibek-birlikbai'>Linkedin</a></li>
+            <li><a href='https://t.me/alibekbirlikbai'>Telegram</a></li>
           </ul>
+
+          <div id="copyright" align="center">
+            <div>Alibek Birlikbai & Software Engineer</div>
+            <div>© 2024 - {currentYear}</div>
+          </div>
         </div>
       </div>
     </main>
