@@ -49,32 +49,36 @@ aside.sidebar-left
         li
             // background-color: red
             padding: .8em .3em
-            padding-left: .8em
+            
             font-weight: 100
 
             &:has(.active)
                 // padding: $padding-top-and-down-for-active
                 font-weight: 600
                     // padding: $padding-top-and-down-for-active $padding-left-and-right-for-active
-                background-color: rgba(177,186,196,.08)
-                border-radius: 0 6px 6px 0
+                background-color: #222327
+                border-radius: 10px
 
-                border-left: .25em #2f81f7 solid
+                // border-left: .25em #2f81f7 solid
 
             .sidebar-left__link
                 text-decoration: none
                 // color: black
 
-                &.active
-
-                    // text-decoration: underline
-                    // background-color: lightgray
+                
 
             a:hover
                 text-decoration: underline
 
         li:first-line
             line-height: 100% !important
+
+        .list-title 
+            // background-color: red
+
+        .sidebar-left__list-item 
+            padding-left: 2em
+            margin-left: .3em
 
 aside.sidebar-right
     display: flex

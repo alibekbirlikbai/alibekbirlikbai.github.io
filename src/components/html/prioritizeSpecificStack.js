@@ -2,13 +2,13 @@ const prioritizedStacks = ['open-source', 'university-project', 'api'];
 
 const styles = {
   openSource: {
-    backgroundColor: '#785dc8',
+    // backgroundColor: '#785dc8',
   },
   universityProject: {
-    backgroundColor: '#2f81f7',
+    // backgroundColor: '#2f81f7',
   },
   api: {
-    backgroundColor: '#b99402',
+    // backgroundColor: '#b99402',
   },
 };
 

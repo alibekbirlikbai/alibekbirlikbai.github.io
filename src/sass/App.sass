@@ -5,7 +5,7 @@ $tablet: 1100px
 
 $left-sidebar-width: 300px
 
-$top-margin: 4em
+// $top-margin: 4em
 $left-sidebar: 21.5vw
 
 $content-space-top: 1.5em
@@ -16,7 +16,7 @@ $padding-right-sidebar-right: 3vw
 
 $border-color: #30363d
 $font-default-color: #e6edf3
-$background-default-color: #0d1117
+$background-default-color: #1A1B1D
 
 *
     margin: 0
@@ -41,7 +41,7 @@ body, html
         display: flex
         justify-content: center
         align-items: center
-        height: $top-margin
+        // height: $top-margin
         width: 100%
         position: fixed
         top: 0
@@ -52,10 +52,18 @@ body, html
         background-color: $background-default-color
         border-bottom: 2px solid $border-color
 
+    .sidebar-left
+        background-color: #161618
+
     .app-container
         display: flex
 
+
         main
+            display: flex
+            justify-content: center
+            // background-color: red
+
             .app-content
                 padding-left: $content-padding-left
                 padding-top: $content-space-top
@@ -79,9 +87,9 @@ body, html
                         color: #848d97
                         text-decoration: none
 
-                    a:hover
-                        text-decoration: underline
-                        color: #2f81f7
+                    // a:hover
+                    //     text-decoration: underline
+                    //     color: #2f81f7
 
                 .page-content
                     display: flex
@@ -140,7 +148,7 @@ body, html
 
     .sidebar-left
         position: fixed
-        top: $top-margin
+        // top: $top-margin
         width: $left-sidebar
         height: 100vh
             // background-color: red
@@ -149,7 +157,7 @@ body, html
         padding-top: $content-space-top
         padding-right: $content-space-top
 
-        border-right: 2px solid $border-color
+        // border-right: 2px solid $border-color
 
     .sidebar-right
         min-width: 18.9vw
@@ -160,7 +168,7 @@ body, html
         padding-left: 0 // Reset padding-left since the sidebar is hidden
 
         .app-content
-            margin-top: $top-margin
+            // margin-top: $top-margin
             width: calc(77vw - $left-sidebar) // Remaining space after LeftSidebar
 
             margin-left: $left-sidebar // Pushes the main content to the right after LeftSidebar
@@ -176,7 +184,8 @@ body, html
         //border: 3px dashed white
 
         .sidebar-left
-            padding-top: $content-space-top + $top-margin
+            padding-top: $content-space-top
+            // padding-top: $content-space-top + $top-margin
             padding-right: $content-space-top
             padding-bottom: $content-space-top
             border-bottom: 2px solid $border-color
@@ -216,4 +225,4 @@ a
     color: $font-default-color
 
 .content__block-title
-    padding-top: $top-margin - 1.5em
+    // padding-top: $top-margin - 1.5em

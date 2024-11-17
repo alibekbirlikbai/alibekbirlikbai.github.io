@@ -1,10 +1,10 @@
 // gap
 $header-title-gap: 1.8em
 
-$title-gap: 1em
+$title-gap: 1.5em
 
-$content-block-gap: 0em
-$block-item-gap: 1.5em
+$content-block-gap: 1em
+$block-item-gap: .8em
 $github-content-block-gap: .3em
 
 $sub-article-header-gap: .5em
@@ -12,15 +12,19 @@ $sub-articles-beetween-gap: 1.6em
 
 $blockquote-color: #2f81f7
 
+$title-down-icon-gap: .4em
+
 // color 
 $content-highlight-color: hsla(215,8%,47%,.4)
-$stack-highlight-color: #21262d
+$stack-highlight-color: hsla(215,8%,47%,.4)
 
 .app-content
     display: flex
     flex-direction: column
     gap: 3.5em
     //overflow-x: hidden
+
+    // background-color: blue
 
     .content
         display: flex
@@ -38,69 +42,12 @@ $stack-highlight-color: #21262d
 
             .content__title
                 // background-color: #b99402
+                
 
             .content__title:first-line
                 line-height: 100% !important
 
-            .content__details
-                display: flex
-                flex-direction: column
-                gap: $header-title-gap
-                //border: 3px dashed black
-
-                .content__stack
-                    //border: 3px dashed red
-
-                    ul
-                        display: flex
-                        flex-direction: row
-                        flex-wrap: wrap
-                        column-gap: 10px
-                        row-gap: 5px
-                        list-style-type: none
-
-                        //border: 3px dashed red
-
-                        li
-                            // font-style: italic
-                            font-weight: 400
-                            border-radius: 5px
-                            background-color: $stack-highlight-color
-                            padding: .15em .4em
-                            margin: 0
-
-                .content__version-control
-                    // padding: 1em 1.5em
-                    // background-color: #282e33
-                    // border-radius: 6px
-
-                    .version-control
-                        display: flex
-                        flex-direction: column
-                        gap: $github-content-block-gap
-                        //border: 3px dashed red
-
-                        .version-control__block
-                            display: flex
-                            flex-direction: row
-                            font-weight: 400
-
-                            &:last-of-type
-                                display: flex
-                                flex-direction: row
-                                justify-content: start
-
-                            .version-control__block-title
-                                display: inline-block
-                                white-space: nowrap
-
-                            ul
-                                // list-style-type: none
-                                padding-left: 1.3em
-                                display: flex
-                                flex-direction: column
-                                gap: $github-content-block-gap
-
+            
         .content__body
             display: flex
             flex-direction: column
@@ -110,12 +57,13 @@ $stack-highlight-color: #21262d
             .content__block
                 display: flex
                 flex-direction: column
-                gap: $title-gap
+                // gap: $title-gap
 
                 //border: 3px dashed red
 
                 .content__block-title
-                    border-bottom: 2px solid #30363d
+                    font-size: 1.2em
+                    // border-bottom: 2px solid #30363d
 
                 .content__block-description,
                 .content__sub-articles,
@@ -128,12 +76,18 @@ $stack-highlight-color: #21262d
                     .content__sub-articles
                         display: flex
                         flex-direction: column
-                        gap: $sub-articles-beetween-gap
+                        margin-left: 1.3em
+                        margin-top: $block-item-gap
 
                         .sub-article
                             display: flex
                             flex-direction: column
                             gap: $sub-article-header-gap
+
+                            .sub-article-title
+
+                                h3
+                                // font-size: 1.2em
 
                     .content__block-media
                         display: flex
@@ -205,6 +159,68 @@ $stack-highlight-color: #21262d
                         .content__block-feature-item::after
                             content: ";"
 
+
+            .content__details
+                display: flex
+                flex-direction: column
+                gap: $github-content-block-gap
+                //border: 3px dashed black
+
+                .content__stack
+                    //border: 3px dashed red
+
+                    ul
+                        display: flex
+                        flex-direction: row
+                        flex-wrap: wrap
+                        column-gap: 10px
+                        row-gap: 5px
+                        list-style-type: none
+
+                        //border: 3px dashed red
+
+                        li
+                            // font-style: italic
+                            font-weight: 400
+                            border-radius: 5px
+                            background-color: $stack-highlight-color
+                            padding: .15em .4em
+                            margin: 0
+
+                .content__version-control
+                    // padding: 1em 1.5em
+                    // background-color: #282e33
+                    // border-radius: 6px
+
+                    .version-control
+                        display: flex
+                        flex-direction: column
+                        gap: $github-content-block-gap
+                        //border: 3px dashed red
+
+                        .version-control__block
+                            display: flex
+                            flex-direction: row
+                            font-weight: 400
+
+                            &:last-of-type
+                                display: flex
+                                flex-direction: row
+                                justify-content: start
+
+                            .version-control__block-title
+                                display: inline-block
+                                white-space: nowrap
+
+                            ul
+                                // list-style-type: none
+                                padding-left: 1.3em
+                                display: flex
+                                flex-direction: column
+                                gap: $github-content-block-gap
+
+    a 
+        color: white
 // utils
 .content__block-feature-item,
 .content__block-text
@@ -250,3 +266,42 @@ $stack-highlight-color: #21262d
 .content__details
     blockquote
         color: #848d97
+
+
+.content__block
+    padding: .8em 1.3em
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
+    border-radius: 10px
+    background-color: #1F2024
+
+.content__block-title,
+.sub-article-title
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: $title-down-icon-gap
+
+
+    h3
+    // font-size: 1.2em
+
+
+.content__block-content
+  overflow: hidden
+  transition: max-height 0.3s ease
+
+.faChevronDown
+  transition: transform 0.3s ease
+
+.faChevronDown.rotated
+  transform: rotate(180deg)
+
+
+
+.content__block-quote,
+.content__block-media,
+.content__block-feature-list
+    padding-top: $block-item-gap
+
+.content__stack
+    padding: $block-item-gap 0

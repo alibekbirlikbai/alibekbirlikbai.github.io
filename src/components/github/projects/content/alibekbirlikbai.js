@@ -10,25 +10,95 @@ import videoDemo from '../../../../assets/video/video.ci-cd.demo.mp4'
 
 import formatContentDescription from '../../../html/formatContentDescription'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 const articles = [
-    { title: 'Version Control', id: 'version-control' },
+    { title: 'version control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
-    { title: 'Описание', id: 'overview' },
-    { title: 'Фичи', id: 'features' },
+    { title: 'demo', id: 'overview' },
+    { title: 'core features', id: 'features' },
     { 
-        title: 'Детали', 
+        title: 'детали', 
         id: 'details',
         subArticles: [
-            { title: 'GraphQL запрос', id: 'query-graphql' },
-            { title: 'Merge Branch Workflow (merge_branch.yaml)', id: 'workflow-merge-branch' },
-            { title: 'Automated README Update Workflow (readme_update.yaml)', id: 'workflow-readme-update' },
+            { title: 'graphQL запрос', id: 'query-graphql' },
+            { title: 'слияние git веток (merge_branch.yaml)', id: 'workflow-merge-branch' },
+            { title: 'обновление Readme.md (readme_update.yaml)', id: 'workflow-readme-update' },
         ]
     },
 ];
 
 function GithubReadmeProject({ currentProject, onUpdateArticles }) {
     const codeBlockRefs = useRef({}); 
-    
+    const contentRefs = useRef({});
+    const [expanded, setExpanded] = useState(() => {
+        const initialState = {};
+        articles.forEach(article => {
+            initialState[article.id] = false;
+            if (article.subArticles) {
+                article.subArticles.forEach(subArticle => {
+                    initialState[subArticle.id] = false;
+                });
+            }
+        });
+        return initialState;
+    });
+
+    const updateParentHeight = (parentId) => {
+        const parentElement = contentRefs.current[parentId];
+        if (parentElement && expanded[parentId]) {
+            requestAnimationFrame(() => {
+                parentElement.style.maxHeight = `${parentElement.scrollHeight}px`;
+            });
+        }
+    };
+
+    const toggleContent = (id, parentId = null) => {
+        setExpanded(prev => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+        
+        // Schedule an update for both the toggled element and its parent
+        requestAnimationFrame(() => {
+            const element = contentRefs.current[id];
+            if (element) {
+                if (!expanded[id]) {
+                    element.style.maxHeight = `${element.scrollHeight}px`;
+                    // If this is a sub-article, update the parent article's height
+                    if (parentId) {
+                        updateParentHeight(parentId);
+                    }
+                } else {
+                    element.style.maxHeight = '0px';
+                    // If this is a sub-article, update the parent article's height after collapse
+                    if (parentId) {
+                        setTimeout(() => updateParentHeight(parentId), 300); // Wait for sub-article collapse
+                    }
+                }
+            }
+        });
+    };
+
+    // Effect to handle height updates when expansion state changes
+    useEffect(() => {
+        articles.forEach(article => {
+            const articleContent = contentRefs.current[article.id];
+            if (articleContent) {
+                if (expanded[article.id]) {
+                    requestAnimationFrame(() => {
+                        articleContent.style.maxHeight = `${articleContent.scrollHeight}px`;
+                    });
+                } else {
+                    articleContent.style.maxHeight = '0px';
+                }
+            }
+        });
+    }, [expanded]);
+
+      
+
     useEffect(() => {
         Object.values(codeBlockRefs.current).forEach((ref) => {
             if (ref) {
@@ -255,18 +325,35 @@ jobs:
         const article = articles.find(article => article.id === articleId);
         if (!article) return articleContentNotFound
 
-        const renderSubArticles = (subArticles) => {
+        // Render sub-articles with fixed toggle functionality
+        const renderSubArticles = (subArticles, parentId) => {
             return (
-                <div className='content__sub-articles'>
-                    {
-                        subArticles.map(subArticle => (
-                            <div className='sub-article' id={subArticle.id} key={subArticle.id}>
-                                <h3 className='sub-article-title'>{subArticle.title}</h3>
-        
+                <div className="content__sub-articles">
+                    {subArticles.map((subArticle) => (
+                        <div className="sub-article" id={subArticle.id} key={subArticle.id}>
+                            <div
+                                className="sub-article-title"
+                                // onClick={() => toggleContent(subArticle.id, parentId)}
+                            >
+                                {/* <FontAwesomeIcon
+                                    icon={faChevronDown}
+                                    className={`faChevronDown ${expanded[subArticle.id] ? 'rotated' : ''}`}
+                                /> */}
+                                <h3>{subArticle.title}</h3>
+                            </div>
+                            <div
+                                className="sub-article-content"
+                                ref={el => contentRefs.current[subArticle.id] = el}
+                                // style={{
+                                //     overflow: 'hidden',
+                                //     transition: 'max-height 0.3s ease',
+                                //     maxHeight: '0px'
+                                // }}
+                            >
                                 {renderSubArticleContent(subArticle.id)}
                             </div>
-                        ))
-                    }
+                        </div>
+                    ))}
                 </div>
             );
         };
@@ -284,7 +371,7 @@ jobs:
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Github:&nbsp;
+                                        github:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -296,7 +383,7 @@ jobs:
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Deploy:&nbsp;
+                                        deploy:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -308,7 +395,7 @@ jobs:
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Pull-Request:&nbsp;
+                                        pull-request:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -423,7 +510,7 @@ jobs:
             case 'details':
                 return (
                     <div className='content__block-description'>
-                        {article.subArticles && renderSubArticles(article.subArticles)}
+                        {article.subArticles && renderSubArticles(article.subArticles, articleId)}
                     </div>
                 );
             default:
@@ -440,20 +527,34 @@ jobs:
                     {formatContentDescription(currentProject.description)}
                 </h2>
 
-                {renderArticleContent('version-control')}
+                {/* {renderArticleContent('version-control')} */}
             </div>
 
-            <div className='content__body'>
-                {articles
-                    .filter(article => article.id != 'version-control')
-                    .map((article, index) => (
-                        <article className='content__block' id={article.id} key={article.id}>
-                            <h2 className='content__block-title' id={article.id} >
-                                {article.title}
-                            </h2>
-                            
+            <div className="content__body">
+                {articles.map((article) => (
+                    <article className="content__block" id={article.id} key={article.id}>
+                        <h2
+                            className="content__block-title"
+                            onClick={() => toggleContent(article.id)}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`faChevronDown ${expanded[article.id] ? 'rotated' : ''}`}
+                            />
+                            {article.title}
+                        </h2>
+                        <div
+                            className="content__block-content"
+                            ref={el => contentRefs.current[article.id] = el}
+                            style={{
+                                overflow: 'hidden',
+                                transition: 'max-height 0.3s ease',
+                                maxHeight: '0px'
+                            }}
+                        >
                             {renderArticleContent(article.id)}
-                        </article>
+                        </div>
+                    </article>
                 ))}
             </div>
         </section>

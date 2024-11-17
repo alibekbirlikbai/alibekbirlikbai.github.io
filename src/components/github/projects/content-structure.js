@@ -86,19 +86,19 @@ function Content({ currentProject, onUpdateArticles, currentArticles }) {
   return (
     <main>
       <div className='app-content'>
-        <div className='page-uri'>
+        {/* <div className='page-uri'>
           {pathPieces.map((piece, index) => renderPathPiece(piece, index))}
-        </div>
+        </div> */}
 
         <div className='page-content'>
           {renderProject()}
           
-          {currentProject && (
+          {/* {currentProject && (
             <RightSidebar
               currentProject={currentProject}
               allArticles={currentArticles}
             />
-          )}
+          )} */}
         </div>
 
         <div className='page-footer'>

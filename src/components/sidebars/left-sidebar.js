@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const excludedProjects = [
     'proxy-server',
@@ -70,6 +70,8 @@ function formatDescription(description) {
 
 
 function LeftSidebar({ projects }) {
+    const location = useLocation();  // current route location
+
     const filteredProjects = projects.filter(project => !excludedProjects.includes(project.name));
 
     const sortedProjects = filteredProjects.sort((a, b) => {
@@ -92,6 +94,10 @@ function LeftSidebar({ projects }) {
     return (
         <aside className='sidebar-left'>
             <ul className='sidebar-left__list'>
+                <li className='list-title'>
+                    Проекты 
+                </li>
+
                 {sortedProjects.map(project => (
                     <li key={project.name} className='sidebar-left__list-item'>
                         <NavLink to={`/projects/${project.name}`} className='sidebar-left__link'>
@@ -99,6 +105,15 @@ function LeftSidebar({ projects }) {
                         </NavLink>
                     </li>
                 ))}
+
+                <li className='list-title'>
+                    <NavLink 
+                        to="/contacts" 
+                        className='navigation__link'
+                    >
+                        Контакты / CV
+                    </NavLink>
+                </li>
             </ul>
         </aside>
     );
