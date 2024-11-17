@@ -11,27 +11,95 @@ import imgDetailsMainPage from '../../../../assets/img/charity-ux-ui.details.mai
 import imgDetailsSequenceDiagram from '../../../../assets/img/charity-ux-ui.details.sequence-diagram.png'
 import imgDetailsUserInteractionFlow from '../../../../assets/img/charity-ux-ui.details.user-interaction-flow.png'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Version Control', id: 'version-control' },
-    // { title: 'Demo', id: 'demo' },
-    { title: 'Описание', id: 'overview' },
-    // { title: 'Фичи', id: 'features' },
+    { title: 'version control', id: 'version-control' },
+    // { title: 'demo', id: 'demo' },
+    { title: 'overview / demo', id: 'overview' },
+    // { title: 'core features', id: 'features' },
     { 
-        title: 'Детали', 
+        title: 'детали', 
         id: 'details',
         subArticles: [
-            { title: 'Sequence diagram', id: 'sequence-diagram' },
-            { title: 'Home pages', id: 'home-pages' },
+            { title: 'sequence diagram', id: 'sequence-diagram' },
+            { title: 'site map', id: 'site-map' },
             // { title: 'Site map', id: 'site-map' },
-            { title: 'User interaction flow', id: 'user-interaction-flow' },
+            { title: 'user interaction flow', id: 'user-interaction-flow' },
         ]
     },
 ];
 
 function CharityUxUiProject({ currentProject, onUpdateArticles }) {
-    const codeBlockRefs = useRef({}); 
+    const codeBlockRefs = useRef({});
+    const contentRefs = useRef({});
+    const [expanded, setExpanded] = useState(() => {
+        const initialState = {};
+        articles.forEach(article => {
+            initialState[article.id] = false;
+            if (article.subArticles) {
+                article.subArticles.forEach(subArticle => {
+                    initialState[subArticle.id] = false;
+                });
+            }
+        });
+        return initialState;
+    });
+
+    const updateParentHeight = (parentId) => {
+        const parentElement = contentRefs.current[parentId];
+        if (parentElement && expanded[parentId]) {
+            requestAnimationFrame(() => {
+                parentElement.style.maxHeight = `${parentElement.scrollHeight}px`;
+            });
+        }
+    };
+
+    const toggleContent = (id, parentId = null) => {
+        setExpanded(prev => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+        
+        // Schedule an update for both the toggled element and its parent
+        requestAnimationFrame(() => {
+            const element = contentRefs.current[id];
+            if (element) {
+                if (!expanded[id]) {
+                    element.style.maxHeight = `${element.scrollHeight}px`;
+                    // If this is a sub-article, update the parent article's height
+                    if (parentId) {
+                        updateParentHeight(parentId);
+                    }
+                } else {
+                    element.style.maxHeight = '0px';
+                    // If this is a sub-article, update the parent article's height after collapse
+                    if (parentId) {
+                        setTimeout(() => updateParentHeight(parentId), 300); // Wait for sub-article collapse
+                    }
+                }
+            }
+        });
+    };
+
+    // Effect to handle height updates when expansion state changes
+    useEffect(() => {
+        articles.forEach(article => {
+            const articleContent = contentRefs.current[article.id];
+            if (articleContent) {
+                if (expanded[article.id]) {
+                    requestAnimationFrame(() => {
+                        articleContent.style.maxHeight = `${articleContent.scrollHeight}px`;
+                    });
+                } else {
+                    articleContent.style.maxHeight = '0px';
+                }
+            }
+        });
+    }, [expanded]);
     
     useEffect(() => {
         Object.values(codeBlockRefs.current).forEach((ref) => {
@@ -103,7 +171,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </p>
                     </div>
                 );
-            case 'home-pages':
+            case 'site-map':
                 return (
                     <div className='content__sub-article-container'>
                         <div className='content__block-media'>
@@ -201,12 +269,12 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Github:&nbsp;
+                                        git:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.name}
+                                            github.com/{currentProject.name}
                                         </a>
                                     </div>
                                 </div>
@@ -239,7 +307,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                <span className='quote-title'>Note:</span> UI для остальных страниц - <a href='https://github.com/alibekbirlikbai/charity-ux-ui/blob/main/README.md'>Readme.md</a>
+                                <span className='quote-title'>Note:</span> Это часть моей курсовой из бакалавра 
                             </blockquote>
                         </p>
                         
@@ -255,7 +323,7 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
                         </div>
                         
                         <p className='content__block-text'>
-                            UX/UI прототип сервиса с учетем <a href='https://aws.amazon.com/what-is/sdlc/'>SDLC</a> / <a href='https://habr.com/ru/articles/52681/'>SRS</a>
+                            Прототип архитектуры сервиса с учетем <a href='https://aws.amazon.com/what-is/sdlc/'>sdlc</a> / <a href='https://habr.com/ru/articles/52681/'>srs</a>
                         </p>
                     </div>
                 );
@@ -316,24 +384,38 @@ function CharityUxUiProject({ currentProject, onUpdateArticles }) {
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>
+                <h2 className='content__title' id='project-title'>
                     {formatContentDescription(currentProject.description)}
-                </h1>
+                </h2>
 
-                {renderArticleContent('version-control')}
+                {/* {renderArticleContent('version-control')} */}
             </div>
 
-            <div className='content__body'>
-                {articles
-                    .filter(article => article.id != 'version-control')
-                    .map((article, index) => (
-                        <article className='content__block' id={article.id} key={article.id}>
-                            <h2 className='content__block-title' id={article.id} >
-                                {article.title}
-                            </h2>
-                            
+            <div className="content__body">
+                {articles.map((article) => (
+                    <article className="content__block" id={article.id} key={article.id}>
+                        <h2
+                            className="content__block-title"
+                            onClick={() => toggleContent(article.id)}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`faChevronDown ${expanded[article.id] ? 'rotated' : ''}`}
+                            />
+                            {article.title}
+                        </h2>
+                        <div
+                            className="content__block-content"
+                            ref={el => contentRefs.current[article.id] = el}
+                            style={{
+                                overflow: 'hidden',
+                                transition: 'max-height 0.3s ease',
+                                maxHeight: '0px'
+                            }}
+                        >
                             {renderArticleContent(article.id)}
-                        </article>
+                        </div>
+                    </article>
                 ))}
             </div>
         </section>

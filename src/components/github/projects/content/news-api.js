@@ -8,13 +8,16 @@ import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import imgDemo from '../../../../assets/img/news-api.demo.png'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Version Control', id: 'version-control' },
-    // { title: 'Demo', id: 'demo' },
-    { title: 'Описание', id: 'overview' },
-    { title: 'Фичи', id: 'features' },
+    { title: 'version control', id: 'version-control' },
+    // { title: 'demo', id: 'demo' },
+    { title: 'overview / demo', id: 'overview' },
+    { title: 'core features', id: 'features' },
     // { 
     //     title: 'Детали', 
     //     id: 'details',
@@ -27,7 +30,72 @@ const articles = [
 ];
 
 function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
-    const codeBlockRefs = useRef({}); 
+    const codeBlockRefs = useRef({});
+    const contentRefs = useRef({});
+    const [expanded, setExpanded] = useState(() => {
+        const initialState = {};
+        articles.forEach(article => {
+            initialState[article.id] = false;
+            if (article.subArticles) {
+                article.subArticles.forEach(subArticle => {
+                    initialState[subArticle.id] = false;
+                });
+            }
+        });
+        return initialState;
+    });
+
+    const updateParentHeight = (parentId) => {
+        const parentElement = contentRefs.current[parentId];
+        if (parentElement && expanded[parentId]) {
+            requestAnimationFrame(() => {
+                parentElement.style.maxHeight = `${parentElement.scrollHeight}px`;
+            });
+        }
+    };
+
+    const toggleContent = (id, parentId = null) => {
+        setExpanded(prev => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+        
+        // Schedule an update for both the toggled element and its parent
+        requestAnimationFrame(() => {
+            const element = contentRefs.current[id];
+            if (element) {
+                if (!expanded[id]) {
+                    element.style.maxHeight = `${element.scrollHeight}px`;
+                    // If this is a sub-article, update the parent article's height
+                    if (parentId) {
+                        updateParentHeight(parentId);
+                    }
+                } else {
+                    element.style.maxHeight = '0px';
+                    // If this is a sub-article, update the parent article's height after collapse
+                    if (parentId) {
+                        setTimeout(() => updateParentHeight(parentId), 300); // Wait for sub-article collapse
+                    }
+                }
+            }
+        });
+    };
+
+    // Effect to handle height updates when expansion state changes
+    useEffect(() => {
+        articles.forEach(article => {
+            const articleContent = contentRefs.current[article.id];
+            if (articleContent) {
+                if (expanded[article.id]) {
+                    requestAnimationFrame(() => {
+                        articleContent.style.maxHeight = `${articleContent.scrollHeight}px`;
+                    });
+                } else {
+                    articleContent.style.maxHeight = '0px';
+                }
+            }
+        });
+    }, [expanded]);
     
     useEffect(() => {
         Object.values(codeBlockRefs.current).forEach((ref) => {
@@ -127,24 +195,24 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Github:&nbsp;
+                                        git:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.name}
+                                            github.com/{currentProject.name}
                                         </a>
                                     </div>
                                 </div>
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Deploy:&nbsp;
+                                        deploy:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.homepage}
+                                            newsapi.org
                                         </a>
                                     </div>
                                 </div>
@@ -158,37 +226,34 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
                                         <CalculateLastUpdate currentProject={currentProject} />
                                     </div>
                                 </div> */}
-
-
-                                <div className='version-control__block'>
-                                    <p className='content__block-quote'>
-                                        <blockquote>
-                                            Проект основан на <a href='https://github.com/haerulmuttaqin/PopularNews'>github.com/PopularNews</a>
-                                        </blockquote>
-                                    </p>
-                                </div>
                             </div>
+                        </div>
+
+                        <div className='version-control__block'>
+                            <p className='content__block-quote'>
+                                <blockquote>
+                                    Проект основан на <a href='https://github.com/haerulmuttaqin/PopularNews'>github.com/PopularNews</a>
+                                </blockquote>
+                            </p>
                         </div>
                     </div>
                 );
             case 'overview':
                 return (
                     <div className='content__block-description'>
-                        {/*
+                        
                         <div className='content__block-media'>
+                            <div className='content__block-image'>
+                                <figure>
+                                    <img src={imgDemo} alt='img' className='content__block-image' />
+                                    {/* <figcaption className='content__block-caption'>
+                                        This is a img.
+                                    </figcaption> */}
+                                </figure>
+                            </div>
 
 
-                                <div className='content__block-image'>
-                                    <figure>
-                                        <img src={imgDemo} alt='img' className='content__block-image' />
-                                        <figcaption className='content__block-caption'>
-                                            This is a img.
-                                        </figcaption>
-                                    </figure>
-                                </div>
-
-
-                                <div className='content__block-video'>
+                            {/* <div className='content__block-video'>
                                 <figure>
                                     <video controls className='content__block-video-element'>
                                         <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/webm" />
@@ -198,9 +263,9 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
                                         This is a description of the video.
                                     </figcaption>
                                 </figure>
-                            </div>
+                            </div> */}
                         </div>
-                        */}
+                       
                         
                         <p className='content__block-text'>
                             Мобильное приложение, для получения и отображения новостных лент в режиме реального времени с функциями управления постами и добавления их в избранное
@@ -264,24 +329,38 @@ function AndroidNewsApiProject({ currentProject, onUpdateArticles }) {
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>
+                <h2 className='content__title' id='project-title'>
                     {formatContentDescription(currentProject.description)}
-                </h1>
+                </h2>
 
-                {renderArticleContent('version-control')}
+                {/* {renderArticleContent('version-control')} */}
             </div>
 
-            <div className='content__body'>
-                {articles
-                    .filter(article => article.id != 'version-control')
-                    .map((article, index) => (
-                        <article className='content__block' id={article.id} key={article.id}>
-                            <h2 className='content__block-title' id={article.id} >
-                                {article.title}
-                            </h2>
-                            
+            <div className="content__body">
+                {articles.map((article) => (
+                    <article className="content__block" id={article.id} key={article.id}>
+                        <h2
+                            className="content__block-title"
+                            onClick={() => toggleContent(article.id)}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`faChevronDown ${expanded[article.id] ? 'rotated' : ''}`}
+                            />
+                            {article.title}
+                        </h2>
+                        <div
+                            className="content__block-content"
+                            ref={el => contentRefs.current[article.id] = el}
+                            style={{
+                                overflow: 'hidden',
+                                transition: 'max-height 0.3s ease',
+                                maxHeight: '0px'
+                            }}
+                        >
                             {renderArticleContent(article.id)}
-                        </article>
+                        </div>
+                    </article>
                 ))}
             </div>
         </section>

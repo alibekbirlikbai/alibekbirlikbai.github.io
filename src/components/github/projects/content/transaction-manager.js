@@ -8,24 +8,92 @@ import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import videoDemo from '../../../../assets/video/video.transaction-manager.demo.mp4'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-    { title: 'Version Control', id: 'version-control' },
+    { title: 'version control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
-    { title: 'Описание', id: 'overview' },
-    { title: 'Фичи', id: 'features' },
+    { title: 'overview / demo', id: 'overview' },
+    { title: 'core features', id: 'features' },
     { 
-        title: 'Детали', 
+        title: 'детали', 
         id: 'details',
         subArticles: [
-            { title: 'Интеграция OpenExchangeRates.org', id: 'integrate-openexchangerates' },
+            { title: 'интеграция OpenExchangeRates.org', id: 'integrate-openexchangerates' },
         ]
     },
 ];
 
 function TransactionManagerProject({ currentProject, onUpdateArticles }) {
     const codeBlockRefs = useRef({}); 
+    const contentRefs = useRef({});
+    const [expanded, setExpanded] = useState(() => {
+        const initialState = {};
+        articles.forEach(article => {
+            initialState[article.id] = false;
+            if (article.subArticles) {
+                article.subArticles.forEach(subArticle => {
+                    initialState[subArticle.id] = false;
+                });
+            }
+        });
+        return initialState;
+    });
+
+    const updateParentHeight = (parentId) => {
+        const parentElement = contentRefs.current[parentId];
+        if (parentElement && expanded[parentId]) {
+            requestAnimationFrame(() => {
+                parentElement.style.maxHeight = `${parentElement.scrollHeight}px`;
+            });
+        }
+    };
+
+    const toggleContent = (id, parentId = null) => {
+        setExpanded(prev => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+        
+        // Schedule an update for both the toggled element and its parent
+        requestAnimationFrame(() => {
+            const element = contentRefs.current[id];
+            if (element) {
+                if (!expanded[id]) {
+                    element.style.maxHeight = `${element.scrollHeight}px`;
+                    // If this is a sub-article, update the parent article's height
+                    if (parentId) {
+                        updateParentHeight(parentId);
+                    }
+                } else {
+                    element.style.maxHeight = '0px';
+                    // If this is a sub-article, update the parent article's height after collapse
+                    if (parentId) {
+                        setTimeout(() => updateParentHeight(parentId), 300); // Wait for sub-article collapse
+                    }
+                }
+            }
+        });
+    };
+
+    // Effect to handle height updates when expansion state changes
+    useEffect(() => {
+        articles.forEach(article => {
+            const articleContent = contentRefs.current[article.id];
+            if (articleContent) {
+                if (expanded[article.id]) {
+                    requestAnimationFrame(() => {
+                        articleContent.style.maxHeight = `${articleContent.scrollHeight}px`;
+                    });
+                } else {
+                    articleContent.style.maxHeight = '0px';
+                }
+            }
+        });
+    }, [expanded]);
     
     useEffect(() => {
         Object.values(codeBlockRefs.current).forEach((ref) => {
@@ -184,19 +252,19 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Github:&nbsp;
+                                        git:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.full_name}
+                                            github.com/{currentProject.name}
                                         </a>
                                     </div>
                                 </div>
 
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        Pull-Request:&nbsp;
+                                        pull-request:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
@@ -294,7 +362,7 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
                     <div className='content__block-description'>
                         <p className='content__block-quote'>
                             <blockquote>
-                                docs для - <b>code</b> / <b>API endpoints</b> / <b>quickstart</b> есть в <a href='https://github.com/alibekbirlikbai/transaction-manager'>Readme.md</a>
+                                <span className='quote-title'>Note:</span> docs для - <b>code</b> / <b>API endpoints</b> / <b>quickstart</b> есть в <a href='https://github.com/alibekbirlikbai/transaction-manager'>Readme.md</a>
                             </blockquote>
                         </p>
 
@@ -311,24 +379,38 @@ public Mono<List<Currency>> getCurrencyList(ZonedDateTime transaction_dateTime) 
     return (
         <section className='content'>
             <div className='content__header'>
-                <h1 className='content__title' id='project-title'>
+                <h2 className='content__title' id='project-title'>
                     {formatContentDescription(currentProject.description)}
-                </h1>
+                </h2>
 
-                {renderArticleContent('version-control')}
+                {/* {renderArticleContent('version-control')} */}
             </div>
 
-            <div className='content__body'>
-                {articles
-                    .filter(article => article.id != 'version-control')
-                    .map((article, index) => (
-                        <article className='content__block' id={article.id} key={article.id}>
-                            <h2 className='content__block-title' id={article.id} >
-                                {article.title}
-                            </h2>
-                            
+            <div className="content__body">
+                {articles.map((article) => (
+                    <article className="content__block" id={article.id} key={article.id}>
+                        <h2
+                            className="content__block-title"
+                            onClick={() => toggleContent(article.id)}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`faChevronDown ${expanded[article.id] ? 'rotated' : ''}`}
+                            />
+                            {article.title}
+                        </h2>
+                        <div
+                            className="content__block-content"
+                            ref={el => contentRefs.current[article.id] = el}
+                            style={{
+                                overflow: 'hidden',
+                                transition: 'max-height 0.3s ease',
+                                maxHeight: '0px'
+                            }}
+                        >
                             {renderArticleContent(article.id)}
-                        </article>
+                        </div>
+                    </article>
                 ))}
             </div>
         </section>

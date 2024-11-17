@@ -27,6 +27,7 @@ body, html
     height: 100%
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji
     line-height: 1.5
+    // font-size: 1.05em
     color: $font-default-color
     font-weight: 400
     word-break: break-word
@@ -36,6 +37,9 @@ body, html
     display: flex
     flex-direction: column
     min-height: 100vh
+    
+    // font-size: 1.1em
+
 
     nav
         display: flex
@@ -66,7 +70,7 @@ body, html
 
             .app-content
                 padding-left: $content-padding-left
-                padding-top: $content-space-top
+                padding-top: calc($content-space-top + 15vh)
 
                 // background-color: aqua
                 display: flex

@@ -8,13 +8,16 @@ import PrioritizeSpecificStack from '../../../html/prioritizeSpecificStack'
 
 import imgDemo from '../../../../assets/img/personal-site.demo.png'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 import formatContentDescription from '../../../html/formatContentDescription'
 
 const articles = [
-  { title: 'Version Control', id: 'version-control' },
-  // { title: 'Demo', id: 'demo' },
-  { title: 'Описание', id: 'overview' },
-  { title: 'Фичи', id: 'features' },
+  { title: 'version control', id: 'version-control' },
+  // { title: 'demo', id: 'demo' },
+  { title: 'overview / demo', id: 'overview' },
+  { title: 'core features', id: 'features' },
   // {
   //     title: 'Детали',
   //     id: 'details',
@@ -25,7 +28,72 @@ const articles = [
 ];
 
 function PersonalSiteProject({ currentProject, onUpdateArticles }) {
-  const codeBlockRefs = useRef({});
+  const codeBlockRefs = useRef({}); 
+  const contentRefs = useRef({});
+  const [expanded, setExpanded] = useState(() => {
+      const initialState = {};
+      articles.forEach(article => {
+          initialState[article.id] = false;
+          if (article.subArticles) {
+              article.subArticles.forEach(subArticle => {
+                  initialState[subArticle.id] = false;
+              });
+          }
+      });
+      return initialState;
+  });
+
+  const updateParentHeight = (parentId) => {
+      const parentElement = contentRefs.current[parentId];
+      if (parentElement && expanded[parentId]) {
+          requestAnimationFrame(() => {
+              parentElement.style.maxHeight = `${parentElement.scrollHeight}px`;
+          });
+      }
+  };
+
+  const toggleContent = (id, parentId = null) => {
+      setExpanded(prev => ({
+          ...prev,
+          [id]: !prev[id]
+      }));
+      
+      // Schedule an update for both the toggled element and its parent
+      requestAnimationFrame(() => {
+          const element = contentRefs.current[id];
+          if (element) {
+              if (!expanded[id]) {
+                  element.style.maxHeight = `${element.scrollHeight}px`;
+                  // If this is a sub-article, update the parent article's height
+                  if (parentId) {
+                      updateParentHeight(parentId);
+                  }
+              } else {
+                  element.style.maxHeight = '0px';
+                  // If this is a sub-article, update the parent article's height after collapse
+                  if (parentId) {
+                      setTimeout(() => updateParentHeight(parentId), 300); // Wait for sub-article collapse
+                  }
+              }
+          }
+      });
+  };
+
+  // Effect to handle height updates when expansion state changes
+  useEffect(() => {
+      articles.forEach(article => {
+          const articleContent = contentRefs.current[article.id];
+          if (articleContent) {
+              if (expanded[article.id]) {
+                  requestAnimationFrame(() => {
+                      articleContent.style.maxHeight = `${articleContent.scrollHeight}px`;
+                  });
+              } else {
+                  articleContent.style.maxHeight = '0px';
+              }
+          }
+      });
+  }, [expanded]);
 
   useEffect(() => {
     Object.values(codeBlockRefs.current).forEach((ref) => {
@@ -125,31 +193,31 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
                 <div className='version-control'>
                   <div className='version-control__block'>
                     <div className='version-control__block-title'>
-                      Github:&nbsp;
+                      git:&nbsp;
                     </div>
 
                     <div className='version-control__block-container'>
                       <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                        {currentProject.name}
+                        github.com/alibekbirlikbai.github.io
                       </a>
                     </div>
                   </div>
 
                   <div className='version-control__block'>
                     <div className='version-control__block-title'>
-                      Deploy:&nbsp;
+                      deploy:&nbsp;
                     </div>
 
                     <div className='version-control__block-container'>
                       <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
-                        {currentProject.homepage}
+                        alibekbirlikbai.github.io
                       </a>
                     </div>
                   </div>
 
                   <div className='version-control__block'>
                     <div className='version-control__block-title'>
-                      Pull-Request:&nbsp;
+                      pull-request:&nbsp;
                     </div>
 
                     <div className='version-control__block-container'>
@@ -175,7 +243,7 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
             <div className='content__block-description'>
               <p className='content__block-quote'>
                 <blockquote>
-                  <span className='quote-title'>Note:</span> Мобильная версия сайта еще в разработке
+                  <span className='quote-title'>Note:</span> Сейчас сайт поднят на удаленных серверах Github (github.io), но я работаю над своим домашним сервером на Raspberry-Pi, как только разберусь попробую запустить проекты на нем
                 </blockquote>
               </p>
 
@@ -188,7 +256,7 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
               </div>
 
               <p className='content__block-text'>
-                Сайт/Hub для документирования и хостинга проектов
+                Сервер для хостинга проектов
               </p>
             </div>
         );
@@ -227,7 +295,7 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
                         </p> */}
 
               <ul className='content__block-feature-list'>
-                <li className='content__block-feature-item'>Скрипт на JavaScript для динамического извлечения и отображения данных о репозиториях аккаунта (запрос через <a href='https://docs.github.com/en/rest?apiVersion=2022-11-28'>Github REST API</a>)</li>
+                <li className='content__block-feature-item'>Скрипт на JavaScript для динамического извлечения и отображения данных о git репозиториях (запрос через <a href='https://docs.github.com/en/rest?apiVersion=2022-11-28'>Github REST API</a>)</li>
                 {/*
                                 <li className='content__block-feature-item'>Интеграция <code>GITHUB_TOKEN</code> / <a href='https://github.com/orgs/community/discussions/42133'>env variable</a></li>
                             */}
@@ -247,31 +315,45 @@ function PersonalSiteProject({ currentProject, onUpdateArticles }) {
 
   };
 
-  return (
-      <section className='content'>
-        <div className='content__header'>
-          <h1 className='content__title' id='project-title'>
-            {formatContentDescription(currentProject.description)}
-          </h1>
-
-          {renderArticleContent('version-control')}
-        </div>
-
-        <div className='content__body'>
-          {articles
-          .filter(article => article.id != 'version-control')
-          .map((article, index) => (
-              <article className='content__block' id={article.id} key={article.id}>
-                <h2 className='content__block-title' id={article.id} >
-                  {article.title}
+return (
+        <section className='content'>
+            <div className='content__header'>
+                <h2 className='content__title' id='project-title'>
+                    {formatContentDescription(currentProject.description)}
                 </h2>
 
-                {renderArticleContent(article.id)}
-              </article>
-          ))}
-        </div>
-      </section>
-  );
+                {/* {renderArticleContent('version-control')} */}
+            </div>
+
+            <div className="content__body">
+                {articles.map((article) => (
+                    <article className="content__block" id={article.id} key={article.id}>
+                        <h2
+                            className="content__block-title"
+                            onClick={() => toggleContent(article.id)}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`faChevronDown ${expanded[article.id] ? 'rotated' : ''}`}
+                            />
+                            {article.title}
+                        </h2>
+                        <div
+                            className="content__block-content"
+                            ref={el => contentRefs.current[article.id] = el}
+                            style={{
+                                overflow: 'hidden',
+                                transition: 'max-height 0.3s ease',
+                                maxHeight: '0px'
+                            }}
+                        >
+                            {renderArticleContent(article.id)}
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
 };
 
 export default PersonalSiteProject;

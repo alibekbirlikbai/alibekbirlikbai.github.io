@@ -16,7 +16,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 const articles = [
     { title: 'version control', id: 'version-control' },
     // { title: 'Demo', id: 'demo' },
-    { title: 'demo', id: 'overview' },
+    { title: 'overview / demo', id: 'overview' },
     { title: 'core features', id: 'features' },
     { 
         title: 'детали', 
@@ -371,12 +371,12 @@ jobs:
                             <div className='version-control'>
                                 <div className='version-control__block'>
                                     <div className='version-control__block-title'>
-                                        github:&nbsp;
+                                        git:&nbsp;
                                     </div>
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.html_url} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.name}
+                                            github.com/{currentProject.name}
                                         </a>
                                     </div>
                                 </div>
@@ -388,7 +388,7 @@ jobs:
 
                                     <div className='version-control__block-container'>
                                         <a href={currentProject.homepage} target='_blank' rel='noopener noreferrer'>
-                                            {currentProject.homepage}
+                                            /actions
                                         </a>
                                     </div>
                                 </div>
@@ -403,14 +403,7 @@ jobs:
                                     </div>
                                 </div>
 
-                                <div className='version-control__block'>
-                                    <p className='content__block-quote'>
-                                        <blockquote>
-                                            {/* <span className='quote-title'>Note:</span>  */}
-                                            Проект основан на <a href='https://github.com/simonw/simonw'>github.com/simonw</a> и статье <a href='https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/'>"Building a self-updating profile README for GitHub"</a>
-                                        </blockquote>
-                                    </p>
-                                </div>
+                                
 
                                 {/* <div className='version-control__block text-italic'>
                                     <div className='version-control__block-title'>
@@ -424,6 +417,14 @@ jobs:
                             </div>
                         </div>
 
+                        <div className='version-control__block'>
+                            <p className='content__block-quote'>
+                                <blockquote>
+                                    {/* <span className='quote-title'>Note:</span>  */}
+                                    Проект основан на <a href='https://github.com/simonw/simonw'>github.com/simonw</a> и статье <a href='https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/'>"Building a self-updating profile README for GitHub"</a>
+                                </blockquote>
+                            </p>
+                        </div>
                     </div>
                 );
             case 'overview':

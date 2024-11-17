@@ -95,7 +95,15 @@ function LeftSidebar({ projects }) {
         <aside className='sidebar-left'>
             <ul className='sidebar-left__list'>
                 <li className='list-title'>
-                    Проекты 
+                    <NavLink 
+                        to="/projects" 
+                        className={({ isActive }) =>
+                            isActive || location.pathname.startsWith('/projects') ? 'navigation__link activeq' : 'navigation__link'
+                        }
+                        end 
+                    >
+                        Проекты
+                    </NavLink>
                 </li>
 
                 {sortedProjects.map(project => (
@@ -106,6 +114,8 @@ function LeftSidebar({ projects }) {
                     </li>
                 ))}
 
+                <hr/>
+
                 <li className='list-title'>
                     <NavLink 
                         to="/contacts" 
@@ -115,6 +125,12 @@ function LeftSidebar({ projects }) {
                     </NavLink>
                 </li>
             </ul>
+
+            {/* <ul className='sidebar-left__footer'>
+                <li><a href='https://github.com/alibekbirlikbai'>Github</a></li>
+                <li><a href='https://www.linkedin.com/in/alibek-birlikbai'>Linkedin</a></li>
+                <li><a href='https://t.me/alibekbirlikbai'>Telegram</a></li>
+            </ul> */}
         </aside>
     );
 }

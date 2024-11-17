@@ -11,7 +11,7 @@ import { faTelegram } from '@fortawesome/free-brands-svg-icons'
 function ContactsPage({ projects, defaultProject }) {
     const linkedin_url = 'https://www.linkedin.com/in/alibek-birlikbai'
     const github_url = 'https://github.com/alibekbirlikbai'
-    const telegram = 'alibekbirlikbai'
+    const telegram = 'https://t.me/alibekbirlikbai'
     const email = 'alibekbirlikbai@gmail.com'
     const phone = '+7 (771) 441-45-09'
 
@@ -41,6 +41,12 @@ function ContactsPage({ projects, defaultProject }) {
                 <main>
                     <div className="app-content" id="contacts-page">
                         <div className="contact__blocks">
+                            <div className='contact__blocks-description'>
+                                <p>
+                                    CV / Резюме по запросу 
+                                </p>
+                            </div>
+
                             <div className='contact__blocks-self'>
                                 <article className="contact__block">
                                     <div className="contact__block-content">
@@ -60,9 +66,9 @@ function ContactsPage({ projects, defaultProject }) {
                                 
                                 <article className="contact__block">
                                     <div className="contact__block-content">
-                                        <div className='contact__media-icon'>
-                                            {/* <FontAwesomeIcon icon={faLinkedin} style={{color: "#0077B5",}} /> */}
-                                        </div>
+                                        {/* <div className='contact__media-icon'>
+                                            <FontAwesomeIcon icon={faLinkedin} style={{color: "#0077B5",}} />
+                                        </div> */}
 
                                         <div className="contact__label">
                                             {/* &nbsp;e-mail:&nbsp; */}
@@ -78,17 +84,17 @@ function ContactsPage({ projects, defaultProject }) {
     
                                 <article className="contact__block">
                                     <div className="contact__block-content">
-                                        <div className='contact__media-icon'>
-                                            {/* <FontAwesomeIcon icon={faTelegram} style={{color: "#0088cc",}} /> */}
-                                        </div>
+                                        {/* <div className='contact__media-icon'>
+                                            <FontAwesomeIcon icon={faTelegram} style={{color: "#0088cc",}} />
+                                        </div> */}
 
                                         <div className="contact__label">
                                             Telegram:&nbsp;
                                         </div>
 
                                         <div className='contact__details'>
-                                            <a href={`https://t.me/${telegram}`} target="_blank" rel="noopener noreferrer" className='contact__url'>
-                                                @{telegram}
+                                            <a href={`https://t.me/alibekbirlikbai`} target="_blank" rel="noopener noreferrer" className='contact__url'>
+                                                {telegram}
                                             </a>
                                         </div>
                                     </div>                            
@@ -98,9 +104,9 @@ function ContactsPage({ projects, defaultProject }) {
                             <div className='contact__blocks-media'>  
                                 <article className="contact__block">
                                     <div className="contact__block-content">
-                                        <div className='contact__media-icon'>
+                                        {/* <div className='contact__media-icon'>
                                             <FontAwesomeIcon icon={faGithub} style={{color: "",}} />
-                                        </div>
+                                        </div> */}
 
                                         <div className="contact__label">
                                             &nbsp;Github:&nbsp;
@@ -116,9 +122,9 @@ function ContactsPage({ projects, defaultProject }) {
 
                                 <article className="contact__block">
                                     <div className="contact__block-content">
-                                        <div className='contact__media-icon'>
+                                        {/* <div className='contact__media-icon'>
                                             <FontAwesomeIcon icon={faLinkedin} style={{color: "#2f81f7",}} />
-                                        </div>
+                                        </div> */}
 
                                         <div className="contact__label">
                                             &nbsp;LinkedIn:&nbsp;
@@ -131,12 +137,6 @@ function ContactsPage({ projects, defaultProject }) {
                                         </div>
                                     </div>                            
                                 </article>
-                            </div>
-
-                            <div className='contact__blocks-description'>
-                                <p>
-                                    cv / резюме по запросу 
-                                </p>
                             </div>
                         </div>
                     </div>
