@@ -15,7 +15,7 @@ function ContactsPage({ projects, defaultProject }) {
     const email = 'alibekbirlikbai@gmail.com'
     const phone = '+7 (771) 441-45-09'
 
-
+    
     const [currentProject, setCurrentProject] = useState(null);
     const [isProjectLoading, setIsProjectLoading] = useState(true);
     const { repo } = useParams();
